@@ -21,13 +21,20 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.name %></td>
-        <td><%= user.city %></td>
+        <td>"Boston"</td>
+        <td>"Jazz"</td>
+        <td>"Piano"</td>
+        <td>"Norah Jones"</td>
+        <td>"playlist link"</td>
+        <td>"youtube link"</td>
+        <td>"I make music for fun! Come jam with me!"</td>
+        <!-- <td><%= user.city %></td>
         <td><%= user.genre %></td>
         <td><%= user.intruments %></td>
         <td><%= user.favorites %></td>
         <td><%= user.playlists %></td>
         <td><%= user.links %></td>
-        <td><%= user.intro %></td>
+        <td><%= user.intro %></td> -->
 
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
