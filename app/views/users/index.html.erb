@@ -13,14 +13,14 @@
       <th>Spotify Playlist</th>
       <th>Links to Music</th>
       <th>Introduction Message</th>
-      <th colspan="8"></th>
+      <th> colspan="8"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @users.each do |user| %>
+    <!-- <% @users.each do |user| %> -->
       <tr>
-        <td><%= user.name %></td>
+        <td>"Deniz"></td>
         <td>"Boston"</td>
         <td>"Jazz"</td>
         <td>"Piano"</td>
@@ -40,7 +40,7 @@
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+    <!-- <% end %> -->
   </tbody>
 </table>
 
