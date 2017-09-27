@@ -41,23 +41,4 @@ class ApplicationController < ActionController::Base
       '''
       .html_safe
   end
-  def user_profile
-    render html:'''
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <h1>User Profile</h1>
-      </head>
-      <body>
-        <h2>User Name:</h2><h3><%= user.name%></h2>
-        <h2>City</h2>
-        <h2>Genre</h2>
-        <h2>Instruments</h2>
-        <h2>Favorite Artists</h2>
-        <h2>Spotify Playlist(?)</h2>
-        <h2>Links</h2>
-      </body>
-    </html>
-    '''
-  end
 end
