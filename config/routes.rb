@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  root 'application#intro'
+  get 'application/display_map'
   resources :users
-  root 'application#display_map'
-  resources :users
-  root 'users#index'
+  get 'users/index'
+  get 'users/new'
   # root 'application#user_profile'
 end
