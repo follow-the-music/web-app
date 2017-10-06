@@ -1,3 +1,3 @@
 class User < ApplicationRecord
-   attr_accessor :name, :email
+   attr_accessor :user_name, :user_email
 end

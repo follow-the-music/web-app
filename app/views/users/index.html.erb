@@ -4,9 +4,10 @@
 
 <table>
   <tbody>
+    <%@users.each do |user|%>
       <tr>
         <th>Name</th>
-        <td>Deniz Amado</td>
+        <td><%= user.id%></td>
       </tr>
       <tr>
         <th>City</th>
@@ -35,6 +36,7 @@
         <th>Introduction Message</th>
         <td>I make music for fun! Come jam with me!</td>
     </tr>
+    <%end%>
   </tbody>
 </table>
 
