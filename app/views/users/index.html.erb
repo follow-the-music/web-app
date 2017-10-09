@@ -1,5 +1,24 @@
 <p id="notice"><%= notice %></p>
 
+<style>
+  body{
+    background-image: url('/assets/guitars.jpg');
+    background-repeat: repeat;
+
+  }
+  h1{
+    color: white;
+  }
+  table{
+    color: black;
+    background-color: #F8F8FF;
+
+  }
+
+</style>
+<body>
+
+  <br><br>
 <h1>Users</h1>
 
 <table>
@@ -7,7 +26,7 @@
     <%@users.each do |user|%>
       <tr>
         <th>Name</th>
-        <td><%= user.id%></td>
+        <td><%= "Deniz"%></td>
       </tr>
       <tr>
         <th>City</th>
@@ -36,8 +55,9 @@
         <th>Introduction Message</th>
         <td>I make music for fun! Come jam with me!</td>
     </tr>
+
     <%end%>
   </tbody>
 </table>
-
 <br>
+</body>

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'application#intro'
+  root 'application#choice'
   get 'application/display_map'
   resources :users
   get 'users/index'
