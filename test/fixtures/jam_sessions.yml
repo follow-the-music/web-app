@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  longitude: MyString
+  float: MyString
+  latitude: MyString
+  float: MyString
+  host_id: 1
+  max_players: 1
+  max_listeners: 1
+  name: MyText
+  description: MyText
+
+two:
+  longitude: MyString
+  float: MyString
+  latitude: MyString
+  float: MyString
+  host_id: 1
+  max_players: 1
+  max_listeners: 1
+  name: MyText
+  description: MyText

@@ -1,0 +1,2 @@
+class GuestSessionAssociation < ApplicationRecord
+end

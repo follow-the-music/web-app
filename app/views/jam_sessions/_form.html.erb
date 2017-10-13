@@ -1,0 +1,62 @@
+<%= form_with(model: jam_session, local: true) do |form| %>
+  <% if jam_session.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(jam_session.errors.count, "error") %> prohibited this jam_session from being saved:</h2>
+
+      <ul>
+      <% jam_session.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :longitude %>
+    <%= form.text_field :longitude, id: :jam_session_longitude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :float %>
+    <%= form.text_field :float, id: :jam_session_float %>
+  </div>
+
+  <div class="field">
+    <%= form.label :latitude %>
+    <%= form.text_field :latitude, id: :jam_session_latitude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :float %>
+    <%= form.text_field :float, id: :jam_session_float %>
+  </div>
+
+  <div class="field">
+    <%= form.label :host_id %>
+    <%= form.number_field :host_id, id: :jam_session_host_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :max_players %>
+    <%= form.number_field :max_players, id: :jam_session_max_players %>
+  </div>
+
+  <div class="field">
+    <%= form.label :max_listeners %>
+    <%= form.number_field :max_listeners, id: :jam_session_max_listeners %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_area :name, id: :jam_session_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :jam_session_description %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

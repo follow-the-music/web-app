@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :guest_session_associations
+  resources :jam_sessions
   get 'sessions/new'
 
   get 'users/new'
   resources :users
-  ##get '/displaymap' to: 'application#display_map'
+  # get '/displaymap' to: 'application#display_map'
   root 'static_pages#login'
   get   '/static_pages', to:'static_pages#choice'
   get  '/choosetype',    to: 'static_pages#choosetype'

@@ -1,0 +1,2 @@
+class JamSession < ApplicationRecord
+end

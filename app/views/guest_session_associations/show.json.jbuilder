@@ -1,0 +1,1 @@
+json.partial! "guest_session_associations/guest_session_association", guest_session_association: @guest_session_association

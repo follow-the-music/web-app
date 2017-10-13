@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @jam_session.longitude %>
+</p>
+
+<p>
+  <strong>Float:</strong>
+  <%= @jam_session.float %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @jam_session.latitude %>
+</p>
+
+<p>
+  <strong>Float:</strong>
+  <%= @jam_session.float %>
+</p>
+
+<p>
+  <strong>Host:</strong>
+  <%= @jam_session.host_id %>
+</p>
+
+<p>
+  <strong>Max players:</strong>
+  <%= @jam_session.max_players %>
+</p>
+
+<p>
+  <strong>Max listeners:</strong>
+  <%= @jam_session.max_listeners %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @jam_session.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @jam_session.description %>
+</p>
+
+<%= link_to 'Edit', edit_jam_session_path(@jam_session) %> |
+<%= link_to 'Back', jam_sessions_path %>

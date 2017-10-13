@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @guest_session_association.user_id %>
+</p>
+
+<p>
+  <strong>Session:</strong>
+  <%= @guest_session_association.session_id %>
+</p>
+
+<p>
+  <strong>Player:</strong>
+  <%= @guest_session_association.player %>
+</p>
+
+<%= link_to 'Edit', edit_guest_session_association_path(@guest_session_association) %> |
+<%= link_to 'Back', guest_session_associations_path %>
