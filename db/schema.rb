@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012213613) do
+ActiveRecord::Schema.define(version: 20171013211516) do
+
+  create_table "guest_session_associations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "session_id"
+    t.boolean "player"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "jam_sessions", force: :cascade do |t|
+    t.string "longitude"
+    t.string "float"
+    t.string "latitude"
+    t.integer "host_id"
+    t.integer "max_players"
+    t.integer "max_listeners"
+    t.text "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
