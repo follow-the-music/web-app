@@ -6,6 +6,7 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
+        <%= link_to "Log out", logout_path, method: :delete %>
     </section>
   </aside>
 </div>
