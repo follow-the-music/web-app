@@ -1,28 +1,63 @@
 <p id="notice"><%= notice %></p>
+
+<style>
+  body{
+    background-image: url('/assets/guitars.jpg');
+    background-repeat: repeat;
+
+  }
+  h1{
+    color: white;
+  }
+  table{
+    color: black;
+    background-color: #F8F8FF;
+
+  }
+
+</style>
+<body>
+
+  <br><br>
 <h1>Users</h1>
 
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
   <tbody>
-    <% @users.each do |user| %>
+    <%@users.each do |user|%>
       <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <td><%= "Deniz"%></td>
       </tr>
-    <% end %>
+      <tr>
+        <th>City</th>
+        <td>Boston</td>
+      </tr>
+      <tr>
+        <th>Genre</th>
+        <td>Jazz</td>
+      </tr>
+      <tr>
+        <th>Instruments</th>
+        <td>Piano</td>
+      </tr>
+      <tr><th>Current Favorite Artists</th>
+          <td>Norah Jones</td>
+      </tr>
+      <tr>
+        <th>Spotify Playlist</th>
+        <td>playlist link</td>
+      </tr>
+      <tr>
+        <th>Links to Music</th>
+        <td>youtube link</td>
+      </tr>
+      <tr>
+        <th>Introduction Message</th>
+        <td>I make music for fun! Come jam with me!</td>
+    </tr>
+
+    <%end%>
   </tbody>
 </table>
-
 <br>
-
-<%= link_to 'New User', new_user_path %>
+</body>

@@ -42,4 +42,8 @@ class ApplicationController < ActionController::Base
       '''
       .html_safe
   end
+  def choice
+
+  end
+
 end
