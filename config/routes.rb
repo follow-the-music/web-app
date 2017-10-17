@@ -6,8 +6,8 @@ Rails.application.routes.draw do
 
   get 'users/new'
   resources :users
-  # get '/displaymap' to: 'application#display_map'
   root 'static_pages#login'
+  get '/display_map', to: 'application#display_map'
   get   '/choice', to:'static_pages#choice'
   get  '/choosetype',    to: 'static_pages#choosetype'
   get  '/signup',  to: 'users#new'

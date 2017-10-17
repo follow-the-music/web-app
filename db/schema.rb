@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171013212411) do
+ActiveRecord::Schema.define(version: 20171017171424) do
 
   create_table "guest_session_associations", force: :cascade do |t|
     t.integer "user_id"
@@ -21,9 +21,6 @@ ActiveRecord::Schema.define(version: 20171013212411) do
   end
 
   create_table "jam_sessions", force: :cascade do |t|
-    t.string "longitude"
-    t.string "float"
-    t.string "latitude"
     t.integer "host_id"
     t.integer "max_players"
     t.integer "max_listeners"
@@ -31,6 +28,8 @@ ActiveRecord::Schema.define(version: 20171013212411) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
   end
 
 # Could not dump table "users" because of following StandardError
