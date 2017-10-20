@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   get 'sessions/new'
 
   get 'users/new'
+  resources :users
+  root 'static_pages#landingpage'
 
-  root 'static_pages#login'
+  get 'about', to: 'static_pages#about'
   get '/display_map', to: 'application#display_map'
   get   '/choice', to:'static_pages#choice'
   get  '/choosetype',    to: 'static_pages#choosetype'
@@ -17,6 +19,7 @@ Rails.application.routes.draw do
   get '/new_event', to: 'jam_sessions#new'
   #get '/:id', to: 'users#show'
   get 'profile', to: 'users#show'
+  get '/profile/edit', to: 'users#edit'
 
 post   '/login',   to: 'sessions#create'
 delete '/logout',  to: 'sessions#destroy'

@@ -1,25 +1,26 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "sample app", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home", root_path %></li>
-        <% if logged_in? %>
-          <li><%= link_to "Users", '#' %></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Account <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Profile", current_user %></li>
-              <li class="divider"></li>
-              <li>
-              
-              </li>
-            </ul>
-          </li>
+        <li><%= link_to "Home",   root_path %></li>
+        <li><%= link_to "About",   about_path %></li>
+        <%if logged_in? %>
+        <li><%= link_to "Log out", logout_path, method: :delete %></li>
         <% else %>
-          <li><%= link_to "Log in", login_path %></li>
+        <li>
+            <%= form_for(:session, url: login_path) do |f| %>
+
+              <%= f.email_field :email, class: 'form-control' %>
+
+             <%= f.password_field :password, class: 'form-control' %>
+
+              <%= f.submit "Log in", class: "btn btn-primary" %>
+            <% end %>
+
+
+
+      </li>
+      <li> <%= link_to "Sign up now!", signup_path %></li>
         <% end %>
       </ul>
     </nav>
