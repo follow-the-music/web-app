@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def display_map
-
+    @jam_sessions = JamSession.all
   end
 
   def choice

@@ -1,25 +1,24 @@
 <p id="notice"><%= notice %></p>
+<style>
+  body{
+    background-image: url('/assets/jam.jpg');
+    background-repeat: repeat;
+  }
 
+  div{
+    color: black;
+    background-color: #F8F8FF;
+    text-align:center;
+  }
+</style>
+
+
+<body>
+<div>
 <p>
-  <strong>Longitude:</strong>
-  <%= @jam_session.longitude %>
+  <h1><%= @jam_session.name %></h1>
+  <br>
 </p>
-
-<p>
-  <strong>Float:</strong>
-  <%= @jam_session.float %>
-</p>
-
-<p>
-  <strong>Latitude:</strong>
-  <%= @jam_session.latitude %>
-</p>
-
-<p>
-  <strong>Float:</strong>
-  <%= @jam_session.float %>
-</p>
-
 <p>
   <strong>Host:</strong>
   <%= @jam_session.host_id %>
@@ -36,14 +35,24 @@
 </p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @jam_session.name %>
-</p>
-
-<p>
   <strong>Description:</strong>
   <%= @jam_session.description %>
 </p>
+<p>
+  <strong>Longitude:</strong>
+  <%= @jam_session.longitude %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @jam_session.latitude %>
+</p>
+<br><br>
+</div>
+
+</body>
+
+
 
 <%= link_to 'Edit', edit_jam_session_path(@jam_session) %> |
 <%= link_to 'Back', jam_sessions_path %>
