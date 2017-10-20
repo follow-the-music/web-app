@@ -3,21 +3,48 @@
   <head>
     <style>
       #map {
-        height: 400px;
-        width: 100%;
+        height: 600px;
+        width: 90%;
+        margin-left:20%;
+        /*margin-right:20%;*/
+        margin-top: -64%;
+      }
+      ul,h3{
+
+      }h3 {
+        font-family: "Rockwell Extra Bold", "Rockwell Bold", monospace;
+      	font-size: 24px;
+      	font-style: normal;
+      	font-variant: normal;
+      	font-weight: 500;
+      	line-height: 26.4px;
+        text-align:center;
+      }
+      body{
+        background-image: url('/assets/ukulele.jpg');
+        background-repeat: repeat;
+      }
+    #list{
+        color: black;
+        background-color: #F8F8FF;
+        margin-left: -10%;
+        height:600px;
+        width:250px;
       }
     </style>
   </head>
 
   <body>
-    <h3>My Google Maps Demo</h3>
-<%# <ul>%>
-  <%#@sessions.each do |session|%>
+  <div id="list">
+    <h3><strong>Music Around You<strong></h3>
+ <ul>
+  <%@jam_sessions.each do |session|%>
     <!-- if session is close to you, calculate -->
-  <%#    <li> <% #= link_to session.name, "/jam_sessions/"+ session.id, class: "myButton"%>
-    <%#end%>
-<%#</ul> %>
+  <li><%=link_to session.name, session%></li>
+    <%end%>
+</ul>
 
+</div>
     <div id="map"></div>
     <script>
       function initMap() {
