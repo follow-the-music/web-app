@@ -10,16 +10,21 @@
     background-color: #F8F8FF;
     text-align:center;
   }
+  h1{
+    font-family: "Rockwell Extra Bold", "Rockwell Bold", monospace;
+    font-size: 40px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 26.4px;
+    text-align:center;
+  }
 </style>
-
-<p>
-  <strong>Latitude:</strong>
-  <%= @jam_session.latitude %>
-</p>
-
+<h1><strong><%=@jam_session.name%></strong></h1>
+<br>
 <p>
   <strong>Host:</strong>
-  <%= @jam_session.host_id %>
+  <%= @name[0]%>
 </p>
 
 <p>
@@ -36,15 +41,7 @@
   <strong>Description:</strong>
   <%= @jam_session.description %>
 </p>
-<p>
-  <strong>Longitude:</strong>
-  <%= @jam_session.longitude %>
-</p>
 
-<p>
-  <strong>Latitude:</strong>
-  <%= @jam_session.latitude %>
-</p>
 <br><br>
 </div>
 

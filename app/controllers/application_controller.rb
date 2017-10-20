@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
     @jam_sessions = JamSession.all
   end
 
+
   def choice
 
   end
