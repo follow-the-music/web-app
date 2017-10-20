@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get  '/choosetype',    to: 'static_pages#choosetype'
   get  '/signup',  to: 'users#new'
   get   '/login',   to: 'sessions#new'
+  get '/new-event', to: 'jam_sessions#new'
 post   '/login',   to: 'sessions#create'
 delete '/logout',  to: 'sessions#destroy'
 post '/signup',  to: 'users#create'
