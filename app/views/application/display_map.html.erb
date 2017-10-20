@@ -31,18 +31,43 @@
         height:600px;
         width:250px;
       }
+      li{
+        margin-left: 5%;
+      }
+      .button1 {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 30px;
+        margin: 8px 4px;
+        border-radius: 50%;
+        margin-left: 35%;
+        margin-top:100%;
+        text-emphasis-color:#4CAF50;
+      }
+      .button2 {
+        background-color:  #F8F9FF;
+        border-radius: 10%;
+        margin-left: 30%;
+        border-color:black;
+      }
     </style>
   </head>
 
   <body>
   <div id="list">
     <h3><strong>Music Around You<strong></h3>
- <ul>
+
   <%@jam_sessions.each do |session|%>
-    <!-- if session is close to you, calculate -->
-  <li><%=link_to session.name, session%></li>
-    <%end%>
+  <li><%=link_to session.name, session%> <%= link_to "Join", session, class: 'button2' %></li>
+  <%end%>
+
 </ul>
+<%= link_to "+", new_jam_session_path, class: 'button1' %>
 
 </div>
     <div id="map"></div>

@@ -1,5 +1,19 @@
-<h1>New Jam Session</h1>
-
+<style>
+body{
+  background-image: url('/assets/band.jpg');
+  background-repeat: repeat;
+}div{
+  color: black;
+  background-color: #F8F8FF;
+  text-align:center;
+}
+</style>
+<body>
+<h1><strong>New Jam Session</strong></h1>
+<div>
 <%= render 'form', jam_session: @jam_session %>
 
 <%= link_to 'Back', jam_sessions_path %>
+<br><br>
+</div>
+</body>

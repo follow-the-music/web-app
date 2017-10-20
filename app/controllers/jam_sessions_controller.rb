@@ -10,6 +10,7 @@ class JamSessionsController < ApplicationController
   # GET /jam_sessions/1
   # GET /jam_sessions/1.json
   def show
+    @name = User.where(id:@jam_session.host_id).pluck(:name)
   end
 
   # GET /jam_sessions/new
@@ -60,7 +61,9 @@ class JamSessionsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  def host_name(host_id)
+    JamSession.host_name(host_id)
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_jam_session
