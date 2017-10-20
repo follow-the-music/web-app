@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171017171424) do
+ActiveRecord::Schema.define(version: 20171020204447) do
 
   create_table "guest_session_associations", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "session_id"
+    t.integer "jam_session_id"
     t.boolean "player"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -26,13 +26,24 @@ ActiveRecord::Schema.define(version: 20171017171424) do
     t.integer "max_listeners"
     t.text "name"
     t.text "description"
+    t.float "longitude"
+    t.float "latitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "latitude"
-    t.float "longitude"
   end
 
-# Could not dump table "users" because of following StandardError
-#   Unknown type 'bitmap' for column 'picture'
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.text "user_name"
+    t.text "biography"
+    t.float "rating"
+    t.float "longitude"
+    t.float "latitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.index ["email"], name: "index_users_on_email", unique: true
+  end
 
 end
