@@ -8,8 +8,21 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = "Profile updated"
+      redirect_to profile_path
+    else
+      redirect_to profile_edit_path
+    end
+  end
+
   def show
-      #@user = User.find(params[:id])
       if params[:id]
         @user = User.find(params[:id])
       else
