@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   get  '/signup',  to: 'users#new'
   get   '/login',   to: 'sessions#new'
   get '/new_event', to: 'jam_sessions#new'
-  #get '/:id', to: 'users#show'
   get 'profile', to: 'users#show'
   get '/profile/edit', to: 'users#edit'
 
