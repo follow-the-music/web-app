@@ -15,7 +15,7 @@ class JamSessionsController < ApplicationController
 
   # GET /jam_sessions/new
   def new
-    @jam_session = JamSession.new
+    @jam_session = JamSession.new()
   end
 
   # GET /jam_sessions/1/edit
@@ -26,13 +26,14 @@ class JamSessionsController < ApplicationController
   # POST /jam_sessions.json
   def create
     @jam_session = JamSession.new(jam_session_params)
-
+    @jam_session.host_id=session[:user_id]
     respond_to do |format|
       if @jam_session.save
         format.html { redirect_to @jam_session, notice: 'Jam session was successfully created.' }
         format.json { render :show, status: :created, location: @jam_session }
       else
         format.html { render :new }
+
         format.json { render json: @jam_session.errors, status: :unprocessable_entity }
       end
     end
