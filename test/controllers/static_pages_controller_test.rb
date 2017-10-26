@@ -7,7 +7,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get choosetype" do
-    get static_pages_choosetype_url
+    get static_pages_choice_url
     assert_response :success
   end
 

@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  email: MyString
+  name: Lizzie
+  email: lizzie@gmailtest.com
 
 two:
-  name: MyString
-  email: MyString
+  name: Devi
+  email: devi@gmailtest.com

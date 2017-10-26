@@ -2,10 +2,10 @@
 
 one:
   user_id: 1
-  session_id: 1
+  jam_session_id: 1
   player: false
 
 two:
   user_id: 1
-  session_id: 1
+  jam_session_id: 1
   player: false

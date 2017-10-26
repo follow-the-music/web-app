@@ -17,7 +17,7 @@ class JamSessionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create jam_session" do
     assert_difference('JamSession.count') do
-      post jam_sessions_url, params: { jam_session: { description: @jam_session.description, float: @jam_session.float, float: @jam_session.float, host_id: @jam_session.host_id, latitude: @jam_session.latitude, longitude: @jam_session.longitude, max_listeners: @jam_session.max_listeners, max_players: @jam_session.max_players, name: @jam_session.name } }
+      post jam_sessions_url, params: { jam_session: { description: @jam_session.description, host_id: @jam_session.host_id, latitude: @jam_session.latitude, longitude: @jam_session.longitude, max_listeners: @jam_session.max_listeners, max_players: @jam_session.max_players, name: @jam_session.name } }
     end
 
     assert_redirected_to jam_session_url(JamSession.last)
@@ -34,7 +34,7 @@ class JamSessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update jam_session" do
-    patch jam_session_url(@jam_session), params: { jam_session: { description: @jam_session.description, float: @jam_session.float, float: @jam_session.float, host_id: @jam_session.host_id, latitude: @jam_session.latitude, longitude: @jam_session.longitude, max_listeners: @jam_session.max_listeners, max_players: @jam_session.max_players, name: @jam_session.name } }
+    patch jam_session_url(@jam_session), params: { jam_session: { description: @jam_session.description, host_id: @jam_session.host_id, latitude: @jam_session.latitude, longitude: @jam_session.longitude, max_listeners: @jam_session.max_listeners, max_players: @jam_session.max_players, name: @jam_session.name } }
     assert_redirected_to jam_session_url(@jam_session)
   end
 

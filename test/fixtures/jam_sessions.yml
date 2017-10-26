@@ -1,23 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  longitude: MyString
-  float: MyString
-  latitude: MyString
-  float: MyString
+  longitude: 0.56
+  latitude: 0.56
   host_id: 1
   max_players: 1
   max_listeners: 1
-  name: MyText
-  description: MyText
+  name: JazzOut
+  description: This will be epic!
 
 two:
-  longitude: MyString
-  float: MyString
-  latitude: MyString
-  float: MyString
+  longitude: 0.6785
+  latitude: 0.4565345
   host_id: 1
   max_players: 1
   max_listeners: 1
-  name: MyText
-  description: MyText
+  name: RockThis
+  description: Let's rock!
