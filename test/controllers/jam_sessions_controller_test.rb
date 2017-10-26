@@ -38,11 +38,11 @@ class JamSessionsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to jam_session_url(@jam_session)
   end
 
-  test "should destroy jam_session" do
-    assert_difference('JamSession.count', -1) do
-      delete jam_session_url(@jam_session)
-    end
+  # test "should destroy jam_session" do
+  #   assert_difference('JamSession.count', -1) do
+  #     delete jam_session_url(@jam_session)
+  #   end
 
-    assert_redirected_to jam_sessions_url
-  end
+  #   assert_redirected_to jam_sessions_url
+  # end
 end

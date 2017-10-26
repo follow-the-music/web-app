@@ -33,16 +33,12 @@ class GuestSessionAssociationsControllerTest < ActionDispatch::IntegrationTest
   #   assert_response :success
   # end
 
-  test "should update guest_session_association" do
-    patch guest_session_association_url(@guest_session_association), params: { guest_session_association: { player: @guest_session_association.player, jam_session_id: @guest_session_association.jam_session_id, user_id: @guest_session_association.user_id } }
-    assert_redirected_to guest_session_association_url(@guest_session_association)
-  end
 
-  test "should destroy guest_session_association" do
-    assert_difference('GuestSessionAssociation.count', -1) do
-      delete guest_session_association_url(@guest_session_association)
-    end
-
-    assert_redirected_to guest_session_associations_url
-  end
+  # test "should destroy guest_session_association" do
+  #   assert_difference('GuestSessionAssociation.count', -1) do
+  #     delete guest_session_association_url(@guest_session_association)
+  #   end
+  #
+  #   assert_redirected_to guest_session_associations_url
+  # end
 end
