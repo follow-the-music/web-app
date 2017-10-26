@@ -1,6 +1,6 @@
 <style>
 body{
-  background-image: url('<%= asset_path("band.jpg")%>');
+  background-image: url('<%= asset_path("backgroundapp.png")%>');
   background-repeat: repeat;
 }
 .jam{
@@ -10,8 +10,9 @@ body{
 }
 </style>
 <body>
-<h1><strong>New Jam Session</strong></h1>
 <div class="jam">
+<h1><strong>New Jam Session</strong></h1>
+
   <br>
 <%= render 'form', jam_session: @jam_session %>
 <%= link_to 'Back', jam_sessions_path %>
