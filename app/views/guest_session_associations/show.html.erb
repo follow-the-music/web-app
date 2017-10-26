@@ -1,19 +1,68 @@
 <p id="notice"><%= notice %></p>
 
+<p id="notice"><%= notice %></p>
+<style>
+  body{
+    background-image: image-url('/assets/jam.jpg');
+    background-repeat: repeat;
+  }
+
+  .jam{
+    color: black;
+    background-color: #F8F8FF;
+    text-align:center;
+  }
+  h1{
+    font-family: "Rockwell Extra Bold", "Rockwell Bold", monospace;
+    font-size: 40px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 26.4px;
+    text-align:center;
+  }
+  h2{
+    font-family: "Rockwell Extra Bold", "Rockwell Bold", monospace;
+    font-size: 20px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 26.4px;
+    color: green;
+    text-align:center;
+  }
+</style>
+<div class="jam">
+  <br>
+<h2><strong>You have joined <%=@jam_session.name%>!</strong></h2>
 <p>
-  <strong>User:</strong>
-  <%= @guest_session_association.user_id %>
+  <strong>Host:</strong>
+  <%=@host_name %>
 </p>
 
 <p>
-  <strong>Session:</strong>
-  <%= @guest_session_association.session_id %>
+  <strong>Max players:</strong>
+  <%= @jam_session.max_players %>
 </p>
 
 <p>
-  <strong>Player:</strong>
-  <%= @guest_session_association.player %>
+  <strong>Max listeners:</strong>
+  <%= @jam_session.max_listeners %>
 </p>
 
-<%= link_to 'Edit', edit_guest_session_association_path(@guest_session_association) %> |
-<%= link_to 'Back', guest_session_associations_path %>
+<p>
+  <strong>Description:</strong>
+  <%= @jam_session.description %>
+</p>
+
+<h2><strong>Contact <%=@host_name%></strong></h2>
+
+<br><br>
+</div>
+
+</body>
+
+
+
+<%= link_to 'Edit', edit_jam_session_path(@jam_session) %> |
+<%= link_to 'Back', jam_sessions_path %>

@@ -63,7 +63,8 @@
     <h3><strong>Music Around You<strong></h3>
 
   <%@jam_sessions.each do |session|%>
-  <li><%=link_to session.name, session%> <%= link_to "Join", session, class: 'button2' %></li>
+  <li><%=link_to session.name, session%> <%= link_to "Join", guest_session_association_path(id:session.id,player:TRUE), class: 'button2' %></li>
+
   <%end%>
 
 </ul>
