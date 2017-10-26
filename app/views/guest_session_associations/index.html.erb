@@ -16,7 +16,7 @@
     <% @guest_session_associations.each do |guest_session_association| %>
       <tr>
         <td><%= guest_session_association.user_id %></td>
-        <td><%= guest_session_association.session_id %></td>
+        <td><%= guest_session_association.jam_session_id %></td>
         <td><%= guest_session_association.player %></td>
         <td><%= link_to 'Show', guest_session_association %></td>
         <td><%= link_to 'Edit', edit_guest_session_association_path(guest_session_association) %></td>
