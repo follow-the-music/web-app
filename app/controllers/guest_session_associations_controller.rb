@@ -10,6 +10,9 @@ class GuestSessionAssociationsController < ApplicationController
   # GET /guest_session_associations/1
   # GET /guest_session_associations/1.json
   def show
+    @jam_session=JamSession.find(@guest_session_association.jam_session_id)
+    @host_name = User.where(id:@jam_session.host_id).pluck(:name)[0]
+
   end
 
   # GET /guest_session_associations/new
@@ -24,7 +27,7 @@ class GuestSessionAssociationsController < ApplicationController
   # POST /guest_session_associations
   # POST /guest_session_associations.json
   def create
-    @guest_session_association = GuestSessionAssociation.new(guest_session_association_params)
+    @guest_session_association = GuestSessionAssociation.new(user_id:session[:user_id],jam_session_id:guest_session_association_params[0],player:guest_session_association_params[1])
 
     respond_to do |format|
       if @guest_session_association.save
@@ -64,11 +67,12 @@ class GuestSessionAssociationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_guest_session_association
-      @guest_session_association = GuestSessionAssociation.find(params[:id])
+      @guest_session_association = GuestSessionAssociation.new(user_id:session[:user_id],jam_session_id:params[:id],player:params[:player])
+      @guest_session_association.save!
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def guest_session_association_params
-      params.require(:guest_session_association).permit(:user_id, :session_id, :player)
+      params.require(:guest_session_association).permit(:jam_session_id, :player)
     end
 end
