@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get '/profile/edit', to: 'users#edit'
 
 post   '/login',   to: 'sessions#create'
-delete '/logout',  to: 'sessions#destroy'
+get '/logout',  to: 'sessions#destroy'
 post '/signup',  to: 'users#create'
 
 
