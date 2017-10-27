@@ -28,17 +28,4 @@ class GuestSessionAssociationsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  # test "should get edit" do
-  #   get edit_guest_session_association_url(@guest_session_association)
-  #   assert_response :success
-  # end
-
-
-  # test "should destroy guest_session_association" do
-  #   assert_difference('GuestSessionAssociation.count', -1) do
-  #     delete guest_session_association_url(@guest_session_association)
-  #   end
-  #
-  #   assert_redirected_to guest_session_associations_url
-  # end
 end
