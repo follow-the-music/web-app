@@ -44,6 +44,18 @@
   <%= @jam_session.description %>
 </p>
 
+<br><hr>
+<p>
+  <h1>Chat</h1>
+  <% @chat_messages.each do |message| %>
+    <br>
+    <strong>
+      <%= User.find(message.author_id).name %>
+    </strong><br>
+    <%= message.content %><br>
+  <% end %>
+</p>
+
 <!-- TESTING ONLY
 <p>
   <strong>Latitude:</strong>
