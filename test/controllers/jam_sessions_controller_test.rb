@@ -37,12 +37,4 @@ class JamSessionsControllerTest < ActionDispatch::IntegrationTest
     patch jam_session_url(@jam_session), params: { jam_session: { description: @jam_session.description, host_id: @jam_session.host_id, latitude: @jam_session.latitude, longitude: @jam_session.longitude, max_listeners: @jam_session.max_listeners, max_players: @jam_session.max_players, name: @jam_session.name } }
     assert_redirected_to jam_session_url(@jam_session)
   end
-
-  # test "should destroy jam_session" do
-  #   assert_difference('JamSession.count', -1) do
-  #     delete jam_session_url(@jam_session)
-  #   end
-
-  #   assert_redirected_to jam_sessions_url
-  # end
 end

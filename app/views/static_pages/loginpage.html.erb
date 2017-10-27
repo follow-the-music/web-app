@@ -1,3 +1,10 @@
+<style>
+body{
+   background-image: url('<%= asset_path("band.jpg")%>');
+   background-repeat: repeat;
+}
+</style>
+<body>
 <%= form_for(:session, url: login_path) do |f| %>
 <%= f.label :email %>
   <%= f.email_field :email, class: 'form-control' %>
@@ -8,3 +15,4 @@
 <% end %>
 
 <%= link_to "Sign up now!", signup_path %>
+</body>
