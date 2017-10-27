@@ -1,6 +1,33 @@
-<h1>Editing Jam Session</h1>
 
+<style>
+  body{
+    background-image: url('<%= asset_path("jam.jpg")%>');
+    background-repeat: repeat;
+  }
+
+    .jam{
+      color: black;
+      background-color: #F8F8FF;
+      text-align:center;
+    }
+    h1{
+      font-family: "Rockwell Extra Bold", "Rockwell Bold", monospace;
+      font-size: 40px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 500;
+      line-height: 26.4px;
+      text-align:center;
+    }
+</style>
+<body>
+<div class="jam">
+  <br>
+<h1>Editing Jam Session</h1>
 <%= render 'form', jam_session: @jam_session %>
 
-<%= link_to 'Show', @jam_session %> |
-<%= link_to 'Back', jam_sessions_path %>
+<%= link_to 'Show', @jam_session %> 
+<%= link_to 'Back', @jam_session %>
+<br><br>
+</div>
+</body>
