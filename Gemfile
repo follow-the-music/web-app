@@ -20,7 +20,7 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'rails_12factor', group: :production
-
+gem 'rails-controller-testing'
 gem 'geocoder' # for geocoding
 
 # Use CoffeeScript for .coffee assets and views
@@ -38,6 +38,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'bootstrap-sass', '3.3.7'
+
+gem 'rails_admin', '~> 1.2'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
