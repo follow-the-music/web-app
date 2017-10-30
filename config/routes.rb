@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get '/new_event', to: 'jam_sessions#new'
   get 'profile', to: 'users#show'
   get '/profile/edit', to: 'users#edit'
-
+delete 'leavesession',  to: 'guest_session_associations#destroy'
 post   '/login',   to: 'sessions#create'
 get '/logout',  to: 'sessions#destroy'
 post '/signup',  to: 'users#create'

@@ -14,6 +14,7 @@ gem 'jquery-rails'
 gem 'bcrypt',         '3.1.11'
 gem 'rails_12factor', group: :production
 gem 'puma', '~> 3.7'
+gem 'byebug'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets

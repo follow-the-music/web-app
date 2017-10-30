@@ -57,9 +57,12 @@ class GuestSessionAssociationsController < ApplicationController
   # DELETE /guest_session_associations/1
   # DELETE /guest_session_associations/1.json
   def destroy
+    #params = @_params
+    #@guest_session_association=GuestSessionAssociation.where(jam_session_id: params[:jam_session_id], user_id: params[:player])
+
     @guest_session_association.destroy
     respond_to do |format|
-      format.html { redirect_to guest_session_associations_url, notice: 'Guest session association was successfully destroyed.' }
+      format.html { redirect_to yoursessions_path, notice: 'Guest session association was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
