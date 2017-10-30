@@ -12,6 +12,9 @@ class GuestSessionAssociationsController < ApplicationController
   def show
     @jam_session=JamSession.find(@guest_session_association.jam_session_id)
     @host_name = User.where(id:@jam_session.host_id).pluck(:name)[0]
+    @users= User.where(id: GuestSessionAssociation.where(jam_session_id: @jam_session.id).pluck(:user_id))
+    @jam_players_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:true).count
+    @jam_listeners_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:false).count
 
   end
 
@@ -27,15 +30,37 @@ class GuestSessionAssociationsController < ApplicationController
   # POST /guest_session_associations
   # POST /guest_session_associations.json
   def create
-    @guest_session_association = GuestSessionAssociation.new(user_id:session[:user_id],jam_session_id:guest_session_association_params[0],player:guest_session_association_params[1])
-
-    respond_to do |format|
-      if @guest_session_association.save
-        format.html { redirect_to @guest_session_association, notice: 'Guest session association was successfully created.' }
-        format.json { render :show, status: :created, location: @guest_session_association }
+    if session[:player]
+      @jam_players_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:true).count
+      if JamSession.where(id:guest_session_association_params[0]).pluck(:max_players) > @jam_players_count
+        @guest_session_association = GuestSessionAssociation.new(user_id:session[:user_id],jam_session_id:guest_session_association_params[0],player:true)
+        respond_to do |format|
+          if @guest_session_association.save
+            format.html { redirect_to @guest_session_association, notice: 'Guest session association was successfully created.' }
+            format.json { render :show, status: :created, location: @guest_session_association }
+          else
+            format.html { render :new }
+            format.json { render json: @guest_session_association.errors, status: :unprocessable_entity }
+          end
+        end
       else
-        format.html { render :new }
-        format.json { render json: @guest_session_association.errors, status: :unprocessable_entity }
+          # show a notice that says its full!
+      end
+    else
+      @jam_listeners_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:false).count
+      if JamSession.where(id:guest_session_association_params[0]).pluck(:max_listeners) > @jam_listeners_count
+        @guest_session_association = GuestSessionAssociation.new(user_id:session[:user_id],jam_session_id:guest_session_association_params[0],player:false)
+        respond_to do |format|
+          if @guest_session_association.save
+            format.html { redirect_to @guest_session_association, notice: 'Guest session association was successfully created.' }
+            format.json { render :show, status: :created, location: @guest_session_association }
+          else
+            format.html { render :new }
+            format.json { render json: @guest_session_association.errors, status: :unprocessable_entity }
+          end
+        end
+      else
+          # show a notice that says its full!
       end
     end
   end

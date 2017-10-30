@@ -11,6 +11,10 @@ class JamSessionsController < ApplicationController
   # GET /jam_sessions/1.json
   def show
     @name = User.where(id:@jam_session.host_id).pluck(:name)
+    @users= User.where(id: GuestSessionAssociation.where(jam_session_id: @jam_session.id).pluck(:user_id))
+    @jam_players_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:true).count
+    @jam_listeners_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:false).count
+
   end
 
   # GET /jam_sessions/new
@@ -37,6 +41,7 @@ class JamSessionsController < ApplicationController
         format.json { render json: @jam_session.errors, status: :unprocessable_entity }
       end
     end
+    GuestSessionAssociation.new(jam_session_id: @jam_session.id, user_id:session[:user_id]).save!
   end
 
   # PATCH/PUT /jam_sessions/1
