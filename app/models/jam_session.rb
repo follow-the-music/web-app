@@ -7,4 +7,5 @@ class JamSession < ApplicationRecord
     @name= User.where(id:host_id).pluck(:name)
   end
 
+
 end
