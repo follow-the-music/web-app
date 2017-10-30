@@ -6,7 +6,7 @@
         <li><%= link_to "About",   about_path %></li>
         <%if logged_in? %>
         <li><%= link_to "Profile", profile_path %></li>
-        <li><%= link_to "See Jam Sessions", choice_path %></li>
+        <li><%= link_to "See Jam Sessions", display_map_path %></li>
         <li><%= link_to "Create Jam Session", new_event_path %></li>
         <li><%= link_to "Your Sessions", yoursessions_path %></li>
         <li><%= link_to "Log out", logout_path, method: :get %></li>
