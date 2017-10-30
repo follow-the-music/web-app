@@ -28,7 +28,7 @@
         width:250px;
       }
       li{
-        margin-left: 5%;
+        /*margin-left: 5%;*/
       }
       .button1 {
         background: #8cd934;
@@ -82,12 +82,12 @@
 <table>
   <%@jam_sessions.each do |session|%>
   <tr>
-  <td width=50%><li><%=link_to session.name, session%> </td>
+  <td width=50%><%=link_to session.name, session%> </td>
   <td width=50%>
   <%if GuestSessionAssociation.where(:jam_session_id=>session.id, :user_id=> session[:user_id]).blank?%>
   <%= link_to "See Session", session, class: 'button2' %></li></td>
   <%else%>
-    <%= link_to "Join", guest_session_association_path(id:session.id,player:TRUE), class: 'button2' %></li></td>
+    <%= link_to "Join", guest_session_association_path(id:session.id,player:TRUE), class: 'button2' %></td>
   <%end%>
   </tr>
   <%end%>
