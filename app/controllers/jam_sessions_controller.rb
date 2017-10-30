@@ -15,6 +15,7 @@ class JamSessionsController < ApplicationController
     @jam_players_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:true).count
     @jam_listeners_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:false).count
 
+    @chat_messages = ChatMessage.where(jam_session_id: @jam_session.id).sort_by { |message| message.created_at}
   end
 
   # GET /jam_sessions/new

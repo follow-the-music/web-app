@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :chat_messages
   resources :guest_session_associations
   resources :jam_sessions
   resources :users
@@ -11,8 +12,9 @@ Rails.application.routes.draw do
   root 'static_pages#landingpage'
   get 'loginpage', to: 'static_pages#loginpage'
   get 'about', to: 'static_pages#about'
-  get '/display_map', to: 'application#display_map'
+  get 'display_map', to: 'application#display_map'
   get   '/choice', to:'static_pages#choice'
+  get  '/yoursessions',    to: 'static_pages#yoursessions'
   get  '/choosetype',    to: 'static_pages#choosetype'
   get  '/signup',  to: 'users#new'
   get   '/login',   to: 'sessions#new'
@@ -21,7 +23,7 @@ Rails.application.routes.draw do
   get '/profile/edit', to: 'users#edit'
 
 post   '/login',   to: 'sessions#create'
-delete '/logout',  to: 'sessions#destroy'
+get '/logout',  to: 'sessions#destroy'
 post '/signup',  to: 'users#create'
 
 
