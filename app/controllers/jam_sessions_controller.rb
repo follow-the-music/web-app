@@ -11,6 +11,7 @@ class JamSessionsController < ApplicationController
   # GET /jam_sessions/1.json
   def show
     @name = User.where(id:@jam_session.host_id).pluck(:name)
+    @chat_messages = ChatMessage.where(jam_session_id: @jam_session.id).sort_by { |message| message.created_at}
   end
 
   # GET /jam_sessions/new

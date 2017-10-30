@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @chat_message.content %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @chat_message.author_id %>
+</p>
+
+<p>
+  <strong>Jam session:</strong>
+  <%= @chat_message.jam_session_id %>
+</p>
+
+<%= link_to 'Edit', edit_chat_message_path(@chat_message) %> |
+<%= link_to 'Back', chat_messages_path %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :chat_messages
   resources :guest_session_associations
   resources :jam_sessions
   resources :users
