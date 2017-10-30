@@ -2,6 +2,13 @@
 <body>
 <div class="center jumbotron" >
 <h1>These are your sessions:</h1>
-<h2>-put sessions here-</h2>
+<tbody>
+  <% JamSession.where(id: GuestSessionAssociation.where(user_id: current_user.id).pluck(:jam_session_id)).each do |jsession| %>
+    <tr>
+      <td><%= jsession.name %></td>
+
+    </tr>
+  <% end %>
+</tbody>
 </div>
 </body>
