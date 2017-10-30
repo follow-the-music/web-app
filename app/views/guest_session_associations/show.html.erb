@@ -41,15 +41,31 @@
 </p>
 
 <p>
-  <strong>Max players:</strong>
-  <%= @jam_session.max_players %>
+  <strong>Number of players:</strong>
+  <%=  @jam_players_count  %> / <%=@jam_session.max_players%>
 </p>
 
 <p>
-  <strong>Max listeners:</strong>
-  <%= @jam_session.max_listeners %>
+  <strong>Number of listeners:</strong>
+  <%= @jam_listeners_count  %> / <%=@jam_session.max_listeners%>
 </p>
+<table align="center",style="text-align:center;">
+  <thead>
+    <tr>
+      <th style="text-align:center;">Participants</th>
+    </tr>
+  </thead>
 
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= link_to 'Show', user %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
 <p>
   <strong>Description:</strong>
   <%= @jam_session.description %>

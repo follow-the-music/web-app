@@ -6,9 +6,7 @@
         /*margin-right:20%;*/
         margin-top: -51%;
       }
-      ul,h3{
-
-      }h3 {
+      h3 {
         font-family: "Rockwell Extra Bold", "Rockwell Bold", monospace;
       	font-size: 24px;
       	font-style: normal;
@@ -30,23 +28,8 @@
         width:250px;
       }
       li{
-        margin-left: 5%;
+        /*margin-left: 5%;*/
       }
-      /*.button1 {
-        background-color: #4CAF50;
-        border: none;
-        color: white;
-        padding: 30px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 30px;
-        margin: 8px 4px;
-        border-radius: 50%;
-        margin-left: 33%;
-        margin-top:100%;
-        text-emphasis-color:#4CAF50;
-      }*/
       .button1 {
         background: #8cd934;
         margin-left: 33%;
@@ -85,17 +68,30 @@
         margin-left: 30%;
         border-color:black;
       }
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
     </style>
 
   <body>
   <div id="list">
+    <br>
     <h3><strong>Music Around You<strong></h3>
-
+<table>
   <%@jam_sessions.each do |session|%>
-  <li><%=link_to session.name, session%> <%= link_to "Join", guest_session_association_path(id:session.id,player:TRUE), class: 'button2' %></li>
-
+  <tr>
+  <td width=50%><%=link_to session.name, session%> </td>
+  <td width=50%>
+  <%if GuestSessionAssociation.where(:jam_session_id=>session.id, :user_id=> session[:user_id]).blank?%>
+  <%= link_to "See Session", session, class: 'button2' %></li></td>
+  <%else%>
+    <%= link_to "Join", guest_session_association_path(id:session.id,player:TRUE), class: 'button2' %></td>
   <%end%>
-
+  </tr>
+  <%end%>
+</table>
 </ul>
 <br><br><br><br>
 <%= link_to "+", new_jam_session_path, class: 'button1' %>
@@ -103,10 +99,6 @@
 </div>
     <div id="map"></div>
     <script>
-    // Note: This example requires that you consent to location sharing when
-    // prompted by your browser. If you see the error "The Geolocation service
-    // failed.", it means you probably did not give permission for the browser to
-    // locate you.
     var map, infoWindow;
     function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
