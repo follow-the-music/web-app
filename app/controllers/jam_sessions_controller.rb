@@ -4,7 +4,12 @@ class JamSessionsController < ApplicationController
   # GET /jam_sessions
   # GET /jam_sessions.json
   def index
-    @jam_sessions = JamSession.all
+    @jam_sessions = JamSession.order(:name)
+    self.all_sessions_json
+  end
+
+  def all_sessions_json
+   render :text=>(@sessions).to_json
   end
 
   # GET /jam_sessions/1
