@@ -87,7 +87,7 @@ class GuestSessionAssociationsController < ApplicationController
 
     @guest_session_association.destroy
     respond_to do |format|
-      format.html { redirect_to yoursessions_path, notice: 'Guest session association was successfully destroyed.' }
+      format.html { redirect_to my_sessions_path, notice: 'Guest session association was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

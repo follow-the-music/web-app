@@ -10,11 +10,14 @@ Rails.application.routes.draw do
   get 'users/new'
   resources :users
   root 'static_pages#landingpage'
-  get 'loginpage', to: 'static_pages#loginpage'
+  get 'loginpage', to: 'static_pages#loginpage' # OLD
+  get 'login', to: 'static_pages#loginpage'
   get 'about', to: 'static_pages#about'
-  get 'display_map', to: 'application#display_map'
-  get   '/choice', to:'static_pages#choice'
-  get  '/yoursessions',    to: 'static_pages#yoursessions'
+  get 'display_map', to: 'application#display_map'  # OLD
+  get 'jam', to: 'application#display_map'
+  get  '/choice', to:'static_pages#choice'
+  get  '/yoursessions',    to: 'static_pages#yoursessions'  # OLD
+  get  '/my_sessions',    to: 'static_pages#yoursessions'
   get  '/choosetype',    to: 'static_pages#choosetype'
   get  '/signup',  to: 'users#new'
   get   '/login',   to: 'sessions#new'
