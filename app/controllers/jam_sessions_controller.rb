@@ -12,9 +12,9 @@ class JamSessionsController < ApplicationController
   def show
     @name = User.where(id:@jam_session.host_id).pluck(:name)
 
-    @users= User.where(id: GuestSessionAssociation.where(jam_session_id: @jam_session.id).pluck(:user_id))
-    @jam_players_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:true).count
-    @jam_listeners_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:false).count
+    @users= User.where(id: GuestSessionAssociation.where(jam_session_id: @jam_session.id).distinct.pluck(:user_id))
+    @jam_players_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:true).distinct.count
+    @jam_listeners_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:false).distinct.count
 
     @chat_messages = ChatMessage.where(jam_session_id: @jam_session.id).sort_by { |message| message.created_at}
 

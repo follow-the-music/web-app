@@ -72,6 +72,16 @@
 </p>
 
 <h2><strong>Contact <%=@host_name%></strong></h2>
+<br><hr>
+<p>
+  <h1>Chat</h1>
+  <%= render 'chat_messages/form', chat_message: ChatMessage.new, jam_session: @jam_session %>
+  <br>
+  <% @chat_messages.reverse.each do |message| %>
+    <%= render 'chat_messages/message', message: message %>
+  <% end %>
+</p>
+
 
 <br><br>
 </div>
