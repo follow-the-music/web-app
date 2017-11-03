@@ -1,0 +1,66 @@
+<% @user = User.new %>
+<div class="modal fade" id="signup-modal" title="Sign Up">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<h3>
+					Sign Up
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          	<span aria-hidden="true">&times;</span>
+        	</button>
+				</h3>
+				Or
+				<%= link_to 'Log In', "#login-modal", "data-toggle" => "modal", "data-dismiss" => "modal" %>
+			</div>
+
+			<%= form_for(@user, url: signup_path) do |f| %>
+
+				<div class="modal-body">
+					<%= render 'shared/error_messages' %>
+
+		      <%= f.label :name %>
+		      <div class="input-group">
+		        <span class="input-group-addon" id="basic-addon1">
+		          <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+		        </span>
+		        <%= f.text_field :name, class: 'form-control' %>
+		      </div>
+		      <br>
+
+		      <%= f.label :email %>
+		      <div class="input-group">
+		        <span class="input-group-addon" id="basic-addon1">
+		          <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+		        </span>
+		        <%= f.email_field :email, class: 'form-control' %>
+		      </div>
+		      <br>
+
+		      <%= f.label :password %>
+		      <div class="input-group">
+		        <span class="input-group-addon" id="basic-addon1">
+		          <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+		        </span>
+		        <%= f.password_field :password, class: 'form-control' %>
+		      </div>
+		      <br>
+
+		      <%= f.label :password_confirmation, "Confirmation" %>
+		      <div class="input-group">
+		        <span class="input-group-addon" id="basic-addon1">
+		          <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+		        </span>
+		        <%= f.password_field :password_confirmation, class: 'form-control' %>
+		      </div>
+				</div>
+
+				<div class="modal-footer">
+					<%= f.submit "Create my account", class: "btn btn-danger" %>
+				</div>
+
+	    <% end %>
+
+		</div>
+	</div>
+</div>
