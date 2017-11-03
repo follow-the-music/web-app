@@ -4,7 +4,12 @@ class JamSessionsController < ApplicationController
   # GET /jam_sessions
   # GET /jam_sessions.json
   def index
-    @my_jam_sessions = JamSession.where(id: GuestSessionAssociation.where(user_id:session[:user_id]).pluck(:jam_session_id))
+    @jam_sessions = JamSession.order(:name)
+    self.all_sessions_json
+  end
+
+  def all_sessions_json
+   render :text=>(@sessions).to_json
   end
 
   # GET /jam_sessions/1

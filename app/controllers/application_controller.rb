@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
     include SessionsHelper
-
-  def display_map
+    def display_map
     @jam_sessions = JamSession.all
   end
   # def check(current_session)
@@ -14,5 +13,4 @@ class ApplicationController < ActionController::Base
     # write the code to set this with the choice button
     session[:player]=true
   end
-
 end
