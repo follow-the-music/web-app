@@ -3,26 +3,41 @@
 body{
   background-image: url('<%= asset_path("band.jpg")%>');
   background-repeat: repeat;
-}</style>
+}
+    .my_text
+    {
+        font-family:    Arial, Helvetica, sans-serif
+        font-size:      200px;
+    }
+</style>
 <div class="center jumbotron" >
-<h1>Follow the Music</h1>
+    <h1><b><u>Follow The Music</u></b></h1>
 <h4><b><i>Our mission is to spread the joy of music by allowing our users to find spontaneous jam sessions around them!</i></b></h4>
 
-<h3><b><u>The Team</u></b></h3>
-<br>
-<b>Lizzie Koshelev:</b>
-A senior at Brandeis University with a great passion for coding and music!
+<div class="center jumbotron" >
+  <h1><b><u>The Team</u></b></h1>
+<div align="left">
+<%= image_tag("lizzie.jpg", :alt => "Lizzie", :size => "160x180") %>
+
+<b>Lizzie Koshelev:</b> A senior at Brandeis University with a great passion for coding and music!
 <br><br>
+<%= image_tag("deniz.jpg", :alt => "Lizzie", :size => "160x180") %>
 <b>Deniz Amado:</b>
 A senior at Brandeis University that loves singing and coding!
 <br><br>
+<%= image_tag("abhishek.jpg", :alt => "Lizzie", :size => "160x180") %>
 <b>Abhishek Kulkarni:</b>
 A senior at Brandeis University that codes
 <br><br>
+<%= image_tag("devi.jpg", :alt => "Lizzie", :size => "160x180") %>
 <b>Devi Acharya:</b>
 She codes and  musics too
 <br>
-<h3><b><u>User Profiles</u></b></h3>
+</div>
+</div>
+
+  <h1><b><u>User Profiles</u></b></h1>
+<div class="my_text">
 <br>
 <b>College freshman:</b>
 Melody is a freshman at Brandeis University. She is a neuroscience, biology, and physics triple major and doesn’t have time to invest in singing like she did in highschool. Judy wants to find a way to spontaneously connect with musicians whenever she has free time. FollowTheMusicTM is a perfect solution to Melody’s problem! She creates an account, finds a jam session near her, and meets two other college students singing and playing guitar for an amazing spontaneous jam session.
@@ -39,4 +54,6 @@ Roxanne is a great piano player and singer. She loves to socialize by making mus
 <b>Busy adult who doesn’t have time to make music anymore:</b>
 Reed is a middle-aged worker in the financial industry in NYC. Though he once dreamed of becoming a musician, today he does not have much time to connect with his musical passion or with friends. A midlife crisis lead his to decide to play and listen to musical jam sessions like he used to in college, but he does not know anyone to do so with him anymore. He recently signed up for Follow the Music after hearing about it from a coworker, but is not very familiar with using modern consumer applications, having had little time to explore beyond the scope of his work. He needs to be able to find jam sessions around his tight schedule and needs the flexibility to cancel them if he is asked to stay late at his office.
 <br>
+</div>
+
 </div>
