@@ -1,5 +1,6 @@
 <% provide(:title, 'Sign up') %>
 <h1>Sign up</h1>
+<br>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -7,20 +8,45 @@
       <%= render 'shared/error_messages' %>
 
       <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">
+          <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+        </span>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+      <br>
 
       <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">
+          <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+        </span>
+        <%= f.email_field :email, class: 'form-control' %>
+      </div>
+      <br>
 
       <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">
+          <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+        </span>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+      <br>
 
       <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">
+          <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+        </span>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+      <br>
 
       <%= f.submit "Create my account", class: "btn btn-primary" %>
     <% end %>
 
+    <br>
     Or
     <%= link_to "Sign Up Now!", login_path %>
 
