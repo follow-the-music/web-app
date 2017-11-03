@@ -6,7 +6,7 @@
   <% JamSession.where(id: GuestSessionAssociation.where(user_id: current_user.id).pluck(:jam_session_id)).each do |jsession| %>
     <tr>
       <td><%=jsession.name%></td>
-      <td><%= link_to 'Show', "#" %></td>
+      <td><%= link_to 'Show', jsession %></td>
       <td><%= link_to 'Destroy',leavesession_path(:jam_session_id => jsession.id, :player => current_user.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
