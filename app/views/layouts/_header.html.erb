@@ -55,13 +55,13 @@
           <!-- SIGN UP -->
           <li class="nav-item">
             <%= link_to '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            Sign Up'.html_safe, signup_path %>
+            Sign Up'.html_safe, "#signup-modal", :class => "btn", "data-toggle" => "modal" %>
           </li>
 
           <!-- LOG IN -->
           <li class="nav-item">
             <%= link_to '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-            Log In'.html_safe, login_path %>
+            Log In'.html_safe, "#login-modal", :class => "btn", "data-toggle" => "modal" %>
           </li>
 
         <% end %>

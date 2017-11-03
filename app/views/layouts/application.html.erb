@@ -13,12 +13,15 @@
 
 <%= render 'layouts/header' %>
   <body>
-
     <div class="container">
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
+
       <%= yield %>
     </div>
-   </body>
+  </body>
+
+  <%= render 'sessions/login_modal' %>
+  <%= render 'users/signup_modal' %>
 </html>
