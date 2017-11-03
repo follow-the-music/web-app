@@ -4,7 +4,7 @@ class JamSessionsController < ApplicationController
   # GET /jam_sessions
   # GET /jam_sessions.json
   def index
-    @jam_sessions = JamSession.all
+    @my_jam_sessions = JamSession.where(id: GuestSessionAssociation.where(user_id:session[:user_id]).pluck(:jam_session_id))
   end
 
   # GET /jam_sessions/1
@@ -65,8 +65,10 @@ class JamSessionsController < ApplicationController
   # DELETE /jam_sessions/1.json
   def destroy
     @jam_session.destroy
+    @guests= GuestSessionAssociation.where(jam_session_id: @jam_session.id)
+    @guests.destroy_all
     respond_to do |format|
-      format.html { redirect_to jam_sessions_url, notice: 'Jam session was successfully destroyed.' }
+      format.html { redirect_to guest_session_associations_path, notice: 'Jam session was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

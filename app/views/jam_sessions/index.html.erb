@@ -5,9 +5,6 @@
 <table>
   <thead>
     <tr>
-      <th>Longitude</th>
-      <th>Latitude</th>
-      <th>Host</th>
       <th>Max players</th>
       <th>Max listeners</th>
       <th>Name</th>
@@ -17,18 +14,20 @@
   </thead>
 
   <tbody>
-    <% @jam_sessions.each do |jam_session| %>
+    <% @my_jam_sessions.each do |jam_session| %>
       <tr>
-        <td><%= jam_session.longitude %></td>
-        <td><%= jam_session.latitude %></td>
-        <td><%= jam_session.host_id %></td>
         <td><%= jam_session.max_players %></td>
         <td><%= jam_session.max_listeners %></td>
         <td><%= jam_session.name %></td>
         <td><%= jam_session.description %></td>
         <td><%= link_to 'Show', jam_session %></td>
         <td><%= link_to 'Edit', edit_jam_session_path(jam_session) %></td>
-        <td><%= link_to 'Destroy', jam_session, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%if jam_session.host_id == session[:user_id]%>
+          <td><%= link_to 'Delete', jam_session, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%else%>
+        <%guest_session_association = GuestSessionAssociation.where(jam_session_id:jam_session.id, user_id: session[:user_id])%>
+        <td><%= link_to 'Leave Session', guest_session_association_path(guest_session_association.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
       </tr>
     <% end %>
   </tbody>

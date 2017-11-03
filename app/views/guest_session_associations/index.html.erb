@@ -1,13 +1,26 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Guest Session Associations</h1>
+<style>
+#list{
+  background-color: #F8F8FF;
+  text-align: center;
+  font-family: "Rockwell Extra Bold", "Rockwell Bold", monospace;
+}
+body{
+  background-image: url('<%= asset_path("backgroundapp.png")%>');
+  background-repeat: repeat;
+}
+</style>
+<body>
+<div id="list">
+<h1>My Sessions</h1>
 
 <table>
   <thead>
     <tr>
-      <th>User</th>
-      <th>Session</th>
-      <th>Player</th>
+      <th>Max players</th>
+      <th>Max listeners</th>
+      <th>Name</th>
+      <th>Description</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,17 +28,31 @@
   <tbody>
     <% @guest_session_associations.each do |guest_session_association| %>
       <tr>
-        <td><%= guest_session_association.user_id %></td>
-        <td><%= guest_session_association.jam_session_id %></td>
-        <td><%= guest_session_association.player %></td>
-        <td><%= link_to 'Show', guest_session_association %></td>
-        <td><%= link_to 'Edit', edit_guest_session_association_path(guest_session_association) %></td>
-        <td><%= link_to 'Destroy', guest_session_association, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% @jam_session= JamSession.where(id:guest_session_association.jam_session_id)%>
+      <%unless (@jam_session.pluck(:id)[0]).nil? %>
+        <td><%= @jam_session.pluck(:max_players)[0] %></td>
+        <td><%= @jam_session.pluck(:max_listeners)[0] %></td>
+        <td><%= @jam_session.pluck(:name)[0] %></td>
+        <td><%= @jam_session.pluck(:description)[0] %></td>
+        <td><%= link_to 'Show', jam_session_path(@jam_session.pluck(:id)[0])%></td>
+        <%if @jam_session.pluck(:host_id)[0] == session[:user_id]%>
+          <td><%= link_to 'Edit', edit_jam_session_path(@jam_session.pluck(:id)[0]) %></td>
+          <td><%= link_to 'Delete Session', jam_session_path(@jam_session.pluck(:id)[0]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%else%>
+          <td><%= link_to 'Leave Session', guest_session_association_path(guest_session_association.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
+        <%end%>
+
       </tr>
-    <% end %>
+    <%end%>
   </tbody>
 </table>
 
 <br>
+<br>
 
-<%= link_to 'New Guest Session Association', new_guest_session_association_path %>
+<strong><%= link_to 'Join New Session', jam_path %><strong>
+  <br>
+  <br>
+</div>
+</body>

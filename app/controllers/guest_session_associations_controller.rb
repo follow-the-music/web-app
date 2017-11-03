@@ -4,7 +4,7 @@ class GuestSessionAssociationsController < ApplicationController
   # GET /guest_session_associations
   # GET /guest_session_associations.json
   def index
-    @guest_session_associations = GuestSessionAssociation.all
+    @guest_session_associations = GuestSessionAssociation.where(user_id:[session[:user_id]])
   end
 
   # GET /guest_session_associations/1
@@ -16,7 +16,6 @@ class GuestSessionAssociationsController < ApplicationController
     @jam_players_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:true).distinct.count
     @jam_listeners_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:false).distinct.count
     @chat_messages = ChatMessage.where(jam_session_id: @jam_session.id).sort_by { |message| message.created_at}
-
   end
 
   # GET /guest_session_associations/new
@@ -83,12 +82,10 @@ class GuestSessionAssociationsController < ApplicationController
   # DELETE /guest_session_associations/1
   # DELETE /guest_session_associations/1.json
   def destroy
-    #params = @_params
-    #@guest_session_association=GuestSessionAssociation.where(jam_session_id: params[:jam_session_id], user_id: params[:player])
 
     @guest_session_association.destroy
     respond_to do |format|
-      format.html { redirect_to my_sessions_path, notice: 'Guest session association was successfully destroyed.' }
+      format.html { redirect_to guest_session_associations_path, notice: 'Guest session association was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
