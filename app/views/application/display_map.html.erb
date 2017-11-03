@@ -73,7 +73,10 @@
         margin: 0;
         padding: 0;
       }
+      /*link_to "See Session", session, class: 'button2'*/
+
     </style>
+
 
   <body>
   <div id="list">
@@ -85,7 +88,8 @@
   <td width=50%><%=link_to session.name, session%> </td>
   <td width=50%>
   <%if GuestSessionAssociation.where(:jam_session_id=>session.id, :user_id=> session[:user_id]).blank?%>
-  <%= link_to "See Session", session, class: 'button2' %></li></td>
+    <%= link_to "Join", guest_session_association_path(id:session.id,player:TRUE), class: 'button2' %></td>
+
   <%else%>
     <%= link_to "Join", guest_session_association_path(id:session.id,player:TRUE), class: 'button2' %></td>
   <%end%>
