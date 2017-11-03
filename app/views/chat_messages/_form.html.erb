@@ -19,6 +19,8 @@
             <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
           </span>
           <%= form.text_field :content, id: :chat_message_content, class: 'form-control' %>
+
+          <%= form.hidden_field :jam_session_id, id: :jam_session_id, value: @jam_session.id %>
           <span class="actions input-group-btn">
               <%= form.submit "Submit", class: 'btn btn-danger' %>
           </span>

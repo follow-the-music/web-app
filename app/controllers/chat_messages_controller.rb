@@ -26,7 +26,6 @@ class ChatMessagesController < ApplicationController
   def create
     @chat_message = ChatMessage.new(chat_message_params)
     @chat_message.author_id = current_user.id
-    @chat_message.jam_session_id = 1 # TODO — get actual id
 
     respond_to do |format|
       if @chat_message.save
