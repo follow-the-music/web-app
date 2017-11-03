@@ -17,7 +17,13 @@
 
 			<br><br>
 			<blockquote class="blockquote">
-				<%= message.content %>
+				<% if message.content.length == 1 %>
+					<h1 class='text-left'>
+						<%= message.content %>
+					</h1>
+				<% else %>
+					<%= message.content %>
+				<% end %>
 			</blockquote>
 		</div>
 	</div>
