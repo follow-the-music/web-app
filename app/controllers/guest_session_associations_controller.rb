@@ -31,7 +31,7 @@ class GuestSessionAssociationsController < ApplicationController
   # POST /guest_session_associations.json
   def create
     if session[:player]
-      @jam_players_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:true).count
+      @jam_players_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:true).distinct.count
       if JamSession.where(id:guest_session_association_params[0]).pluck(:max_players) > @jam_players_count
         @guest_session_association = GuestSessionAssociation.new(user_id:session[:user_id],jam_session_id:guest_session_association_params[0],player:true)
         respond_to do |format|
@@ -44,10 +44,11 @@ class GuestSessionAssociationsController < ApplicationController
           end
         end
       else
-          # show a notice that says its full!
-      end
+        format.html { redirect_to @guest_session_association, notice: 'Session is full.' }
+        format.json { render :show, status: :unprocessable_entity, location: @guest_session_association }
+     end
     else
-      @jam_listeners_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:false).count
+      @jam_listeners_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:false).distinct.count
       if JamSession.where(id:guest_session_association_params[0]).pluck(:max_listeners) > @jam_listeners_count
         @guest_session_association = GuestSessionAssociation.new(user_id:session[:user_id],jam_session_id:guest_session_association_params[0],player:false)
         respond_to do |format|

@@ -4,7 +4,12 @@ class JamSessionsController < ApplicationController
   # GET /jam_sessions
   # GET /jam_sessions.json
   def index
-    @my_jam_sessions = JamSession.where(id: GuestSessionAssociation.where(user_id:session[:user_id]).pluck(:jam_session_id))
+    @jam_sessions = JamSession.order(:name)
+    self.all_sessions_json
+  end
+
+  def all_sessions_json
+   render :text=>(@sessions).to_json
   end
 
   # GET /jam_sessions/1
@@ -15,7 +20,6 @@ class JamSessionsController < ApplicationController
     @users= User.where(id: GuestSessionAssociation.where(jam_session_id: @jam_session.id).distinct.pluck(:user_id))
     @jam_players_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:true).distinct.count
     @jam_listeners_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:false).distinct.count
-
     @chat_messages = ChatMessage.where(jam_session_id: @jam_session.id).sort_by { |message| message.created_at}
 
   end
@@ -36,6 +40,8 @@ class JamSessionsController < ApplicationController
     @jam_session.host_id=session[:user_id]
     respond_to do |format|
       if @jam_session.save
+        @guest=GuestSessionAssociation.new(jam_session_id: @jam_session.id, user_id:session[:user_id], player:true)
+        @guest.save!
         format.html { redirect_to @jam_session, notice: 'Jam session was successfully created.' }
         format.json { render :show, status: :created, location: @jam_session }
       else
@@ -44,7 +50,8 @@ class JamSessionsController < ApplicationController
         format.json { render json: @jam_session.errors, status: :unprocessable_entity }
       end
     end
-    GuestSessionAssociation.new(jam_session_id: @jam_session.id, user_id:session[:user_id]).save!
+
+
   end
 
   # PATCH/PUT /jam_sessions/1
