@@ -52,7 +52,7 @@ body{
 <h2><i>A place for spontaneous jam sessions, concerts, and new friends!</i></h2>
 
 <% if logged_in? %>
-  <%= link_to 'Get Started!', jam_path, class: "myButton"%>
+  <%= link_to 'Get Started!', choice_path, class: "myButton"%>
 <% else %>
   <%= link_to 'Get Started!', login_path, class: "myButton"%>
 <% end %>
