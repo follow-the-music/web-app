@@ -1,16 +1,71 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar navbar-fixed-top navbar-inverse" style= "height:5%;">
   <div class="container">
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home",   root_path %></li>
-        <li><%= link_to "About",   about_path %></li>
-        <%if logged_in? %>
-        <li><%= link_to "Profile", profile_path %></li>
-        <li><%= link_to "See Jam Sessions", display_map_path %></li>
-        <li><%= link_to "Create Jam Session", new_event_path %></li>
-        <li><%= link_to "Your Sessions", yoursessions_path %></li>
-        <li><%= link_to "Log out", logout_path, method: :get %></li>
+
+        <!-- HOME -->
+        <li class="nav-item">
+          <%= link_to '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+          Home'.html_safe, root_path %>
+        </li>
+
+        <!-- ABOUT -->
+        <li class="nav-item">
+          <%= link_to '<span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span>
+          About Us'.html_safe, about_path %>
+        </li>
+
+        <% if logged_in? %>
+
+          <!-- JAM SESSIONS -->
+          <li class="nav-item">
+            <%= link_to '<span class="glyphicon glyphicon-music" aria-hidden="true"></span>
+            Jam Sessions'.html_safe, jam_path %>
+          </li>
+
+          <!-- USER (DROPDOWN) -->
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+              <%= current_user.name %>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+
+              <!-- PROFILE -->
+              <li>
+                <%= link_to "My Profile", profile_path %>
+              </li>
+
+              <!-- SESSIONS -->
+              <li>
+                <%= link_to "My Sessions", guest_session_associations_path %>
+              </li>
+
+              <!-- LOG OUT -->
+              <li>
+                <%= link_to "Log Out", logout_path, method: :get, data: { confirm: 'Are you sure you wish to log out?' } %>
+              </li>
+
+            </ul>
+          </li>
+
+        <% else %>
+
+          <!-- SIGN UP -->
+          <li class="nav-item">
+            <%= link_to '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Sign Up'.html_safe, signup_path %>
+          </li>
+
+          <!-- LOG IN -->
+          <li class="nav-item">
+            <%= link_to '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            Log In'.html_safe, login_path %>
+          </li>
+
         <% end %>
+
       </ul>
     </nav>
   </div>

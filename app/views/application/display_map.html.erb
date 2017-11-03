@@ -1,15 +1,13 @@
 
   <style>
       #map {
-        height: 600px;
-        width: 90%;
-        margin-left:20%;
+        height: 800px;
+        width: 1300px;
+        margin-left:-10%;
         /*margin-right:20%;*/
-        margin-top: -51%;
+        margin-top: 5%;
       }
-      ul,h3{
-
-      }h3 {
+      h3 {
         font-family: "Rockwell Extra Bold", "Rockwell Bold", monospace;
       	font-size: 24px;
       	font-style: normal;
@@ -22,32 +20,21 @@
         background-image: url('<%= asset_path("ukulele.jpg")%>');
         background-repeat: repeat;
       }
-    #list{
+    .jumbotron{
         color: black;
         background-color: #F8F8FF;
-        margin-left: -10%;
+        z-index:1;
+        position:absolute;
+        margin-left: -5%;
         margin-top: 10%;
         height:600px;
         width:250px;
+        text-align: left;
+
       }
       li{
-        margin-left: 5%;
+        /*margin-left: 5%;*/
       }
-      /*.button1 {
-        background-color: #4CAF50;
-        border: none;
-        color: white;
-        padding: 30px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 30px;
-        margin: 8px 4px;
-        border-radius: 50%;
-        margin-left: 33%;
-        margin-top:100%;
-        text-emphasis-color:#4CAF50;
-      }*/
       .button1 {
         background: #8cd934;
         margin-left: 33%;
@@ -86,20 +73,39 @@
         margin-left: 30%;
         border-color:black;
       }
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      /*link_to "See Session", session, class: 'button2'*/
+
     </style>
 
+
   <body>
-  <div id="list">
-    <h3><strong>Music Around You<strong></h3>
 
-  <%@jam_sessions.each do |session|%>
-  <li><%=link_to session.name, session%> <%= link_to "Join", guest_session_association_path(id:session.id,player:TRUE), class: 'button2' %></li>
+    <div class="center jumbotron" >
+        <br>
+        <h3><strong>Music Around You<strong></h3>
+          <br><br>
+      <table>
+      <%@jam_sessions.each do |session|%>
+      <tr>
+      <td width=50%><%=link_to session.name, jam_session_path(session.id)%> </td>
+      <td width=50%>
+        <%= link_to "join", guest_session_association_path(id:session.id,player:TRUE), class: 'button2' %>
+      </td>
+      </tr>
+      <%end%>
+      </table>
+      </ul>
+      <br><br><br><br>
+      <%= link_to "+", new_jam_session_path, class: 'button1' %>
 
-  <%end%>
-
-</ul>
-<br><br><br><br>
-<%= link_to "+", new_jam_session_path, class: 'button1' %>
+      </div>
+    <div id="map">
+    </div>
 
 </div>
 
@@ -152,8 +158,4 @@ var locations = [];
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_E9YsDaw5Jfj1HC4WKNjepV_maFzCVAQ&callback=initMap"
      type="text/javascript"></script>
-
-<!--
-    <script src="http://cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
-<script src='http://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script> -->
   </body>

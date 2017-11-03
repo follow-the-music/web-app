@@ -1,0 +1,30 @@
+<br>
+<div class="row">
+  <div class="col-md-offset-1">
+		<div class='text-left'>
+			<strong>
+				<% user = User.find(message.author_id) %>
+
+				<% if current_user.id == user.id %>
+					<%= link_to 'Me', user %>
+				<% else %>
+					<%= link_to user.name, user %>
+				<% end %>
+
+			</strong>
+
+			on <em><%= message.created_at.strftime("%A, %b. %d, %Y, at %I:%M %p") %></em>
+
+			<br><br>
+			<blockquote class="blockquote">
+				<% if message.content.length == 1 %>
+					<h1 class='text-left'>
+						<%= message.content %>
+					</h1>
+				<% else %>
+					<%= message.content %>
+				<% end %>
+			</blockquote>
+		</div>
+	</div>
+</div><br>

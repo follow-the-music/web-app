@@ -16,7 +16,13 @@ class JamSessionsController < ApplicationController
   # GET /jam_sessions/1.json
   def show
     @name = User.where(id:@jam_session.host_id).pluck(:name)
+
+    @users= User.where(id: GuestSessionAssociation.where(jam_session_id: @jam_session.id).distinct.pluck(:user_id))
+    @jam_players_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:true).distinct.count
+    @jam_listeners_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:false).distinct.count
+
     @chat_messages = ChatMessage.where(jam_session_id: @jam_session.id).sort_by { |message| message.created_at}
+
   end
 
   # GET /jam_sessions/new
@@ -43,6 +49,7 @@ class JamSessionsController < ApplicationController
         format.json { render json: @jam_session.errors, status: :unprocessable_entity }
       end
     end
+    GuestSessionAssociation.new(jam_session_id: @jam_session.id, user_id:session[:user_id]).save!
   end
 
   # PATCH/PUT /jam_sessions/1
@@ -63,8 +70,10 @@ class JamSessionsController < ApplicationController
   # DELETE /jam_sessions/1.json
   def destroy
     @jam_session.destroy
+    @guests= GuestSessionAssociation.where(jam_session_id: @jam_session.id)
+    @guests.destroy_all
     respond_to do |format|
-      format.html { redirect_to jam_sessions_url, notice: 'Jam session was successfully destroyed.' }
+      format.html { redirect_to guest_session_associations_path, notice: 'Jam session was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
