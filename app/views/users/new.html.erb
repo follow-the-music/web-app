@@ -1,5 +1,12 @@
 <% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
+<style>
+body{
+   background-image: url('<%= asset_path("band.jpg")%>');
+   background-repeat: repeat;
+}
+</style>
+<body>
+<div class="center jumbotron" >
 <br>
 
 <div class="row">
@@ -48,7 +55,9 @@
 
     <br>
     Or
-    <%= link_to "Sign Up Now!", login_path %>
+    <%= link_to "Already have an account? Login!", login_path %>
 
   </div>
 </div>
+</div>
+</body>
