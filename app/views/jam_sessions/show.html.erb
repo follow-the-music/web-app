@@ -64,16 +64,19 @@
 <br><hr>
 <p>
   <h1>Chat</h1>
-  <% @chat_messages.each do |message| %>
+  <%= render 'chat_messages/form', chat_message: ChatMessage.new %>
+  <br>
+  <% @chat_messages.reverse.each do |message| %>
     <br>
     <strong>
-      <%= User.find(message.author_id).name %>
-    </strong><br>
+      <% user = User.find(message.author_id) %>
+      <%= link_to user.name, user %>
+    </strong>
+    at <em><%= message.created_at.strftime("on %A, %b. %d, %Y, at %I:%M %p") %></em>
+    <br>
     <%= message.content %><br>
   <% end %>
 </p>
-
-<%= render 'chat_messages/form', chat_message: ChatMessage.new %>
 
 <!-- TESTING ONLY
 <p>

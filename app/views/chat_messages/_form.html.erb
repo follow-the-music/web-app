@@ -1,22 +1,29 @@
-<%= form_with(model: chat_message, local: true) do |form| %>
-  <% if chat_message.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(chat_message.errors.count, "error") %> prohibited this chat_message from being saved:</h2>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: chat_message, local: true) do |form| %>
+      <% if chat_message.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(chat_message.errors.count, "error") %> prohibited this chat_message from being saved:</h2>
 
-      <ul>
-      <% chat_message.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% chat_message.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content, id: :chat_message_content %>
+      <div class="field">
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">
+            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+          </span>
+          <%= form.text_field :content, id: :chat_message_content, class: 'form-control' %>
+          <span class="actions input-group-btn">
+              <%= form.submit "Submit", class: 'btn btn-danger' %>
+          </span>
+        </div>
+      </div>
+    <% end %>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
