@@ -1,10 +1,10 @@
   <style>
       #map {
-        height: 600px;
-        width: 90%;
-        margin-left:20%;
+        height: 800px;
+        width: 1300px;
+        margin-left:-10%;
         /*margin-right:20%;*/
-        margin-top: -51%;
+        margin-top: 5%;
       }
       h3 {
         font-family: "Rockwell Extra Bold", "Rockwell Bold", monospace;
@@ -22,7 +22,9 @@
     #list{
         color: black;
         background-color: #F8F8FF;
-        margin-left: -10%;
+        z-index:1;
+        position:absolute;
+        margin-left: -5%;
         margin-top: 10%;
         height:600px;
         width:250px;
@@ -79,29 +81,31 @@
 
 
   <body>
-  <div id="list">
-    <br>
-    <h3><strong>Music Around You<strong></h3>
-<table>
-  <%@jam_sessions.each do |session|%>
-  <tr>
-  <td width=50%><%=link_to session.name, session%> </td>
-  <td width=50%>
-  <%if GuestSessionAssociation.where(:jam_session_id=>session.id, :user_id=> session[:user_id]).blank?%>
-    <%= link_to "Join", guest_session_association_path(id:session.id,player:TRUE), class: 'button2' %></td>
 
-  <%else%>
-    <%= link_to "Join", guest_session_association_path(id:session.id,player:TRUE), class: 'button2' %></td>
-  <%end%>
-  </tr>
-  <%end%>
-</table>
-</ul>
-<br><br><br><br>
-<%= link_to "+", new_jam_session_path, class: 'button1' %>
+      <div id="list">
+        <br>
+        <h3><strong>Music Around You<strong></h3>
+      <table>
+      <%@jam_sessions.each do |session|%>
+      <tr>
+      <td width=50%><%=link_to session.name, session%> </td>
+      <td width=50%>
+      <%if GuestSessionAssociation.where(:jam_session_id=>session.id, :user_id=> session[:user_id]).blank?%>
+        <%= link_to "Join", guest_session_association_path(id:session.id,player:TRUE), class: 'button2' %></td>
+      <%else%>
+        <%= link_to "Join", guest_session_association_path(id:session.id,player:TRUE), class: 'button2' %></td>
+      <%end%>
+      </tr>
+      <%end%>
+      </table>
+      </ul>
+      <br><br><br><br>
+      <%= link_to "+", new_jam_session_path, class: 'button1' %>
 
-</div>
-    <div id="map"></div>
+      </div>
+    <div id="map">
+    </div>
+
     <script>
     var map, infoWindow;
     function initMap() {
@@ -144,4 +148,5 @@
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLQtBuY3_NLNF4UMAv1SLrTAsQR1I7mfM&callback=initMap">
     </script>
+
   </body>
