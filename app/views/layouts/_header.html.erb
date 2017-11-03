@@ -44,7 +44,7 @@
 
               <!-- LOG OUT -->
               <li>
-                <%= link_to "Log Out", logout_path, method: :get %>
+                <%= link_to "Log Out", logout_path, method: :get, data: { confirm: 'Are you sure you wish to log out?' } %>
               </li>
 
             </ul>
