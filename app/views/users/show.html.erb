@@ -10,7 +10,8 @@ body{
 <div class="center jumbotron" >
 <div class="row">
   <aside class="col-md-4">
-
+    <td>Profile Picture:</td>
+    <%= image_tag @user.avatar.url(:medium) %>
         <table>
           <tbody>
               <tr>

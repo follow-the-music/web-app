@@ -25,7 +25,7 @@ gem 'rails_12factor', group: :production
 gem 'rails-controller-testing'
 gem 'geocoder' # for geocoding
 gem 'gmaps4rails'
-gem 'underscore-rails' 
+gem 'underscore-rails'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -42,7 +42,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'bootstrap-sass', '3.3.7'
-
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem 'rails_admin', '~> 1.2'
 
 group :development, :test do
