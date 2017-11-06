@@ -91,6 +91,6 @@ class JamSessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def jam_session_params
-      params.require(:jam_session).permit(:longitude, :latitude, :host_id, :max_players, :max_listeners, :name, :description)
+      params.require(:jam_session).permit(:longitude, :latitude, :host_id, :max_players, :max_listeners, :name, :description, :address)
     end
 end

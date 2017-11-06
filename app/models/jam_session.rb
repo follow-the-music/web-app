@@ -1,6 +1,6 @@
 class JamSession < ApplicationRecord
 
-  geocoded_by :description
+  geocoded_by :address
   after_validation :geocode
 
   def host_name(host_id)
