@@ -85,21 +85,30 @@
 
   <body>
 
+    <%@jam_sessions.each do |jam_session|%>
+      <%= render 'jam_sessions/jam_modal', jam_session: jam_session %>
+    <% end %>
+
     <div class="center jumbotron" >
-        <br>
-        <h3><strong>Music Around You<strong></h3>
-          <br><br>
-      <table>
-      <%@jam_sessions.each do |session|%>
-      <tr>
-      <td width=50%><%=link_to session.name, jam_session_path(session.id)%> </td>
-      <td width=50%>
-        <%= link_to "Join", guest_session_association_path(id:session.id,player:TRUE), class: 'button2' %>
-      </td>
-      </tr>
+      <br>
+      <h3>
+        <strong>
+          Music Around You
+        </strong>
+      </h3>
+      <br><br>
+      <% @jam_sessions.each do |session| %>
+        <div class='row'>
+          <div class='col-sm-9'>
+            <%=link_to session.name, jam_session_path(session.id)%>
+            <%= link_to session.name, "#jam-modal-#{session.id}", "data-toggle" => "modal" %>
+          </div>
+
+          <div class='col-sm-3'>
+            <%= link_to "Join", guest_session_association_path(id:session.id,player:TRUE), class: 'button2' %>
+          </div>
+        </div>
       <%end%>
-      </table>
-      </ul>
       <br><br><br><br>
       <%= link_to "+", new_jam_session_path, class: 'button1' %>
 

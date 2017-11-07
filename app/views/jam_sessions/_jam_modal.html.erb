@@ -1,0 +1,32 @@
+<% id = "jam-modal-#{jam_session.id}" %>
+
+<div class="modal fade" id='<%= id %>', title="Jam Session">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<div>
+					<small>
+						Jam Session
+					</small>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          	<span aria-hidden="true">&times;</span>
+        	</button>
+				</div>
+
+				<h3>
+					<%= jam_session.name %>
+				</h3>
+			</div>
+
+			<div class="modal-body">
+				<%= jam_session.description %>
+			</div>
+
+			<div class="modal-footer">
+
+			</div>
+
+		</div>
+	</div>
+</div>
