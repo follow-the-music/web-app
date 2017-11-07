@@ -6,25 +6,88 @@
 
 			<div class="modal-header">
 				<div>
-					<small>
-						Jam Session
-					</small>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          	<span aria-hidden="true">&times;</span>
-        	</button>
+					<h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          	<span aria-hidden="true">&times;</span>
+	        	</button>
+						<small>
+							<span class="glyphicon glyphicon-music" aria-hidden="true"></span>
+							Jam Session
+						</small>
+					</h4>
 				</div>
 
 				<h3>
 					<%= jam_session.name %>
 				</h3>
+				<div class="text-center">
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					Hosted by
+					<% host = User.find(jam_session.host_id) %>
+					<%= link_to host.name, host %>
+				</div>
 			</div>
 
 			<div class="modal-body">
-				<%= jam_session.description %>
+
+				<div class="row text-center">
+					<div class="col-sm-6">
+						<span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
+						Players:
+						<%= GuestSessionAssociation.where(jam_session_id: jam_session.id, player: true).distinct.count %>
+						/
+						<%= jam_session.max_players %>
+					</div>
+
+					<div class="col-sm-6">
+						<span class="glyphicon glyphicon-headphones" aria-hidden="true"></span>
+						Listeners:
+						<%= GuestSessionAssociation.where(jam_session_id: jam_session.id, player: false).distinct.count %>
+						/
+						<%= jam_session.max_listeners %>
+					</div>
+				</div>
+
+				<div class="row text-center">
+					<div class="col-sm-6">
+						<% if jam_session.max_players.to_i != 0 %>
+							<% percent_players = 100 * GuestSessionAssociation.where(jam_session_id: jam_session.id, player: true).distinct.count.to_i / jam_session.max_players.to_i %>
+						<% else %>
+							<% percent_players = 0 %>
+						<% end %>
+
+						<div class="progress">
+  						<div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar"
+							style='width: <%= percent_players %>%'>
+  						</div>
+						</div>
+					</div>
+
+					<div class="col-sm-6">
+						<% if jam_session.max_listeners.to_i != 0 %>
+							<% percent_listeners = 100 * GuestSessionAssociation.where(jam_session_id: jam_session.id, player: false).distinct.count.to_i / jam_session.max_listeners.to_i %>
+						<% else %>
+							<% percent_listeners = 0 %>
+						<% end %>
+
+						<div class="progress">
+  						<div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+							style='width: <%= percent_listeners %>%'>
+  						</div>
+						</div>
+					</div>
+				</div>
+
+
+				<br><br>
+				<em>
+					<%= jam_session.description %>
+				</em>
 			</div>
 
 			<div class="modal-footer">
-
+				<%= link_to "Join", '#', class: 'btn btn-info' %>
+				<%= link_to "Chat", '#', class: 'btn btn-danger' %>
 			</div>
 
 		</div>

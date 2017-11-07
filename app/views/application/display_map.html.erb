@@ -98,9 +98,9 @@
       </h3>
       <br><br>
       <% @jam_sessions.each do |session| %>
+        <br>
         <div class='row'>
           <div class='col-sm-9'>
-            <%=link_to session.name, jam_session_path(session.id)%>
             <%= link_to session.name, "#jam-modal-#{session.id}", "data-toggle" => "modal" %>
           </div>
 
