@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
     include SessionsHelper
-    def display_map
+
+  def display_map
     @jam_sessions = JamSession.all
   end
   # def check(current_session)

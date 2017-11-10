@@ -30,9 +30,18 @@ class GuestSessionAssociationsController < ApplicationController
   # POST /guest_session_associations
   # POST /guest_session_associations.json
   def create
+    @jam_session=JamSession.find(@guest_session_association.jam_session_id)
+    @users = User.where(id: GuestSessionAssociation.where(jam_session_id: @jam_session.id).distinct.pluck(:user_id))
+    @players = User.where(id: GuestSessionAssociation.where(jam_session_id: @jam_session.id, player:true).distinct.pluck(:user_id))
+    @jam_players_count = @players.count
+    #@jam_players_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:true).distinct.count
+    #@jam_listeners_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:false).distinct.count
+
     if session[:player]
-      @jam_players_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:true).distinct.count
-      if JamSession.where(id:guest_session_association_params[0]).pluck(:max_players) > @jam_players_count
+    #  @jam_players_count = GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:true).distinct.count
+    #  @max_players_count = GuestSessionAssociation.where(jam_session_id: @jam_session.id).max_players
+    #  if JamSession.where(id:guest_session_association_params[0]).pluck(:max_players) > @jam_players_count
+      if @jam_session.max_players > @players
         @guest_session_association = GuestSessionAssociation.new(user_id:session[:user_id],jam_session_id:guest_session_association_params[0],player:true)
         respond_to do |format|
           if @guest_session_association.save
