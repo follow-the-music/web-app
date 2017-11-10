@@ -1,4 +1,5 @@
 class JamSession < ApplicationRecord
+  has_many :chat_messages
 
   geocoded_by :address
   after_validation :geocode
