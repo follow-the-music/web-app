@@ -25,6 +25,7 @@
 					Hosted by
 					<% host = User.find(jam_session.host_id) %>
 					<%= link_to host.name, host %>
+					<%= image_tag host.avatar.url(:medium) %>
 				</div>
 			</div>
 

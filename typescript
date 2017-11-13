@@ -2008,4 +2008,290 @@ Processing by JamSessionsController#show as HTML
   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 5[0m
   Rendered chat_messages/_form.html.erb (1.0ms)
   [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
-  [1m[36mCACHE User Load (0.0ms)[0m  [1m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered chat_messages/_message.html.erb (1.1ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered chat_messages/_message.html.erb (0.3ms)
+  Rendered jam_sessions/show.html.erb within layouts/application (5.9ms)
+  Rendered layouts/_header.html.erb (0.9ms)
+  Rendered sessions/_login_modal.html.erb (9.0ms)
+  Rendered shared/_error_messages.html.erb (0.3ms)
+  Rendered users/_signup_modal.html.erb (2.3ms)
+Completed 200 OK in 61ms (Views: 55.3ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-06 18:01:49 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (5.1.4) lib/active_record/migration.rb:576:in `check_pending!'
+activerecord (5.1.4) lib/active_record/migration.rb:553:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.4) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.4) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.4) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.4) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.4) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.4) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.4) lib/rails/engine.rb:522:in `call'
+puma (3.10.0) lib/puma/configuration.rb:225:in `call'
+puma (3.10.0) lib/puma/server.rb:605:in `handle_request'
+puma (3.10.0) lib/puma/server.rb:437:in `process_client'
+puma (3.10.0) lib/puma/server.rb:301:in `block in run'
+puma (3.10.0) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2017-11-06 18:04:13 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#landingpage as HTML
+  Rendering static_pages/landingpage.html.erb within layouts/application
+/home/lizzie/app/app/views/static_pages/landingpage.html.erb:57: warning: key :class is duplicated and overwritten on line 57
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered static_pages/landingpage.html.erb within layouts/application (17.1ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+  Rendered sessions/_login_modal.html.erb (0.9ms)
+  Rendered shared/_error_messages.html.erb (0.3ms)
+  Rendered users/_signup_modal.html.erb (3.5ms)
+Completed 200 OK in 61ms (Views: 58.9ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/profile" for 127.0.0.1 at 2017-11-06 18:04:15 -0500
+Processing by UsersController#show as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (2.7ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+  Rendered sessions/_login_modal.html.erb (0.9ms)
+  Rendered shared/_error_messages.html.erb (0.3ms)
+  Rendered users/_signup_modal.html.erb (2.0ms)
+Completed 200 OK in 54ms (Views: 52.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/profile/edit" for 127.0.0.1 at 2017-11-06 18:04:17 -0500
+Processing by UsersController#edit as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering users/edit.html.erb within layouts/application
+  Rendered users/_form.html.erb (2.6ms)
+  Rendered users/edit.html.erb within layouts/application (3.9ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered sessions/_login_modal.html.erb (0.9ms)
+  Rendered shared/_error_messages.html.erb (0.5ms)
+  Rendered users/_signup_modal.html.erb (2.3ms)
+Completed 200 OK in 52ms (Views: 50.8ms | ActiveRecord: 0.1ms)
+
+
+Started PATCH "/users/5" for 127.0.0.1 at 2017-11-06 18:04:18 -0500
+Processing by UsersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"erCuHUbXKlBGbCgi63HEnDCo+axR6crQZibbm/fw1ra4iszMHwcJJPh+KUI2oVqFwGPf6uhXretUpXBcmfNY3Q==", "user"=>{"name"=>"Elizabeth Koshelev", "email"=>"lizkosheleva@gmail.com"}, "commit"=>"Update User", "id"=>"5"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) AND ("users"."id" != ?) LIMIT ?[0m  [["email", "lizkosheleva@gmail.com"], ["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/profile
+Completed 302 Found in 20ms (ActiveRecord: 1.2ms)
+
+
+Started GET "/profile" for 127.0.0.1 at 2017-11-06 18:04:18 -0500
+Processing by UsersController#show as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (2.8ms)
+  Rendered layouts/_header.html.erb (1.3ms)
+  Rendered sessions/_login_modal.html.erb (1.3ms)
+  Rendered shared/_error_messages.html.erb (0.3ms)
+  Rendered users/_signup_modal.html.erb (2.3ms)
+Completed 200 OK in 57ms (Views: 54.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/profile/edit" for 127.0.0.1 at 2017-11-06 18:04:21 -0500
+Processing by UsersController#edit as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering users/edit.html.erb within layouts/application
+  Rendered users/_form.html.erb (3.3ms)
+  Rendered users/edit.html.erb within layouts/application (4.5ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered sessions/_login_modal.html.erb (0.9ms)
+  Rendered shared/_error_messages.html.erb (0.2ms)
+  Rendered users/_signup_modal.html.erb (1.8ms)
+Completed 200 OK in 69ms (Views: 67.8ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/users/5" for 127.0.0.1 at 2017-11-06 18:04:28 -0500
+Processing by UsersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"I4G1BNgUQa2sW7JxN2X5e9bBPr8qh868xu7yiiKJOynhu9fVgcRi2RJJsxHqtWdiJgoY+ZM5qYf0bVlNTIq1Qg==", "user"=>{"name"=>"Elizabeth Koshelev", "email"=>"lizkosheleva@gmail.com", "avatar"=>#<ActionDispatch::Http::UploadedFile:0x007fd28c4b71f0 @tempfile=#<Tempfile:/tmp/RackMultipart20171106-4843-1q5eh1c.pdf>, @original_filename="add_drop.pdf", @content_type="application/pdf", @headers="Content-Disposition: form-data; name=\"user[avatar]\"; filename=\"add_drop.pdf\"\r\nContent-Type: application/pdf\r\n">}, "commit"=>"Update User", "id"=>"5"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+Command :: file -b --mime '/tmp/240d3534a61e7fc282d95ba823b09c1d20171106-4843-zgwm6a.pdf'
+Command :: file -b --mime '/tmp/240d3534a61e7fc282d95ba823b09c1d20171106-4843-10b4h26.pdf'
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) AND ("users"."id" != ?) LIMIT ?[0m  [["email", "lizkosheleva@gmail.com"], ["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+Redirected to http://localhost:3000/profile/edit
+Completed 302 Found in 80ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/profile/edit" for 127.0.0.1 at 2017-11-06 18:04:28 -0500
+Processing by UsersController#edit as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering users/edit.html.erb within layouts/application
+  Rendered users/_form.html.erb (1.3ms)
+  Rendered users/edit.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered sessions/_login_modal.html.erb (0.9ms)
+  Rendered shared/_error_messages.html.erb (0.6ms)
+  Rendered users/_signup_modal.html.erb (3.9ms)
+Completed 200 OK in 48ms (Views: 47.3ms | ActiveRecord: 0.1ms)
+
+
+Started PATCH "/users/5" for 127.0.0.1 at 2017-11-06 18:04:34 -0500
+Processing by UsersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lww+GmSMHNquaqDIbWnST7fqieepSJq39H6ReIScX6IUYpmwCSOOm/QhSBzD2qpYzMTgH7U8IxTDsErqjFKPTg==", "user"=>{"name"=>"Elizabeth Koshelev", "email"=>"lizkosheleva@gmail.com", "avatar"=>#<ActionDispatch::Http::UploadedFile:0x007fd29cddcbd0 @tempfile=#<Tempfile:/tmp/RackMultipart20171106-4843-1a4a5b4.jpg>, @original_filename="18192632_10213119619852276_6406467361338365610_o.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"user[avatar]\"; filename=\"18192632_10213119619852276_6406467361338365610_o.jpg\"\r\nContent-Type: image/jpeg\r\n">}, "commit"=>"Update User", "id"=>"5"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+Command :: file -b --mime '/tmp/0ea75dd8a95a268586402fbb8a20125220171106-4843-muexlo.jpg'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/0ea75dd8a95a268586402fbb8a20125220171106-4843-x85dq2.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/0ea75dd8a95a268586402fbb8a20125220171106-4843-x85dq2.jpg[0]'
+Command :: convert '/tmp/0ea75dd8a95a268586402fbb8a20125220171106-4843-x85dq2.jpg[0]' -auto-orient -resize "300x300>" '/tmp/60eab1479846461ce2dc03981a1cec7820171106-4843-8wiitv'
+Command :: identify -format '%wx%h,%[exif:orientation]' '/tmp/0ea75dd8a95a268586402fbb8a20125220171106-4843-x85dq2.jpg[0]' 2>/dev/null
+Command :: identify -format %m '/tmp/0ea75dd8a95a268586402fbb8a20125220171106-4843-x85dq2.jpg[0]'
+Command :: convert '/tmp/0ea75dd8a95a268586402fbb8a20125220171106-4843-x85dq2.jpg[0]' -auto-orient -resize "100x100>" '/tmp/60eab1479846461ce2dc03981a1cec7820171106-4843-9xgerh'
+Command :: file -b --mime '/tmp/0ea75dd8a95a268586402fbb8a20125220171106-4843-epgm3e.jpg'
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) AND ("users"."id" != ?) LIMIT ?[0m  [["email", "lizkosheleva@gmail.com"], ["id", 5], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE "users" SET "avatar_file_name" = ?, "avatar_updated_at" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["avatar_file_name", "18192632_10213119619852276_6406467361338365610_o.jpg"], ["avatar_updated_at", "2017-11-06 23:04:34.271802"], ["updated_at", "2017-11-06 23:04:34.647034"], ["id", 5]]
+[paperclip] deleting /home/lizzie/app/public/system/users/avatars/000/000/005/original/18192632_10213119619852276_6406467361338365610_o.jpg
+[paperclip] deleting /home/lizzie/app/public/system/users/avatars/000/000/005/medium/18192632_10213119619852276_6406467361338365610_o.jpg
+[paperclip] deleting /home/lizzie/app/public/system/users/avatars/000/000/005/thumb/18192632_10213119619852276_6406467361338365610_o.jpg
+  [1m[35m (108.6ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/profile
+Completed 302 Found in 503ms (ActiveRecord: 109.7ms)
+
+
+Started GET "/profile" for 127.0.0.1 at 2017-11-06 18:04:34 -0500
+Processing by UsersController#show as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (2.4ms)
+  Rendered layouts/_header.html.erb (1.2ms)
+  Rendered sessions/_login_modal.html.erb (1.5ms)
+  Rendered shared/_error_messages.html.erb (0.3ms)
+  Rendered users/_signup_modal.html.erb (2.5ms)
+Completed 200 OK in 51ms (Views: 49.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-06 18:06:26 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#landingpage as HTML
+  Rendering static_pages/landingpage.html.erb within layouts/application
+/home/lizzie/app/app/views/static_pages/landingpage.html.erb:57: warning: key :class is duplicated and overwritten on line 57
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered static_pages/landingpage.html.erb within layouts/application (16.5ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered sessions/_login_modal.html.erb (0.8ms)
+  Rendered shared/_error_messages.html.erb (0.3ms)
+  Rendered users/_signup_modal.html.erb (2.4ms)
+Completed 200 OK in 55ms (Views: 53.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-06 18:28:06 -0500
+Processing by StaticPagesController#landingpage as HTML
+  Rendering static_pages/landingpage.html.erb within layouts/application
+/home/lizzie/app/app/views/static_pages/landingpage.html.erb:57: warning: key :class is duplicated and overwritten on line 57
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered static_pages/landingpage.html.erb within layouts/application (2.5ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered sessions/_login_modal.html.erb (0.9ms)
+  Rendered shared/_error_messages.html.erb (0.2ms)
+  Rendered users/_signup_modal.html.erb (2.0ms)
+Completed 200 OK in 53ms (Views: 52.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-11-06 18:28:06 -0500
+Processing by StaticPagesController#landingpage as HTML
+  Rendering static_pages/landingpage.html.erb within layouts/application
+/home/lizzie/app/app/views/static_pages/landingpage.html.erb:57: warning: key :class is duplicated and overwritten on line 57
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered static_pages/landingpage.html.erb within layouts/application (2.1ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+  Rendered sessions/_login_modal.html.erb (1.5ms)
+  Rendered shared/_error_messages.html.erb (0.5ms)
+  Rendered users/_signup_modal.html.erb (3.4ms)
+Completed 200 OK in 45ms (Views: 44.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/about" for 127.0.0.1 at 2017-11-06 18:28:07 -0500
+Processing by StaticPagesController#about as HTML
+  Rendering static_pages/about.html.erb within layouts/application
+  Rendered static_pages/about.html.erb within layouts/application (7.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (1.4ms)
+  Rendered sessions/_login_modal.html.erb (1.1ms)
+  Rendered shared/_error_messages.html.erb (0.4ms)
+  Rendered users/_signup_modal.html.erb (2.9ms)
+Completed 200 OK in 60ms (Views: 57.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/jam" for 127.0.0.1 at 2017-11-06 18:28:08 -0500
+Processing by ApplicationController#display_map as HTML
+  Rendering application/display_map.html.erb within layouts/application
+  [1m[36mJamSession Load (0.2ms)[0m  [1m[34mSELECT "jam_sessions".* FROM "jam_sessions"[0m
+  Rendered application/display_map.html.erb within layouts/application (10.9ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (1.2ms)
+  Rendered sessions/_login_modal.html.erb (0.8ms)
+  Rendered shared/_error_messages.html.erb (0.2ms)
+  Rendered users/_signup_modal.html.erb (2.1ms)
+Completed 200 OK in 64ms (Views: 60.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/jam_sessions/5" for 127.0.0.1 at 2017-11-06 18:28:10 -0500
+Processing by JamSessionsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mJamSession Load (0.5ms)[0m  [1m[34mSELECT  "jam_sessions".* FROM "jam_sessions" WHERE "jam_sessions"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "users"."name" FROM "users" WHERE "users"."id" = ?[0m  [["id", 5]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT DISTINCT "guest_session_associations"."user_id" FROM "guest_session_associations" WHERE "guest_session_associations"."jam_session_id" = ?[0m  [["jam_session_id", 5]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(DISTINCT "guest_session_associations"."id") FROM "guest_session_associations" WHERE "guest_session_associations"."jam_session_id" = ? AND "guest_session_associations"."player" = ?[0m  [["jam_session_id", 5], ["player", "t"]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(DISTINCT "guest_session_associations"."id") FROM "guest_session_associations" WHERE "guest_session_associations"."jam_session_id" = ? AND "guest_session_associations"."player" = ?[0m  [["jam_session_id", 5], ["player", "f"]]
+  [1m[36mChatMessage Load (0.3ms)[0m  [1m[34mSELECT "chat_messages".* FROM "chat_messages" WHERE "chat_messages"."jam_session_id" = ?[0m  [["jam_session_id", 5]]
+  Rendering jam_sessions/show.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 5[0m
+  Rendered chat_messages/_form.html.erb (1.4ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered chat_messages/_message.html.erb (1.2ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered chat_messages/_message.html.erb (0.4ms)
+  Rendered jam_sessions/show.html.erb within layouts/application (7.0ms)
+  Rendered layouts/_header.html.erb (0.7ms)
+  Rendered sessions/_login_modal.html.erb (0.9ms)
+  Rendered shared/_error_messages.html.erb (0.2ms)
+  Rendered users/_signup_modal.html.erb (2.4ms)
+Completed 200 OK in 83ms (Views: 49.3ms | ActiveRecord: 5.3ms)
+
+
+Started GET "/users/5" for 127.0.0.1 at 2017-11-06 18:28:11 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering us
