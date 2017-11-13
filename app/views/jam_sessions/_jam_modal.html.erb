@@ -86,9 +86,16 @@
 			</div>
 
 			<div class="modal-footer">
-				<%= link_to "Join as Player", guest_session_association_path(id: jam_session.id, player: TRUE), class: 'btn btn-warning' %>
-				<%= link_to "Join as Listener", guest_session_association_path(id: jam_session.id, player: FALSE), class: 'btn btn-info' %>
-				<%= link_to "Chat", "#chat-modal-#{jam_session.id}", :class => "btn btn-danger", "data-toggle" => "modal" %>
+
+				<% if jam_session.host_id == current_user.id %>
+				<% elsif GuestSessionAssociation.find_by(user_id: current_user.id, jam_session_id: jam_session.id) %>
+					<%= link_to "Leave Jam Session", '#', class: 'btn btn-danger' %>
+				<% else %>
+					<%= link_to "Join as Player", guest_session_association_path(id: jam_session.id, player: TRUE), class: 'btn btn-warning' %>
+					<%= link_to "Join as Listener", guest_session_association_path(id: jam_session.id, player: FALSE), class: 'btn btn-info' %>
+				<% end %>
+
+				<%= link_to "Chat", "#chat-modal-#{jam_session.id}", :class => "btn", "data-toggle" => "modal" %>
 			</div>
 
 		</div>
