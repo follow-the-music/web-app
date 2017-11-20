@@ -13,7 +13,6 @@ gem 'bootstrap-sass', '3.3.7'
 gem 'jquery-rails'
 gem 'bcrypt',         '3.1.11'
 gem 'aws-sdk', '~> 2.3'
-gem 'rails_12factor', group: :production
 gem 'puma', '~> 3.7'
 gem 'byebug'
 # Use SCSS for stylesheets
