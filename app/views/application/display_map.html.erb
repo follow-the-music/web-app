@@ -1,12 +1,12 @@
 
   <style>
-      #map {
+      /*#map {
         height: 800px;
         width: 1300px;
         margin-left:-10%;
         /*margin-right:20%;*/
-        margin-top: 5%;
-      }
+        /*margin-top: 5%;*/
+      /*}*/
       h3 {
         font-family: "Rockwell Extra Bold", "Rockwell Bold", monospace;
       	font-size: 24px;
@@ -22,14 +22,17 @@
       }
     .jumbotron{
         color: black;
-        background-color: #F8F8FF;
+        background-color: white;
+        border-radius: 15%;
         z-index:1;
         position:absolute;
         margin-left: -5%;
         margin-top: 10%;
-        height:600px;
+        /*height:600px;*/
         width:250px;
         text-align: left;
+        min-height: xxx;
+        overflow: hidden;
 
       }
       li{
@@ -39,16 +42,16 @@
         background: #8cd934;
         margin-left: 33%;
         margin-top:100%;
-        background-image: -webkit-linear-gradient(top, #8cd934, #558f46);
-        background-image: -moz-linear-gradient(top, #8cd934, #558f46);
-        background-image: -ms-linear-gradient(top, #8cd934, #558f46);
+        /*background-image: -webkit-linear-gradient(top, #8cd934, #558f46);*/
+        /*background-image: -moz-linear-gradient(top, #8cd934, #558f46);*/
+        /*background-image: -ms-linear-gradient(top, #8cd934, #558f46);
         background-image: -o-linear-gradient(top, #8cd934, #558f46);
-        background-image: linear-gradient(to bottom, #8cd934, #558f46);
+        background-image: linear-gradient(to bottom, #8cd934, #558f46);*/
         -webkit-border-radius: 60;
         -moz-border-radius: 60;
         border-radius: 60px;
-        -webkit-box-shadow: 5px 5px 5px #666666;
-        -moz-box-shadow: 5px 5px 5px #666666;
+        /*-webkit-box-shadow: 5px 5px 5px #666666;
+        -moz-box-shadow: 5px 5px 5px #666666;*/
         box-shadow: 5px 5px 5px #666666;
         font-family: Courier New;
         color: #ffffff;
@@ -89,7 +92,7 @@
       <%= render 'jam_sessions/jam_modal', jam_session: jam_session %>
     <% end %>
 
-    <div class="center jumbotron" >
+    <div class="center jumbotron">
       <br>
       <h3>
         <strong>
@@ -116,13 +119,11 @@
       <%= link_to "+", new_jam_session_path, class: 'button1' %>
 
       </div>
-    <div id="map">
-    </div>
 
 </div>
 
-<div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
+<div style='width=100%;margin=0; margin-top=0; '>
+    <div id="map" style='width=100%; height: 1000px;'></div>
 </div>
 
 <script type="text/javascript">
