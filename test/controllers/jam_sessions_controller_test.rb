@@ -4,11 +4,11 @@ class JamSessionsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @jam_session = jam_sessions(:one)
   end
-  # 
-  # test "should get index" do
-  #   get jam_sessions_url
-  #   assert_response :success
-  # end
+  
+  test "should get index" do
+    get jam_sessions_url
+    assert_response :success
+  end
 
   test "should get new" do
     get new_jam_session_url

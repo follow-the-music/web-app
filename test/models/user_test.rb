@@ -15,10 +15,10 @@ class UserTest < ActiveSupport::TestCase
     assert_not user.valid?
   end
 
-  # test "email should be formated correctly" do
-  #   user = User.new(name: "Example", email: "example@user.com", password: "password", password_confirmation: "password")
-  #   assert_not user.valid?
-  # end
+  test "email should be formated correctly" do
+    user = User.new(name: "Example", email: "example@user.com", password: "password", password_confirmation: "password")
+    assert_not user.valid?
+  end
 
   test "email addresses should be unique" do
     user = User.new(name: "Example", email: "example@user.com", password: "password", password_confirmation: "password")
