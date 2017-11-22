@@ -13,9 +13,7 @@ gem 'bootstrap-sass', '3.3.7'
 gem 'jquery-rails'
 gem 'bcrypt',         '3.1.11'
 gem 'aws-sdk', '~> 2.3'
-gem 'rails_12factor', group: :production
 gem 'puma', '~> 3.7'
-gem 'byebug'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -42,7 +40,6 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'bootstrap-sass', '3.3.7'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem 'rails_admin', '~> 1.2'
 
