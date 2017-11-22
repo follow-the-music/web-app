@@ -29,7 +29,7 @@
         margin-left: -5%;
         margin-top: 10%;
         /*height:600px;*/
-        width:250px;
+        width:300px;
         text-align: left;
         min-height: xxx;
         overflow: hidden;
@@ -115,6 +115,8 @@
           </div>
         </div>
       <%end%>
+      <%= will_paginate @jam_sessions %>
+
       <br><br><br><br>
       <%= link_to "+", new_jam_session_path, class: 'button1' %>
 
@@ -123,7 +125,7 @@
 </div>
 
 <div style='width=100%;margin=0; margin-top=0; '>
-    <div id="map" style='width=100%; height: 1000px;'></div>
+    <div id="map" style='width=100%; height: 1000px; min-height: xxx; overflow: hidden;'></div>
 </div>
 
 <script type="text/javascript">
