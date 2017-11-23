@@ -2,7 +2,7 @@
 
 <% id = jam_session.id %>
 
-<div class="modal fade" id="chat-modal-<%= id %>" title="Log In">
+<div class="modal fade" id="modal-for-chat_message:<%= id %>" title="Log In">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 
@@ -28,9 +28,7 @@
 				<% @jam_session = jam_session %>
 				<%= render 'chat_messages/form', chat_message: ChatMessage.new, jam_session: @jam_session %>
 			  <br>
-			  <% chat_messages.reverse.each do |message| %>
-			    <%= render 'chat_messages/message', message: message %>
-			  <% end %>
+				<%= render 'chat_messages/messages', chat_messages: chat_messages %>
 			</div>
 
 			<div class="modal-footer">

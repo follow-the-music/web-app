@@ -1,0 +1,5 @@
+<div id='messages'>
+	<% chat_messages.reverse.each do |message| %>
+		<%= render 'chat_messages/message', message: message %>
+	<% end %>
+</div>
