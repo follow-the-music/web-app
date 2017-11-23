@@ -29,7 +29,7 @@ class ChatMessagesController < ApplicationController
     @chat_message.save
 
     respond_to do |format|
-      format.html { redirect_to jam_sessions_path }
+      format.html { return false }
     end
   end
 

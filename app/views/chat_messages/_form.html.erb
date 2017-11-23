@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-8">
-    <%= form_with(model: chat_message, local: true) do |form| %>
+    <%= form_with(model: chat_message, remote: true) do |form| %>
       <% if chat_message.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(chat_message.errors.count, "error") %> prohibited this chat_message from being saved:</h2>

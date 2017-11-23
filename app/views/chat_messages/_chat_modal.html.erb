@@ -1,8 +1,6 @@
 <% chat_messages = ChatMessage.where(jam_session_id: jam_session.id) %>
 
-<% id = jam_session.id %>
-
-<div class="modal fade" id="modal-for-chat_message:<%= id %>" title="Log In">
+<div class="modal fade" id="modal-for-chat_message:<%= jam_session.id %>" title="Log In">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 
