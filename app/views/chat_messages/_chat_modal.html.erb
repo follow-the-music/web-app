@@ -26,7 +26,7 @@
 				<% @jam_session = jam_session %>
 				<%= render 'chat_messages/form', chat_message: ChatMessage.new, jam_session: @jam_session %>
 			  <br>
-				<%= render 'chat_messages/messages', chat_messages: chat_messages %>
+				<%= render 'chat_messages/messages', chat_messages: chat_messages, jam_session: @jam_session %>
 			</div>
 
 			<div class="modal-footer">
@@ -35,4 +35,16 @@
 
 		</div>
 	</div>
+
+	<script>
+		$(function() {
+			$('#post-<%= jam_session.id %>').click(function() {
+				$('#messages-start-<%= jam_session.id %>')
+				.prepend(function() {
+					return "<div>• ME:  " + $('#content-<%= jam_session.id %>').val().toString() + "</div>";
+				});
+			});
+		});
+	</script>
+
 </div>
