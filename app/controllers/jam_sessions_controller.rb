@@ -4,8 +4,7 @@ class JamSessionsController < ApplicationController
   # GET /jam_sessions
   # GET /jam_sessions.json
   def index
-    @jam_sessions = JamSession.order(:name)
-    self.all_sessions_json
+    @jam_sessions = JamSession.all.order(:name).paginate(:page => params[:page])
   end
 
   def all_sessions_json
