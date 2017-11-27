@@ -27,21 +27,21 @@
 					      </ul>
 					    </div>
 					  <% end %>
+						<div class="field">
+							<%= form.label :name %>
+							<%= form.text_area :name, id: :jam_session_name, :required => true %>
+						</div>
 
 					  <div class="field">
 					    <%= form.label :max_players %>
-					    <%= form.number_field :max_players, id: :jam_session_max_players %>
+					    <%= form.number_field :max_players, id: :jam_session_max_players,value:5  %>
 					  </div>
 
 					  <div class="field">
 					    <%= form.label :max_listeners %>
-					    <%= form.number_field :max_listeners, id: :jam_session_max_listeners %>
+					    <%= form.number_field :max_listeners, id: :jam_session_max_listeners,value:0  %>
 					  </div>
 
-					  <div class="field">
-					    <%= form.label :name %>
-					    <%= form.text_area :name, id: :jam_session_name %>
-					  </div>
 
 					  <div class="field">
 					    <%= form.label :description %>

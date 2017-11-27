@@ -1,0 +1,19 @@
+<div id="filterrific_results">
+
+  <% @jam_sessions.each do |session| %>
+    <br>
+    <div class='row'>
+      <div class='col-sm-12'>
+      <%= image_tag User.find(id=session.host_id).avatar.url(:thumb) %>
+      </div>
+      <div class='col-sm-9'>
+        <%= link_to session.name, "#jam-modal-#{session.id}", "data-toggle" => "modal" %>
+      </div>
+
+      <div class='col-sm-3'>
+        <%= link_to "Join", guest_session_association_path(id:session.id,player:TRUE), class: 'button2' %>
+      </div>
+    </div>
+  <%end%>
+  <%= will_paginate @jam_sessions %>
+</div>

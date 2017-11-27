@@ -38,6 +38,7 @@ class JamSessionsController < ApplicationController
   def create
     @jam_session = JamSession.new(jam_session_params)
     @jam_session.host_id=session[:user_id]
+
     respond_to do |format|
       if @jam_session.save
         @guest=GuestSessionAssociation.new(jam_session_id: @jam_session.id, user_id:session[:user_id], player:true)
@@ -50,8 +51,6 @@ class JamSessionsController < ApplicationController
         format.json { render json: @jam_session.errors, status: :unprocessable_entity }
       end
     end
-
-
   end
 
   # PATCH/PUT /jam_sessions/1
