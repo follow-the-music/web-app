@@ -19,7 +19,7 @@ class JamSession < ApplicationRecord
     GuestSessionAssociation.where(jam_session_id:self.id, player:FALSE).count
   end
   scope :search_query, lambda { |search_query|
-    return nil  if search_query.blank?
+    return nil if search_query.blank?
     # where("name LIKE ? OR descripton LIKE ?", search_query, search_query)
     JamSession.where("name LIKE ?", "%#{search_query}%").or(JamSession.where("description LIKE ?", "%#{search_query}%"))
   }

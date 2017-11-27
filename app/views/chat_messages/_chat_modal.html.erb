@@ -1,8 +1,6 @@
 <% chat_messages = ChatMessage.where(jam_session_id: jam_session.id) %>
 
-<% id = jam_session.id %>
-
-<div class="modal fade" id="chat-modal-<%= id %>" title="Log In">
+<div class="modal fade" id="modal-for-chat_message:<%= jam_session.id %>" title="Log In">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 
@@ -28,9 +26,7 @@
 				<% @jam_session = jam_session %>
 				<%= render 'chat_messages/form', chat_message: ChatMessage.new, jam_session: @jam_session %>
 			  <br>
-			  <% chat_messages.reverse.each do |message| %>
-			    <%= render 'chat_messages/message', message: message %>
-			  <% end %>
+				<%= render 'chat_messages/messages', chat_messages: chat_messages, jam_session: @jam_session %>
 			</div>
 
 			<div class="modal-footer">
@@ -39,4 +35,16 @@
 
 		</div>
 	</div>
+
+	<script>
+		$(function() {
+			$('#post-<%= jam_session.id %>').click(function() {
+				$('#messages-start-<%= jam_session.id %>')
+				.prepend(function() {
+					return "<div>• ME:  " + $('#content-<%= jam_session.id %>').val().toString() + "</div>";
+				});
+			});
+		});
+	</script>
+
 </div>

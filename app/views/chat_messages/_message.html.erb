@@ -4,7 +4,7 @@
 		<div class='text-left'>
 			<strong>
 				<% user = User.find(message.author_id) %>
-<%= image_tag user.avatar.url(:thumb) %>
+        <%= image_tag user.avatar.url(:thumb) %>
 				<% if current_user.id == user.id %>
 					<%= link_to 'Me', user %>
 				<% else %>

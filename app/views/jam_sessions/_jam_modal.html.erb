@@ -1,4 +1,4 @@
-<% id = "jam-modal-#{jam_session.id}" %>
+<% id = "modal-for-jam_session:#{jam_session.id}" %>
 
 <div class="modal fade" id='<%= id %>', title="Jam Session">
 	<div class="modal-dialog" role="document">
@@ -96,7 +96,7 @@
 					<%= link_to "Join as Listener", guest_session_association_path(id: jam_session.id, player: FALSE), class: 'btn btn-info' %>
 				<% end %>
 
-				<%= link_to "Chat", "#chat-modal-#{jam_session.id}", :class => "btn", "data-toggle" => "modal" %>
+				<%= link_to "Chat", "#modal-for-chat_message\\:#{jam_session.id}", :class => "btn", "data-toggle" => "modal" %>
 			</div>
 
 		</div>

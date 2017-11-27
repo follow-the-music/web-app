@@ -4,8 +4,17 @@ class JamSessionsController < ApplicationController
   # GET /jam_sessions
   # GET /jam_sessions.json
   def index
-    @jam_sessions = JamSession.order(:name)
-    self.all_sessions_json
+    @filterrific = initialize_filterrific(
+     JamSession,
+     params[:filterrific]
+     ) or return
+     @jam_sessions = @filterrific.find.page(params[:page])
+
+     respond_to do |format|
+       format.html
+       format.js
+     end
+    # @jam_sessions = JamSession.all.order(:name).paginate(:page => params[:page])
   end
 
   def all_sessions_json
@@ -23,6 +32,7 @@ class JamSessionsController < ApplicationController
     @chat_messages = ChatMessage.where(jam_session_id: @jam_session.id).sort_by { |message| message.created_at}
 
   end
+
 
   # GET /jam_sessions/new
   def new
@@ -80,6 +90,19 @@ class JamSessionsController < ApplicationController
   end
   def host_name(host_id)
     JamSession.host_name(host_id)
+  end
+
+  def choice
+    # # write the code to set this with the choice button
+    # @display_play=false
+    # @display_listen=false
+    # if params[:play]==true
+    #   # session[:player]=true
+    #   @display_play=true
+    # end
+    # if params[:listen]==TRUE
+    #   @display_listen=true
+    # end
   end
 
   private

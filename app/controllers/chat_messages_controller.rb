@@ -26,15 +26,10 @@ class ChatMessagesController < ApplicationController
   def create
     @chat_message = ChatMessage.new(chat_message_params)
     @chat_message.author_id = current_user.id
+    @chat_message.save
 
     respond_to do |format|
-      if @chat_message.save
-        format.html { redirect_back fallback_location: root_path, notice: 'Chat message was successfully created.' }
-        format.json { render :show, status: :created, location: @chat_message }
-      else
-        format.html { render :new }
-        format.json { render json: @chat_message.errors, status: :unprocessable_entity }
-      end
+      format.html { return false }
     end
   end
 
