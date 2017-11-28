@@ -32,51 +32,55 @@
 			<div class="modal-body">
 
 				<div class="row text-center">
-					<div class="col-sm-6">
-						<span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
-						Players:
-						<%= GuestSessionAssociation.where(jam_session_id: jam_session.id, player: true).distinct.count %>
-						/
-						<%= jam_session.max_players %>
-					</div>
+					<% if jam_session.max_players.to_i != 0 %>
+						<div class="col-sm-6">
+							<span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
+							Players:
+							<%= GuestSessionAssociation.where(jam_session_id: jam_session.id, player: true).distinct.count %>
+							/
+							<%= jam_session.max_players %>
+						</div>
+					<% end %>
 
-					<div class="col-sm-6">
-						<span class="glyphicon glyphicon-headphones" aria-hidden="true"></span>
-						Listeners:
-						<%= GuestSessionAssociation.where(jam_session_id: jam_session.id, player: false).distinct.count %>
-						/
-						<%= jam_session.max_listeners %>
-					</div>
+					<% if jam_session.max_listeners.to_i != 0 %>
+						<div class="col-sm-6">
+							<span class="glyphicon glyphicon-headphones" aria-hidden="true"></span>
+							Listeners:
+							<%= GuestSessionAssociation.where(jam_session_id: jam_session.id, player: false).distinct.count %>
+							/
+							<%= jam_session.max_listeners %>
+						</div>
+					<% end %>
 				</div>
 
 				<div class="row text-center">
-					<div class="col-sm-6">
-						<% if jam_session.max_players.to_i != 0 %>
+					<% if jam_session.max_players.to_i != 0 %>
+						<div class="col-sm-6">
 							<% percent_players = 100 * GuestSessionAssociation.where(jam_session_id: jam_session.id, player: true).distinct.count.to_i / jam_session.max_players.to_i %>
-						<% else %>
-							<% percent_players = 0 %>
-						<% end %>
 
-						<div class="progress">
-  						<div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar"
-							style='width: <%= percent_players %>%'>
-  						</div>
+							<div class="progress">
+	  						<div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar"
+								style='width: <%= percent_players %>%'>
+	  						</div>
+							</div>
 						</div>
-					</div>
+					<% else %>
+						<% percent_players = 100 %>
+					<% end %>
 
-					<div class="col-sm-6">
-						<% if jam_session.max_listeners.to_i != 0 %>
+					<% if jam_session.max_listeners.to_i != 0 %>
+						<div class="col-sm-6">
 							<% percent_listeners = 100 * GuestSessionAssociation.where(jam_session_id: jam_session.id, player: false).distinct.count.to_i / jam_session.max_listeners.to_i %>
-						<% else %>
-							<% percent_listeners = 0 %>
-						<% end %>
 
-						<div class="progress">
-  						<div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
-							style='width: <%= percent_listeners %>%'>
-  						</div>
+							<div class="progress">
+	  						<div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+								style='width: <%= percent_listeners %>%'>
+	  						</div>
+							</div>
 						</div>
-					</div>
+					<% else %>
+						<% percent_listeners = 100 %>
+					<% end %>
 				</div>
 
 
@@ -92,8 +96,12 @@
 				<% elsif GuestSessionAssociation.find_by(user_id: current_user.id, jam_session_id: jam_session.id) %>
 					<%= link_to "Leave Jam Session", '#', class: 'btn btn-danger' %>
 				<% else %>
-					<%= link_to "Join as Player", guest_session_association_path(id: jam_session.id, player: TRUE), class: 'btn btn-warning' %>
-					<%= link_to "Join as Listener", guest_session_association_path(id: jam_session.id, player: FALSE), class: 'btn btn-info' %>
+					<% if percent_players < 100 && jam_session.max_players.to_i != 0 %>
+						<%= link_to "Join as Player", guest_session_association_path(id: jam_session.id, player: TRUE), class: 'btn btn-warning' %>
+					<% end %>
+					<% if percent_listeners < 100 && jam_session.max_listeners.to_i != 0 %>
+						<%= link_to "Join as Listener", guest_session_association_path(id: jam_session.id, player: FALSE), class: 'btn btn-info' %>
+					<% end %>
 				<% end %>
 
 				<%= link_to "Chat", "#modal-for-chat_message\\:#{jam_session.id}", :class => "btn", "data-toggle" => "modal" %>
