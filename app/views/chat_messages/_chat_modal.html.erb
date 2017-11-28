@@ -40,10 +40,12 @@
 		$(function() {
 			$('#post-<%= jam_session.id %>').click(function() {
 				$('#messages-start-<%= jam_session.id %>')
-				.prepend("<% message = ChatMessage.new author_id: current_user.id, jam_session_id: jam_session.id, content: '[PLACEHOLDER]', created_at: DateTime.now %><%= j render 'chat_messages/message', message: message %> <span>• ME:  " + $('#content-<%= jam_session.id %>').val().toString() + "</span>"
-					//function() {
-					//return "<div>• ME:  " + $('#content-<%= jam_session.id %>').val().toString() + "</div>";
-				//}
+				.prepend(
+					function() {
+						var content = $('#content-<%= jam_session.id %>').val().toString()
+						$('#content-<%= jam_session.id %>').val("")
+						return `<% message = ChatMessage.new author_id: current_user.id, jam_session_id: jam_session.id, content: '${content}', created_at: DateTime.now %><%= j render 'chat_messages/message', message: message %>`
+					}
 			);
 			});
 		});
