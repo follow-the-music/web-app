@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = "Welcome to Follow the Music!"
-      redirect_to choice_path
+      redirect_to jam_sessions_path
     else
       render 'new'
     end

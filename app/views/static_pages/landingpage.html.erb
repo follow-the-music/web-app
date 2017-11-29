@@ -124,7 +124,7 @@
     </div>
     <br><br><br>
     <% if logged_in? %>
-      <%= link_to 'Get Started!', choice_path, class: "myButton"%>
+      <%= link_to 'Get Started!',jam_sessions_path, class: "myButton"%>
     <% else %>
       <%= link_to 'Get Started!', "#login-modal", :class => "btn", "data-toggle" => "modal", class: "myButton"%>
     <% end %>
