@@ -95,8 +95,13 @@
 					<%= link_to "Join as Player", guest_session_association_path(id: jam_session.id, player: TRUE), class: 'btn btn-warning' %>
 					<%= link_to "Join as Listener", guest_session_association_path(id: jam_session.id, player: FALSE), class: 'btn btn-info' %>
 				<% end %>
-
+				<center><audio controls>
+			 	<source src="<%= jam_session.audio.url %>" type="audio/mpeg">
+				 Your browser does not support the audio element.
+				</audio>
+				<br>
 				<%= link_to "Chat", "#chat-modal-#{jam_session.id}", :class => "btn", "data-toggle" => "modal" %>
+			</center>
 			</div>
 
 		</div>

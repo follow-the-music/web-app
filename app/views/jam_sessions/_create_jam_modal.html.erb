@@ -48,6 +48,21 @@
 					    <%= form.text_area :description, id: :jam_session_description %>
 					  </div>
 
+
+						<input onclick="startRecording()" type="button" value="start recording" />
+						<input onclick="stopRecording()" type="button" value="stop recording and play" />
+
+
+						<script>
+
+
+						</script>
+
+					  <div class="field">
+					    <%= form.label :audio %>
+					    <center><%= form.file_field :audio %></center>
+					  </div>
+
 					<% end %>
 				</div>
 
