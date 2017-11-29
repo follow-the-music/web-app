@@ -51,9 +51,7 @@ class JamSessionsController < ApplicationController
 
     respond_to do |format|
       if @jam_session.save
-        @guest=GuestSessionAssociation.new(jam_session_id: @jam_session.id, user_id:session[:user_id], player:true)
-        @guest.save!
-        format.html { redirect_to @jam_session, notice: 'Jam session was successfully created.' }
+        format.html { redirect_to jam_sessions_path, notice: 'Jam session was successfully created.' }
         format.json { render :show, status: :created, location: @jam_session }
       else
         format.html { render :new }
