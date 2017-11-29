@@ -1,4 +1,4 @@
-<% @jam_session = JamSession.new %>
+<% jam_session = JamSession.new %>
 <div class="modal fade" id="modal-to-create-jam_session" title="Create Jam Session">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -48,7 +48,6 @@
 					    <%= form.text_area :description, id: :jam_session_description %>
 					  </div>
 
-					<% end %>
 				</div>
 
 				<div class="modal-footer">

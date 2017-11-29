@@ -72,6 +72,8 @@
       <%= render 'jam_sessions/jam_modal', jam_session: jam_session %>
     <% end %>
 
+    <%= render 'jam_sessions/create_jam_modal' %>
+
     <div class="center jumbotron">
       <br>
       <h3>
@@ -111,7 +113,7 @@
     locals: { jam_sessions: @jam_sessions }
   ) %>
   <br><br>
-    <%= link_to "+", new_jam_session_path, class: 'button1' %>
+    <%= link_to "+", "#modal-to-create-jam_session", "data-toggle" => "modal", class: 'button1'%>
 
 </div>
 
