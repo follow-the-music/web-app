@@ -42,7 +42,7 @@
 				        <span class="input-group-addon" id="basic-addon1">
 				          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 				        </span>
-				        <%= form.text_field :name, id: :jam_session_name, :required => true, class: 'form-control'%>
+				        <%= form.text_field :name, id: :jam_session_name, :required => true, class: 'form-control', placeholder: "Jam Night at Piper's"%>
 				      </div>
 						</div><br>
 
@@ -52,13 +52,13 @@
 				        <span class="input-group-addon" id="basic-addon1">
 				          <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
 				        </span>
-				        <%= form.text_field :address, id: :jam_session_address, :required => true, class: 'form-control'%>
+				        <%= form.text_field :address, id: :jam_session_address, :required => true, class: 'form-control', placeholder: "1 Melody Way, Boston MA" %>
 				      </div>
 						</div><br>
 
 					  <div class="field">
 					    <%= form.label :description %>
-					    <%= form.text_area :description, id: :jam_session_description, class: 'form-control'%>
+					    <%= form.text_area :description, id: :jam_session_description, class: 'form-control', placeholder: "Scream, play, or chill at this all night jam party (or 'till we get shut down). Food and drinks (especially) provided."%>
 					  </div><br>
 
 						<div class="row">
@@ -69,7 +69,7 @@
 						        <span class="input-group-addon" id="basic-addon1">
 						          <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
 						        </span>
-						        <%= form.number_field :max_players, id: :jam_session_max_players, value:5, class: 'form-control' %>
+						        <%= form.number_field :max_players, id: :jam_session_max_players, value: 1, class: 'form-control' %>
 						      </div>
 							  </div>
 							</div>
@@ -81,7 +81,7 @@
 						        <span class="input-group-addon" id="basic-addon1">
 						          <span class="glyphicon glyphicon-headphones" aria-hidden="true"></span>
 						        </span>
-						        <%= form.number_field :max_listeners, id: :jam_session_max_listeners, value:0, class: 'form-control'%>
+						        <%= form.number_field :max_listeners, id: :jam_session_max_listeners, value: 0, class: 'form-control'%>
 						      </div>
 							  </div>
 							</div>
