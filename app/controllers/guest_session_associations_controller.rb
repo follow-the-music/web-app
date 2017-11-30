@@ -45,7 +45,7 @@ class GuestSessionAssociationsController < ApplicationController
         @guest_session_association = GuestSessionAssociation.new(user_id:session[:user_id],jam_session_id:guest_session_association_params[0],player:true)
         respond_to do |format|
           if @guest_session_association.save
-            format.html { redirect_to @guest_session_association, notice: 'Guest session association was successfully created.' }
+            format.html { redirect_to jam_sessions_path }
             format.json { render :show, status: :created, location: @guest_session_association }
           else
             format.html { render :new }
@@ -95,7 +95,7 @@ class GuestSessionAssociationsController < ApplicationController
 
     @guest_session_association.destroy
     respond_to do |format|
-      format.html { redirect_to guest_session_associations_path, notice: 'Guest session association was successfully destroyed.' }
+      format.html { redirect_to jam_sessions_path }
       format.json { head :no_content }
     end
   end

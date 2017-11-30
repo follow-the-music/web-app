@@ -86,6 +86,7 @@ class JamSessionsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
   def host_name(host_id)
     JamSession.host_name(host_id)
   end
