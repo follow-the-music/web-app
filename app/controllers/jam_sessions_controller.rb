@@ -82,7 +82,7 @@ class JamSessionsController < ApplicationController
     @guests= GuestSessionAssociation.where(jam_session_id: @jam_session.id)
     @guests.destroy_all
     respond_to do |format|
-      format.html { redirect_to guest_session_associations_path, notice: 'Jam session was successfully destroyed.' }
+      format.html { redirect_to jam_sessions_path }
       format.json { head :no_content }
     end
   end
