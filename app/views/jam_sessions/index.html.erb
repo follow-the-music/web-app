@@ -79,19 +79,20 @@
     <% end %>
 
     <div class="center jumbotron" id="content">
-      <br>
-      <h3>
-        <strong>
-          Music Around You
-        </strong>
-      </h3>
-      <br>
+      <%=form_for_filterrific @filterrific do |f| %>
+
+      <div>
+        Address
+        <%= f.text_field(
+          :search_query,
+          class: 'filterrific-periodically-observed',
+          :placeholder => "**default address here**"
+        )%>
+      </div>
       play
      <%=check_box("application", "choice", {:multiple => true}, true, nil) %>
      listen
      <%=check_box("application", "choice", {:multiple => true}, false, nil)%>
-        <br><br>
-      <%=form_for_filterrific @filterrific do |f| %>
       <div>
         Search
         <%= f.text_field(
@@ -100,6 +101,7 @@
           :placeholder => "search genre, name .."
         )%>
       </div>
+
     <div>
       <br>
       <%= link_to(
@@ -112,6 +114,13 @@
     <!-- make it work! -->
   <% end %>
   <br><br>
+  <br>
+  <h3>
+    <strong>
+      Music Around You
+    </strong>
+  </h3>
+  <br>
   <%= render(
     partial: 'jam_sessions/list',
     locals: { jam_sessions: @jam_sessions }
