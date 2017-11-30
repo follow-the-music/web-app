@@ -7,12 +7,7 @@
 			<div class="modal-header">
 				<div>
 					<h4>
-						<button class="close" id="heart">
-							<span class="small text-danger">
-	          		<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-								<%= Heart.where(jam_session_id: jam_session.id).count %>
-							</span>
-	        	</button>
+						<%= render 'hearts', jam_session: jam_session %>
 						<small>
 							<span class="glyphicon glyphicon-music" aria-hidden="true"></span>
 							Jam Session
@@ -21,8 +16,9 @@
 				</div>
 
 				<script>
-					$($('#heart').click(function() {
+					$($('#hearts-for-jam_session-<%=jam_session.id%>').click(function() {
 						<% Heart.toggle current_user, jam_session %>
+						$('#hearts-for-jam_session-<%=jam_session.id%>').replaceWith("<%= j render 'hearts', jam_session: jam_session %>");
 					}));
 				</script>
 
