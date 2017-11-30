@@ -40,7 +40,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'filterrific'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'geetar'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem 'rails_admin', '~> 1.2'
 

@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 post   '/login',   to: 'sessions#create'
 get '/logout',  to: 'sessions#destroy'
 post '/signup',  to: 'users#create'
+get 'tab_show', to: 'jam_sessions#tab_show'
+get 'tabs_index', to: 'jam_sessions#tabs_index'
 
 
 end

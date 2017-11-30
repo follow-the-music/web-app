@@ -99,6 +99,8 @@ GEM
     filterrific (2.1.2)
     font-awesome-rails (4.7.0.2)
       railties (>= 3.2, < 5.2)
+    geetar (0.1.1)
+      nokogiri (~> 1.6)
     geocoder (1.4.4)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -281,6 +283,7 @@ DEPENDENCIES
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   filterrific
+  geetar
   geocoder
   gmaps4rails
   jbuilder (~> 2.5)

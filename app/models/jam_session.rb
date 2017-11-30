@@ -6,7 +6,7 @@ class JamSession < ApplicationRecord
   self.per_page = 4
   filterrific(
     available_filters: [
-      :search_query
+      :search_query,
     ]
   )
   def host_name(host_id)
@@ -21,8 +21,16 @@ class JamSession < ApplicationRecord
   scope :search_query, lambda { |search_query|
     return nil if search_query.blank?
     # where("name LIKE ? OR descripton LIKE ?", search_query, search_query)
-    JamSession.where("name LIKE ?", "%#{search_query}%").or(JamSession.where("description LIKE ?", "%#{search_query}%"))
+    JamSession.where("name LIKE ?", "%#{search_query}%").or(JamSession.where("description LIKE ?", "%#{search_query}%")).or(JamSession.where("address LIKE ?", "%#{search_query}%"))
   }
+  def near(given_address,disrtance)
+    JamSession.near(given_address, distance)
+  end
+  def search_near
+    @userLocation = request.location #gets the ip of the user
+    # @searchResults = Geocoder.search(search_locations)
+    # @locations = @searchResults.near(@userLocation, 50, :order => :distance)
+  end
 # def self.full_p
 # end
 # def self.full_l

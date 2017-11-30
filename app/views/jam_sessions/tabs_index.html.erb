@@ -1,0 +1,27 @@
+<h1>Chords and Tabs</h1>
+<br><br>
+<div  align="center">
+<%= form_tag(tabs_index_path, method: :get) do %>
+  <%= text_field_tag :tab, params[:tab],placeholder: 'Search chords and tabs' %>
+  <%= submit_tag 'Search',name: nil %>
+<% end %>
+</div>
+<br><br>
+<div>
+  <table align="center",style="text-align:center;">
+
+    <%if (@search != nil && @search.results!=nil)%>
+      <th>Title</th>
+      <th>Artist</th>
+      <th>Tab Type</th>
+      <%@search.results.each do |result|%>
+      <tr>
+        <td><%= link_to result.title, tab_show_path(url:result.original_url) %></td>
+        <td><%=result.artist%>  </td>
+        <td><%=result.tab_type%> </td>
+      </tr>
+      <!-- result.content # Returns the raw html of the tab's content -->
+      <%end%>
+    <%end%>
+  </table>
+</div>

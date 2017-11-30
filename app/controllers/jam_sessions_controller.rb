@@ -16,6 +16,16 @@ class JamSessionsController < ApplicationController
      end
     # @jam_sessions = JamSession.all.order(:name).paginate(:page => params[:page])
   end
+  def tabs_index
+    client = Geetar::Client.new
+    if params[:tab]!=nil
+        @search = Geetar::Search.new(client, params[:tab])
+    end
+  end
+
+  def tab_show
+    @url=params[:url]
+  end
 
   def all_sessions_json
    render :text=>(@sessions).to_json
@@ -92,18 +102,6 @@ class JamSessionsController < ApplicationController
     JamSession.host_name(host_id)
   end
 
-  def choice
-    # # write the code to set this with the choice button
-    # @display_play=false
-    # @display_listen=false
-    # if params[:play]==true
-    #   # session[:player]=true
-    #   @display_play=true
-    # end
-    # if params[:listen]==TRUE
-    #   @display_listen=true
-    # end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -113,6 +111,6 @@ class JamSessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def jam_session_params
-      params.require(:jam_session).permit(:longitude, :latitude, :host_id, :max_players, :max_listeners, :name, :description, :address)
+      params.require(:jam_session).permit(:longitude, :latitude, :host_id, :max_players, :max_listeners, :name, :description, :address, :tab,:url)
     end
 end
