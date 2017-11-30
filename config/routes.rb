@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :users
   root 'static_pages#landingpage'
   get 'loginpage', to: 'static_pages#loginpage' # OLD
-  get 'about', to: 'static_pages#about'
+  # get 'about', to: 'static_pages#about'
   get 'display_map', to: 'application#display_map'  # OLD
   # get '/jam', to: 'application#display_map'
   get  '/choosetype',    to: 'static_pages#choosetype'

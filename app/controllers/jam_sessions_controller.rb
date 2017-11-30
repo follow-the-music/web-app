@@ -51,9 +51,7 @@ class JamSessionsController < ApplicationController
 
     respond_to do |format|
       if @jam_session.save
-        @guest=GuestSessionAssociation.new(jam_session_id: @jam_session.id, user_id:session[:user_id], player:true)
-        @guest.save!
-        format.html { redirect_to @jam_session, notice: 'Jam session was successfully created.' }
+        format.html { redirect_to jam_sessions_path, notice: 'Jam session was successfully created.' }
         format.json { render :show, status: :created, location: @jam_session }
       else
         format.html { render :new }
@@ -84,10 +82,11 @@ class JamSessionsController < ApplicationController
     @guests= GuestSessionAssociation.where(jam_session_id: @jam_session.id)
     @guests.destroy_all
     respond_to do |format|
-      format.html { redirect_to guest_session_associations_path, notice: 'Jam session was successfully destroyed.' }
+      format.html { redirect_to jam_sessions_path }
       format.json { head :no_content }
     end
   end
+
   def host_name(host_id)
     JamSession.host_name(host_id)
   end

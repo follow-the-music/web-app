@@ -24,4 +24,7 @@
 
   <%= render 'sessions/login_modal' %>
   <%= render 'users/signup_modal' %>
+  <% if logged_in? %>
+    <%= render 'users/user_profile_modal', user: current_user %>
+  <% end %>
 </html>

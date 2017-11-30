@@ -7,9 +7,7 @@
 			<div class="modal-header">
 				<div>
 					<h4>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          	<span aria-hidden="true">&times;</span>
-	        	</button>
+						<%= render 'hearts', jam_session: jam_session %>
 						<small>
 							<span class="glyphicon glyphicon-music" aria-hidden="true"></span>
 							Jam Session
@@ -17,15 +15,44 @@
 					</h4>
 				</div>
 
+				<script>
+					$($('#hearts-for-jam_session-<%=jam_session.id%>').click(function() {
+						<% Heart.toggle current_user, jam_session %>
+						$('#hearts-for-jam_session-<%=jam_session.id%>').replaceWith("<%= j render 'hearts', jam_session: jam_session %>");
+					}));
+				</script>
+
 				<h3>
 					<%= jam_session.name %>
 				</h3>
 				<div class="text-center">
-					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-					Hosted by
 					<% host = User.find(jam_session.host_id) %>
-					<%= link_to host.name, host %>
-					<%= image_tag host.avatar.url(:medium) %>
+					<span class="small">
+						<%= image_tag host.avatar.url(:thumb), class: "img-circle", style: "width: 16px; height: 16px;" %>
+					</span>
+					Hosted by
+					<% if host.id = current_user.id %>
+						<%= link_to "Me", host %>
+					<% else %>
+						<%= link_to host.name, host %>
+					<% end %>
+				</div>
+				<br>
+
+				<div class="row text-center">
+					<div class="col-sm-6">
+						<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+						<e>
+							[INSERT ADDRESS HERE]
+						</e>
+					</div>
+
+					<div class="col-sm-6">
+						<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+						<e>
+							[INSERT TIME & DATE HERE]
+						</e>
+					</div>
 				</div>
 			</div>
 
@@ -84,17 +111,21 @@
 				</div>
 
 
-				<br><br>
+				<br>
 				<em>
 					<%= jam_session.description %>
 				</em>
+				<br>
+
+				</address>
 			</div>
 
 			<div class="modal-footer">
 
 				<% if jam_session.host_id == current_user.id %>
-				<% elsif GuestSessionAssociation.find_by(user_id: current_user.id, jam_session_id: jam_session.id) %>
-					<%= link_to "Leave Jam Session", '#', class: 'btn btn-danger' %>
+					<%= link_to "Cancel Jam Session", jam_session, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to cancel this jam session?' } %>
+				<% elsif guest_session_association = GuestSessionAssociation.find_by(user_id: current_user.id, jam_session_id: jam_session.id) %>
+					<%= link_to "Leave Jam Session", guest_session_association, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to leave this jam session?' } %>
 				<% else %>
 					<% if percent_players < 100 && jam_session.max_players.to_i != 0 %>
 						<%= link_to "Join as Player", guest_session_association_path(id: jam_session.id, player: TRUE), class: 'btn btn-warning' %>
@@ -104,7 +135,9 @@
 					<% end %>
 				<% end %>
 
-				<%= link_to "Chat", "#modal-for-chat_message\\:#{jam_session.id}", :class => "btn", "data-toggle" => "modal" %>
+				<%= link_to "#modal-for-chat_message\\:#{jam_session.id}", class: "btn", "data-toggle" => "modal" do %>
+    			<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+				<% end %>
 			</div>
 
 		</div>
