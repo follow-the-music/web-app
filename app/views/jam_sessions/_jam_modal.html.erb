@@ -21,11 +21,12 @@
 					<%= jam_session.name %>
 				</h3>
 				<div class="text-center">
-					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-					Hosted by
 					<% host = User.find(jam_session.host_id) %>
+					<span class="small">
+						<%= image_tag host.avatar.url(:thumb), class: "img-circle", style: "width: 16px; height: 16px;" %>
+					</span>
+					Hosted by
 					<%= link_to host.name, host %>
-					<%= image_tag host.avatar.url(:medium) %>
 				</div>
 			</div>
 
