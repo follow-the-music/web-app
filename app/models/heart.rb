@@ -9,7 +9,7 @@ class Heart < ApplicationRecord
 		heart = Heart.find_by(user_id: user.id, jam_session_id: jam_session.id)
 
 		if heart
-			heart.destroy
+			heart.delete
 		else
 			heart = Heart.create user_id: user.id, jam_session_id: jam_session.id
 		end
