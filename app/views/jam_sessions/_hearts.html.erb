@@ -1,0 +1,12 @@
+<button class="close" id="hearts-for-jam_session-<%=jam_session.id%>">
+	<span class="small text-danger">
+		<% if Heart.find_by(user_id: current_user.id, jam_session_id: jam_session.id) %>
+			<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+		<% else %>
+			<span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+		<% end %>
+
+
+		<%= Heart.where(jam_session_id: jam_session.id).count %>
+	</span>
+</button>

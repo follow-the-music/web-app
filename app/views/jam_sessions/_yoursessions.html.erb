@@ -1,0 +1,16 @@
+<div id="filterrific_results">
+
+  <% JamSession.where(id: GuestSessionAssociation.where(user_id: current_user.id).pluck(:jam_session_id)).each do |jsession| %>
+    <tr>
+
+      <%= image_tag User.find(id=jsession.host_id).avatar.url(:thumb) %>
+      Hosting
+      <%= link_to jsession.name, "#modal-for-jam_session\\:#{jsession.id}", "data-toggle" => "modal" %>
+      Chat
+      Chords
+
+
+    </tr>
+  <% end %>
+  <%= will_paginate @jam_sessions %>
+</div>

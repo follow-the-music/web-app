@@ -104,13 +104,11 @@
     <div class="row1">
     <h1 style="color:white; font-size:60px;">Follow The Music</h1>
     <h2 style="color:white; font-size:20px;"><i>A place for spontaneous jam sessions, concerts, and new friends!</i></h2>
-
-
       <div class="container">
     	<div class="row">
            <div id="custom-search-input">
               <div class="input-group col-md-12">
-                  <input type="text" class="  search-query form-control" placeholder="Find Spontaneous Jam Session" />
+                  <input type="text" class="  search-query form-control" placeholder="**INSERT USER'S CURRENT ADDRESS HERE**" />
                   <span class="input-group-btn">
                       <button class="btn btn-danger" type="button">
                           <span class=" glyphicon glyphicon-search">
@@ -124,7 +122,7 @@
     </div>
     <br><br><br>
     <% if logged_in? %>
-      <%= link_to 'Get Started!', choice_path, class: "myButton"%>
+      <%= link_to 'Get Started!',jam_sessions_path, class: "myButton"%>
     <% else %>
       <%= link_to 'Get Started!', "#login-modal", :class => "btn", "data-toggle" => "modal", class: "myButton"%>
     <% end %>
@@ -138,5 +136,7 @@
     </div>
   </div>
 </div>
+
+<%= render 'about' %>
 
 </body>
