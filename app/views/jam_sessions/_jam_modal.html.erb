@@ -93,6 +93,7 @@
 			<div class="modal-footer">
 
 				<% if jam_session.host_id == current_user.id %>
+					<%= link_to "Cancel Jam Session", '#', class: 'btn btn-danger' %>
 				<% elsif GuestSessionAssociation.find_by(user_id: current_user.id, jam_session_id: jam_session.id) %>
 					<%= link_to "Leave Jam Session", '#', class: 'btn btn-danger' %>
 				<% else %>
