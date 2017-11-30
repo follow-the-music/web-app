@@ -1,0 +1,33 @@
+<div class="modal fade" id="modal-for-user-<%= user.id %>" title="User Profile">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<div>
+					<h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          	<span aria-hidden="true">&times;</span>
+	        	</button>
+						<small>
+							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							User Profile
+						</small>
+					</h4>
+				</div>
+				<h3>
+					<%= user.name %>
+				</h3>
+			</div>
+
+			<div class="modal-body">
+				<%= user.email %>
+				<%= image_tag user.avatar.url(:thumb) %>
+			</div>
+
+			<div class="modal-footer">
+				<%= link_to "Edit", profile_edit_path, class: "btn btn-info" %>
+			</div>
+
+		</div>
+	</div>
+</div>

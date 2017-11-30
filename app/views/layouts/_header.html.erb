@@ -28,7 +28,7 @@
 
               <!-- PROFILE -->
               <li>
-                <%= link_to "My Profile", profile_path %>
+                <%= link_to "My Profile", "#modal-for-user-#{current_user.id}", "data-toggle" => "modal" %>
               </li>
 
               <!-- SESSIONS -->
