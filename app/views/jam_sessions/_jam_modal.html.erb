@@ -20,6 +20,12 @@
 					</h4>
 				</div>
 
+				<script>
+					$($('#heart').click(function() {
+						<% Heart.toggle current_user, jam_session %>
+					}));
+				</script>
+
 				<h3>
 					<%= jam_session.name %>
 				</h3>
