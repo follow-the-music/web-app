@@ -2,11 +2,13 @@
 
   <% JamSession.where(id: GuestSessionAssociation.where(user_id: current_user.id).pluck(:jam_session_id)).each do |jsession| %>
     <tr>
-
       <%= image_tag User.find(id=jsession.host_id).avatar.url(:thumb) %>
       <%= link_to jsession.name, "#modal-for-jam_session\\:#{jsession.id}", "data-toggle" => "modal" %>
-      Chat
 
+      				<%= link_to "#modal-for-chat_message\\:#{jsession.id}", class: "btn", "data-toggle" => "modal" do %>
+          			<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+
+<% end %>
 
     </tr>
   <% end %>
