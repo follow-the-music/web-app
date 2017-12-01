@@ -75,7 +75,7 @@
 							</div>
 
 							<div class="col-md-6">
-								<div class="field">
+							 	<div class="field">
 							    <%= form.label :max_listeners %>
 									<div class="input-group">
 						        <span class="input-group-addon" id="basic-addon1">
@@ -87,7 +87,22 @@
 							</div>
 						</div>
 
+						<div class = "col-md-6">
+							<div class = "field">
+								<%= form.label :audio %>
+							<p>Record monitor volume: <input type="range" max="1" step="0.1" value=".5" onchange="changeVolume(this.value)"/></p>
+
+							<%= form.label "Record" %>
+							<%=form.button "Record", :type => 'button', :class => 'btn btn-primary', :onclick => 'startRecording(this);' %>
+							<%= form.label "Stop" %>
+							<%=form.button :audio, :type => 'button', :class => 'btn btn-warning', :onclick => 'return stopRecording(this);' %>
+
+
+					</div>
 				</div>
+				</div>
+				<p>
+					<p>
 
 				<div class="modal-footer">
 					<%= form.submit "Create Jam Session", class: "btn btn-danger" %>
@@ -98,3 +113,7 @@
 		</div>
 	</div>
 </div>
+
+<script src="/assets/recordLive.js"></script>
+<script src="/assets/recorder.js"></script>
+<script src="/assets/recorderWorker.js"></script>

@@ -12,7 +12,7 @@
   <% end %>
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_area :name, id: :jam_session_name, :required => true %>
+    <%= form.text_area :name, id: :jam_session_name %>
   </div>
 
   <div class="field">
@@ -22,20 +22,24 @@
 
   <div class="field">
     <%= form.label :max_players %>
-    <%= form.number_field :max_players, id: :jam_session_max_players, value:5 %>
+    <%= form.number_field :max_players, id: :jam_session_max_players %>
   </div>
 
   <div class="field">
     <%= form.label :max_listeners %>
-    <%= form.number_field :max_listeners, id: :jam_session_max_listeners, value:0 %>
+    <%= form.number_field :max_listeners, id: :jam_session_max_listeners %>
   </div>
-
 
 
   <div class="field">
     <%= form.label :description %>
     <%= form.text_area :description, id: :jam_session_description %>
   </div>
+
+  	</head>
+  	<body>
+
+
 
   <div class="actions">
     <%= form.submit %>

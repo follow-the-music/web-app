@@ -58,6 +58,7 @@ class JamSessionsController < ApplicationController
   def create
     @jam_session = JamSession.new(jam_session_params)
     @jam_session.host_id=session[:user_id]
+    @jam_session.audio=
 
     respond_to do |format|
       if @jam_session.save
@@ -101,6 +102,12 @@ class JamSessionsController < ApplicationController
     JamSession.host_name(host_id)
   end
 
+  def stop_recording
+    respond_to do |format|
+      recordLive.js { }
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -110,6 +117,6 @@ class JamSessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def jam_session_params
-      params.require(:jam_session).permit(:longitude, :latitude, :host_id, :max_players, :max_listeners, :name, :description, :address, :tab,:url)
+      params.require(:jam_session).permit(:longitude, :latitude, :host_id, :max_players, :max_listeners, :name, :description, :address, :tab,:url, :audio)
     end
 end
