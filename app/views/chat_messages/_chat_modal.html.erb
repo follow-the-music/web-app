@@ -47,7 +47,7 @@
 		});
 
 		var channel = pusher.subscribe('chat-update-channel');
-    channel.bind('post-to-chat', function(data) {
+    channel.bind('post-to-chat-<%= @jam_session.id %>', function(data) {
       alert(data.message);
     });
 	</script>
