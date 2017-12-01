@@ -36,7 +36,23 @@
 		</div>
 	</div>
 
+	<script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+
 	<script>
+		Pusher.logToConsole = true;
+
+		var pusher = new Pusher('1b7be4869a68995ebc6e', {
+			cluster: 'us2',
+			encrypted: true
+		});
+
+		var channel = pusher.subscribe('chat-update-channel');
+    channel.bind('post-to-chat-<%= @jam_session.id %>', function(data) {
+			$('#messages-<%= jam_session.id %>').replaceWith("<% chat_messages = ChatMessage.where(jam_session_id: @jam_session.id) %> <%= j render 'chat_messages/messages', chat_messages: chat_messages, jam_session: @jam_session %>");
+    });
+	</script>
+
+	<!-- <script>
 		$(function() {
 			$('#post-<%= jam_session.id %>').click(function() {
 				$('#messages-start-<%= jam_session.id %>')
@@ -49,6 +65,6 @@
 			);
 			});
 		});
-	</script>
+	</script> -->
 
 </div>

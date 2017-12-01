@@ -24,9 +24,12 @@ class ChatMessagesController < ApplicationController
   # POST /chat_messages
   # POST /chat_messages.json
   def create
+
     @chat_message = ChatMessage.new(chat_message_params)
     @chat_message.author_id = current_user.id
     @chat_message.save
+
+    Pusher.trigger("chat-update-channel", "post-to-chat-#{@chat_message.jam_session_id}", { message: "hello world [#{JamSession.find(@chat_message.jam_session_id).name}]" })
 
     respond_to do |format|
       format.html { return false }

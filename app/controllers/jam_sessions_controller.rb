@@ -16,6 +16,7 @@ class JamSessionsController < ApplicationController
      end
     # @jam_sessions = JamSession.all.order(:name).paginate(:page => params[:page])
   end
+
   def tabs_index
     client = Geetar::Client.new
     if params[:tab]!=nil

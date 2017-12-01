@@ -131,9 +131,10 @@
 
 
 </div>
-<div style='width=100%;margin=50; margin-top=0; '>
+<div style='width=100%;margin=50; margin-top=0;position=relative '>
     <div id="map" style='width: 70%; height: 800px; min-height: xxx; overflow: hidden; float: right;'></div>
 </div>
+
   <div class="center jumbotron" id="content">
     <h3>
       <strong>
@@ -154,7 +155,7 @@
 
 </div>
 <%= render 'jam_sessions/tabs_index_modal'%>
-<div  id="content">
+<div  style="position: relative">
 <%= link_to 'Chords', "#modal-for-tab-index", "data-toggle" => "modal", class: 'button1' %>
 </div>
 
