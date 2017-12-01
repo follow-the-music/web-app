@@ -148,8 +148,11 @@
   <div>
     <%= link_to "+", new_jam_session_path, class: 'button1' %>
   </div>
-</div>
 
+
+</div>
+<%= render 'jam_sessions/tabs_index_modal'%>
+<%= link_to 'Chords', "#modal-for-tab-index", "data-toggle" => "modal" %>
 </div>
 
 
