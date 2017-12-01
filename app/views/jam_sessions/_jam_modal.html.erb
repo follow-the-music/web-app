@@ -31,7 +31,7 @@
 						<%= image_tag host.avatar.url(:thumb), class: "img-circle", style: "width: 16px; height: 16px;" %>
 					</span>
 					Hosted by
-					<% if host.id = current_user.id %>
+					<% if host.id == current_user.id %>
 						<%= link_to "Me", host %>
 					<% else %>
 						<%= link_to host.name, host %>

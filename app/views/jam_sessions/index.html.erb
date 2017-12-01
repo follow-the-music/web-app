@@ -78,6 +78,8 @@
       <%= render 'jam_sessions/jam_modal', jam_session: jam_session %>
     <% end %>
 
+    <%= render 'jam_sessions/create_jam_modal' %>
+
     <div class="center jumbotron" id="content">
       <%=form_for_filterrific @filterrific do |f| %>
 
@@ -146,7 +148,7 @@
   </div>
   <br><br>
   <div>
-    <%= link_to "+", new_jam_session_path, class: 'button1' %>
+    <%= link_to "+", "#modal-to-create-jam_session", "data-toggle" => "modal", class: 'button1'%>
   </div>
 
 
