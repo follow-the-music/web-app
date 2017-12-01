@@ -4,10 +4,8 @@
     <tr>
 
       <%= image_tag User.find(id=jsession.host_id).avatar.url(:thumb) %>
-      Hosting
       <%= link_to jsession.name, "#modal-for-jam_session\\:#{jsession.id}", "data-toggle" => "modal" %>
       Chat
-      Chords
 
 
     </tr>
