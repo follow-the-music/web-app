@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get 'users/new'
   resources :users
-  root 'static_pages#landingpage'
+  root 'creatives#index'
   get 'loginpage', to: 'static_pages#loginpage' # OLD
   # get 'about', to: 'static_pages#about'
   get 'display_map', to: 'application#display_map'  # OLD

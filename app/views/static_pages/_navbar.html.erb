@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand page-scroll" href="#page-top"> Follow The Music</a>
+            <a class="navbar-brand page-scroll" href="#page-top">Start Bootstrap</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -16,7 +16,10 @@
           <ul class="nav navbar-nav navbar-right">
 
             <!-- HOME -->
-
+            <li class="nav-item">
+              <%= link_to '<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+              Home'.html_safe, root_path %>
+            </li>
             <li>
                 <a class="page-scroll" href="#about"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About</a>
             </li>
@@ -63,8 +66,3 @@
     </div>
     <!-- /.container-fluid -->
 </nav>
-<%= render 'sessions/login_modal' %>
-<%= render 'users/signup_modal' %>
-<% if logged_in? %>
-  <%= render 'users/user_profile_modal', user: current_user %>
-<% end %>
