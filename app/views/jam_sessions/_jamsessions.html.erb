@@ -1,0 +1,62 @@
+<header>
+  <section id="page-top">
+            <h1>Follow The Musiasggc</h1>
+            <hr>
+            <p>A place for spontaneous jam sessions, concerts, and new friends!</p>
+            <div id="custom-search-input">
+               <div class="input-group col-md-12">
+                 <%=form_for_filterrific @filterrific do |f| %>
+
+                 <div>
+                   Address
+                   <%= f.text_field(
+                     :search_query,
+                     class: 'filterrific-periodically-observed',
+                     :placeholder => "**default address here**"
+                   )%>
+                 </div>
+                 play
+                <%=check_box("application", "choice", {:multiple => true}, true, nil) %>
+                listen
+                <%=check_box("application", "choice", {:multiple => true}, false, nil)%>
+                 <div>
+                   Search
+                   <%= f.text_field(
+                     :search_query,
+                     class: 'filterrific-periodically-observed',
+                     :placeholder => "search genre, name .."
+                   )%>
+                 </div>
+
+               <div>
+                 <br>
+                 <%= link_to(
+                   'Reset filters',
+                   reset_filterrific_url,
+                 ) %>
+               </div>
+             <%# add an automated spinner to your form when the list is refreshed %>
+             <%= render_filterrific_spinner %>
+               <!-- make it work! -->
+             <% end %>
+             <br><br>
+             <br>
+             <h3>
+               <strong>
+                 Music Around You
+               </strong>
+             </h3>
+             <br>
+             <%= render(
+               partial: 'jam_sessions/list',
+               locals: { jam_sessions: @jam_sessions }
+             ) %>
+             <br><br>
+
+               </div>
+           </div>
+           <br>
+           <br>
+            <a href="#about" class="btn btn-primary btn-xl page-scroll">Chords</a>
+  </section>
+</header>
