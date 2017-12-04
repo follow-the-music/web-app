@@ -24,6 +24,16 @@ class JamSessionsController < ApplicationController
     end
   end
 
+  def upload_file
+    filename = params[:filename]
+    audio = request.raw_post
+    File.open(filename, 'w+b'){|file| file.puts audio}
+
+    respond_to do | format |
+     format.json { render json: { status: 202 } }
+    end
+  end
+
   def tab_show
     @url=params[:url]
   end
@@ -36,12 +46,10 @@ class JamSessionsController < ApplicationController
   # GET /jam_sessions/1.json
   def show
     @name = User.where(id:@jam_session.host_id).pluck(:name)
-
     @users= User.where(id: GuestSessionAssociation.where(jam_session_id: @jam_session.id).distinct.pluck(:user_id))
     @jam_players_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:true).distinct.count
     @jam_listeners_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:false).distinct.count
     @chat_messages = ChatMessage.where(jam_session_id: @jam_session.id).sort_by { |message| message.created_at}
-
   end
 
 
@@ -59,6 +67,7 @@ class JamSessionsController < ApplicationController
   def create
     @jam_session = JamSession.new(jam_session_params)
     @jam_session.host_id=session[:user_id]
+    # @jam_session.audio=
 
     respond_to do |format|
       if @jam_session.save
@@ -102,6 +111,12 @@ class JamSessionsController < ApplicationController
     JamSession.host_name(host_id)
   end
 
+  def stop_recording
+    respond_to do |format|
+      recordLive.js { }
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -111,6 +126,6 @@ class JamSessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def jam_session_params
-      params.require(:jam_session).permit(:longitude, :latitude, :host_id, :max_players, :max_listeners, :name, :description, :address, :tab,:url)
+      params.require(:jam_session).permit(:longitude, :latitude, :host_id, :max_players, :max_listeners, :name, :description, :address, :tab,:url, :audio, :audio_file)
     end
 end
