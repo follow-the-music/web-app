@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-10 col-md-offset-1">
     <%= form_with(model: chat_message) do |form| %>
       <% if chat_message.errors.any? %>
         <div id="error_explanation">
@@ -22,7 +22,7 @@
 
           <%= form.hidden_field :jam_session_id, id: :jam_session_id, value: @jam_session.id %>
           <span class="actions input-group-btn">
-              <%= form.submit "Submit", class: 'btn btn-danger', id: "post-#{jam_session.id}" %>
+              <%= form.submit "Submit", class: 'btn btn-primary page-scroll', id: "post-#{jam_session.id}" %>
           </span>
         </div>
       </div>

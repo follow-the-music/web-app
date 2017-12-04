@@ -1,0 +1,142 @@
+
+<style>
+  .row1{
+    background-image: url('<%= asset_path("guitars.jpg")%>');
+    background-repeat: repeat;
+    padding-top: 15%;
+    padding-bottom: 15%;
+  }
+  .row2{
+    background-color:white;
+    padding-top: 15%;
+    padding-bottom: 15%;
+  }
+.myButton {
+  margin-left: 45%;
+    border:none;
+  clor:#ffffff;
+  -moz-box-shadow: 0px 10px 14px -7px #701630;
+  -webkit-box-shadow: 0px 10px 14px -7px #701630;
+  box-shadow: 0px 10px 14px -7px #701630;
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #964c53), color-stop(1, #7d3844));
+  background:-moz-linear-gradient(top, #964c53 5%, #7d3844 100%);
+  background:-webkit-linear-gradient(top, #964c53 5%, #7d3844 100%);
+  background:-o-linear-gradient(top, #964c53 5%, #7d3844 100%);
+  background:-ms-linear-gradient(top, #964c53 5%, #7d3844 100%);
+  background:linear-gradient(to bottom, #964c53 5%, #7d3844 100%);
+  background-color:#964c53;
+  -moz-border-radius:13px;
+  -webkit-border-radius:13px;
+  border-radius:13px;
+  display:inline-block;
+  cursor:pointer;
+  position: absolute;
+
+  font-family:Verdana;
+  font-size:20px;
+  font-weight:bold;
+  padding:13px 32px;
+  text-decoration:none;
+  text-decoration-color: white;
+  text-shadow:0px 1px 0px #661c1c;
+
+}
+.myButton:hover {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7d3844), color-stop(1, #964c53));
+  background:-moz-linear-gradient(top, #7d3844 5%, #964c53 100%);
+  background:-webkit-linear-gradient(top, #7d3844 5%, #964c53 100%);
+  background:-o-linear-gradient(top, #7d3844 5%, #964c53 100%);
+  background:-ms-linear-gradient(top, #7d3844 5%, #964c53 100%);
+  background:linear-gradient(to bottom, #7d3844 5%, #964c53 100%);
+  background-color:#7d3844;
+}
+.myButton:active {
+  position:relative;
+  top:1px;
+}
+#custom-search-input {
+        margin:0;
+        margin-top: 10px;
+        padding: 0;
+        width:70%;
+        margin-left: 15%;
+    }
+
+    #custom-search-input .search-query {
+        padding-right: 3px;
+        padding-right: 4px \9;
+        padding-left: 3px;
+        padding-left: 4px \9;
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        position: absolute;
+
+    }
+
+    #custom-search-input button {
+        border: 0;
+        background: none;
+        /** belows styles are working good */
+        padding: 2px 5px;
+        margin-top: 2px;
+        position: relative;
+        left: -28px;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        color:#D9230F;
+    }
+
+    .search-query:focus + button {
+        z-index: 3;
+    }
+</style>
+
+<%= render 'header' %>
+<% provide(:title, "Follow The Music") %>
+<body>
+<div class="container" style="background-color:white; width: 100%;margin-top:0;left: 0;position:absolute; ">
+  <div class="row">
+    <div class="row1">
+    <h1 style="color:white; font-size:60px;">Follow The Music</h1>
+    <h2 style="color:white; font-size:20px;"><i>A place for spontaneous jam sessions, concerts, and new friends!</i></h2>
+      <div class="container">
+    	<div class="row">
+           <div id="custom-search-input">
+              <div class="input-group col-md-12">
+                  <input type="text" class="  search-query form-control" placeholder="**INSERT USER'S CURRENT ADDRESS HERE**" />
+                  <span class="input-group-btn">
+                      <button class="btn btn-danger" type="button">
+                          <span class=" glyphicon glyphicon-search">
+
+                          </span>
+                      </button>
+                  </span>
+              </div>
+          </div>
+    	</div>
+    </div>
+    <br><br><br>
+    <% if logged_in? %>
+      <%= link_to 'Get Started!',jam_sessions_path, class: "myButton"%>
+    <% else %>
+      <%= link_to 'Get Started!', "#login-modal", :class => "btn", "data-toggle" => "modal", class: "myButton"%>
+    <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="row2">
+      <h1 style="color:black; font-size:60px;">Discover Our Music</h1>
+      <br>
+      <br>
+    </div>
+  </div>
+</div>
+
+<%= render 'about' %>
+
+</body>
