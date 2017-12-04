@@ -18,7 +18,14 @@
            </div>
            <br>
            <br>
-            <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
+
+            <% if logged_in? %>
+            <%= link_to 'Find A Jam Session', jam_sessions_path, "data-toggle" => "modal", class: "btn btn-primary btn-xl page-scroll" %>
+
+                    <% else %>
+                    <%= link_to 'Find A Jam Session', "#signup-modal", "data-toggle" => "modal", class: "btn btn-primary btn-xl page-scroll" %>
+
+                    <% end %>
         </div>
     </div>
   </section>

@@ -30,14 +30,22 @@
                       <%= f.text_field(
                         :search_query,
                         class: 'filterrific-periodically-observed',
-                        :placeholder => "Search genre, name .."
+                        :placeholder => "Name"
                       )%>
                     </div>
-
-                    Play
-                   <%=check_box("application", "choice", {:multiple => true}, true, nil) %>
-                   Listen
-                   <%=check_box("application", "choice", {:multiple => true}, false, nil)%>
+                    <div>
+                      Genre:
+                      <select name="genre">
+  <option value="volvo">Any</option>
+  <option value="saab">Pop</option>
+  <option value="fiat">Rock</option>
+  <option value="audi">Funk</option>
+</select>
+                    </div>
+                    Times:
+                    <div id="slidecontainer">
+                      <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    </div>
                   <div>
                     <br>
                     <%= link_to 'Reset filters', reset_filterrific_url, class: 'btn btn-primary page-scroll' %>
@@ -62,7 +70,6 @@
                               <div class="card">
                               <div class="card-body"style='height: 340px;'>
                                 <h4>Your Sessions</h4>
-                                <h6 class="text-muted">Click one for more information!</h6>
                                 <p class=" p-y-1">    <%= render(
                                       partial: 'jam_sessions/yoursessions',
                                       locals: { jam_sessions: @jam_sessions }
@@ -88,14 +95,13 @@
                 <div class="card">
                 <div class="card-body"style='height: 650px;'>
                   <h4>Jam Sessions</h4>
-                  <h6 class="text-muted">Click one for more information!</h6>
-                  <p class=" p-y-1">  <%= render(
+                  <p class=" p-y-1" style="float:left">  <%= render(
                     partial: 'jam_sessions/list',
                     locals: { jam_sessions: @jam_sessions }
                   ) %></p>
                 </div>
                 </div>
-                <div class="row"><%= link_to "Create A Session", "#modal-to-create-jam_session", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll'%></div>
+                <div class="row"><%= link_to "Schedule A Session", "#modal-to-create-jam_session", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll'%></div>
                 </div>
 
 
@@ -126,7 +132,8 @@
         var place = [<%= location.latitude %>, <%= location.longitude %>];
         locations.push(place);
       <% end %>
-
+      var sliderA = new Slider("#ex16a", { min: 0, max: 10, value: 0, focus: true });
+      var sliderB = new Slider("#ex16b", { min: 0, max: 10, value: [0, 10], focus: true });
         function initMap(){
 
             var map = new google.maps.Map(document.getElementById('map'), {
@@ -168,6 +175,7 @@
 <% end %>
 
 <%= render 'jam_sessions/create_jam_modal' %>
+
 
 
 <%= render 'jam_sessions/tabs_index_modal'%>

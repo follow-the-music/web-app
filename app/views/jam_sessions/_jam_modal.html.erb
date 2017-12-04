@@ -130,15 +130,15 @@
 			<div class="modal-footer">
 
 				<% if jam_session.host_id == current_user.id %>
-					<%= link_to "Cancel Jam Session", jam_session, method: :delete, class: 'btn btn-primary btn-xl page-scroll', data: { confirm: 'Are you sure you want to cancel this jam session?' } %>
+					<%= link_to "Cancel Jam Session", jam_session, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to cancel this jam session?' } %>
 				<% elsif guest_session_association = GuestSessionAssociation.find_by(user_id: current_user.id, jam_session_id: jam_session.id) %>
 					<%= link_to "Leave Jam Session", guest_session_association, method: :delete, class: 'btn btn-primary btn-xl page-scroll', data: { confirm: 'Are you sure you want to leave this jam session?' } %>
 				<% else %>
 					<% if percent_players < 100 && jam_session.max_players.to_i != 0 %>
-						<%= link_to "Join as Player", guest_session_association_path(id: jam_session.id, player: TRUE), class: 'btn btn-warning' %>
+						<%= link_to "Attend as Player", guest_session_association_path(id: jam_session.id, player: TRUE), class: 'btn btn-warning' %>
 					<% end %>
 					<% if percent_listeners < 100 && jam_session.max_listeners.to_i != 0 %>
-						<%= link_to "Join as Listener", guest_session_association_path(id: jam_session.id, player: FALSE), class: 'btn btn-info' %>
+						<%= link_to "Attend as Listener", guest_session_association_path(id: jam_session.id, player: FALSE), class: 'btn btn-info' %>
 					<% end %>
 				<% end %>
 
