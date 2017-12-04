@@ -83,6 +83,7 @@
 							  </div>
 							</div>
 						</div>
+						<br><br>
 
 						<div class = "col-md-6">
 							<div class = "field">
@@ -93,18 +94,21 @@
 
 							<%=form.button "Stop", :type => 'button', :class => 'btn btn-warning',id: :jam_session_audio, :onclick => 'return stopRecording(this);' %>
 
-
 					</div>
 				</div>
+				<br><br>
 				<div class = "col-md-6">
 					<div class = "field">
 						<%= form.label :audio_file %>
 						<%=	form.file_field :audio_file%>
 					</div>
 				</div>
+				<br><br>
+
 				</div>
 				<p>
 					<p>
+						<br><br>
 
 				<div class="modal-footer">
 			 <!-- form.submit "Create Jam Session", class: "btn btn-danger", :onSubmit => 'saveAudio()'  -->
