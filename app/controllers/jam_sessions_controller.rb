@@ -1,3 +1,5 @@
+require 'nokogiri'
+require 'open-uri'
 class JamSessionsController < ApplicationController
   before_action :set_jam_session, only: [:show, :edit, :update, :destroy]
 
@@ -14,6 +16,7 @@ class JamSessionsController < ApplicationController
        format.html
        format.js
      end
+
     # @jam_sessions = JamSession.all.order(:name).paginate(:page => params[:page])
   end
 
@@ -36,6 +39,17 @@ class JamSessionsController < ApplicationController
 
   def tab_show
     @url=params[:url]
+    require 'net/http'
+    @result = Net::HTTP.get(URI.parse('http://www.songsterr.com/a/ra/songs/byartists.xml?artists=Metallica,"Led%20Zeppelin"'))
+    # # result = Net::HTTP.get(URI.parse('http://www.example.com'), '/about.html')
+    # xml = Nokogiri::XML(@result)
+    # items = Hash.from_xml(xml.to_xml)
+    # @all_items = Array.new
+    #   items['item'].map do |item|
+    #     new = Item.new
+    #     new.title = item['title']
+    #     @all_items.push(new)
+    #   end
   end
 
   def all_sessions_json
