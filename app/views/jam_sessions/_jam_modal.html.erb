@@ -32,9 +32,9 @@
 					</span>
 					Hosted by
 					<% if host.id == current_user.id %>
-						<%= link_to "Me", host %>
+					<%= link_to 'Me', "#modal-for-user-#{current_user.id}", "data-dismiss" => "modal",  "data-toggle" => "modal"%>
 					<% else %>
-						<%= link_to host.name, host %>
+					<%= link_to host.name, "#modal-for-user-#{host.id}", "data-dismiss" => "modal", "data-toggle" => "modal" %>
 					<% end %>
 				</div>
 				<br>
@@ -143,5 +143,5 @@
 		</div>
 	</div>
 </div>
-
+<%= render 'users/user_profile_modal', user: current_user %>
 <%= render 'chat_messages/chat_modal', jam_session: jam_session %>
