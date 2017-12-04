@@ -29,7 +29,12 @@ class ChatMessagesController < ApplicationController
     @chat_message.author_id = current_user.id
     @chat_message.save
 
-    Pusher.trigger("chat-update-channel", "post-to-chat-#{@chat_message.jam_session_id}", { message: "hello world [#{JamSession.find(@chat_message.jam_session_id).name}]" })
+    # FORCE SYNCHRONIZATION
+    while (! @chat_message.id) do
+      puts "\n\tWAITING ..."
+    end
+
+    Pusher.trigger("chat-update-channel", "post-to-chat-#{@chat_message.jam_session_id}", { message: "hello world" })
 
     respond_to do |format|
       format.html { return false }
