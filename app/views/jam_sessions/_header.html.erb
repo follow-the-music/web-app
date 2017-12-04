@@ -1,17 +1,92 @@
 <header>
-  <section id="page-top">
+  <section id="page-top" >
 
     <body>
       <div class="py-5"></div>
       <div class="py-5">
 
         <div class="container">
-          <div class="row">
-            <div class="col-md-3" style="">
+
+
+
+
+
+            <div class="col-md-3"  style="padding-right:30px">
+                <div class="row">
+
+
+
+                  <div class="center jumbotron" style="color:black">
+                <div class="card">
+                  <div class="card-body">
+                    <h4>Filter your search!</h4>
+                    <%=form_for_filterrific @filterrific do |f| %>
+                      <%= f.text_field(
+                        :search_query,
+                        class: 'filterrific-periodically-observed',
+                        :placeholder => "Search address"
+                      )%>
+                    <div>
+                      <%= f.text_field(
+                        :search_query,
+                        class: 'filterrific-periodically-observed',
+                        :placeholder => "Search genre, name .."
+                      )%>
+                    </div>
+
+                    Play
+                   <%=check_box("application", "choice", {:multiple => true}, true, nil) %>
+                   Listen
+                   <%=check_box("application", "choice", {:multiple => true}, false, nil)%>
+                  <div>
+                    <br>
+                    <%= link_to 'Reset filters', reset_filterrific_url, class: 'btn btn-primary page-scroll' %>
+                  </div>
+                <%# add an automated spinner to your form when the list is refreshed %>
+                <%= render_filterrific_spinner %>
+                  <!-- make it work! -->
+                <% end %>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+          </div>
+            <div class="row">
+
+
+                              <div class="center jumbotron" style="color:black">
+                              <div class="card">
+                              <div class="card-body"style='height: 340px;'>
+                                <h4>Your Sessions</h4>
+                                <h6 class="text-muted">Click one for more information!</h6>
+                                <p class=" p-y-1">    <%= render(
+                                      partial: 'jam_sessions/yoursessions',
+                                      locals: { jam_sessions: @jam_sessions }
+                                    ) %></p>
+                              </div>
+                              </div>
+                              <div class="row">
+                              <%= link_to 'Find Chords', "#modal-for-tab-index", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll' %>
+                                </div>
+                              </div>
+
+
+
+
+
+
+            </div>
+            </div>
+
+            <div class="col-md-3">
                 <div class="row">
                 <div class="center jumbotron" style="color:black">
-              <div class="card">
-                <div class="card-body">
+                <div class="card">
+                <div class="card-body"style='height: 650px;'>
                   <h4>Jam Sessions</h4>
                   <h6 class="text-muted">Click one for more information!</h6>
                   <p class=" p-y-1">  <%= render(
@@ -19,77 +94,24 @@
                     locals: { jam_sessions: @jam_sessions }
                   ) %></p>
                 </div>
-              </div>
+                </div>
                 <div class="row"><%= link_to "Create A Session", "#modal-to-create-jam_session", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll'%></div>
-            </div>
-          </div>
-            <div class="row">
-
-              <div class="center jumbotron" style="color:black">
-              <div class="card">
-              <div class="card-body">
-                <h4>Your Sessions</h4>
-                <h6 class="text-muted">Click one for more information!</h6>
-                <p class=" p-y-1">    <%= render(
-                      partial: 'jam_sessions/yoursessions',
-                      locals: { jam_sessions: @jam_sessions }
-                    ) %></p>
-              </div>
-              </div>
-              <div class="row">
-              <%= link_to 'Find Chords', "#modal-for-tab-index", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll' %>
                 </div>
 
-              </div>
 
-            </div>
-            </div>
-            <div class="col-md-6" style="">
-                  <div id="map" style='width: 100%; height: 800px; min-height: xxx; overflow: hidden; float: right;'></div></div>
-
-
-                  <div class="col-md-3" style="">
-                      <div class="row">
-                      <div class="center jumbotron" style="color:black">
-                    <div class="card">
-                      <div class="card-body">
-                        <h4>Filter your search!</h4>
-                        <%=form_for_filterrific @filterrific do |f| %>
-                          <%= f.text_field(
-                            :search_query,
-                            class: 'filterrific-periodically-observed',
-                            :placeholder => "Search address"
-                          )%>
-                        <div>
-                          <%= f.text_field(
-                            :search_query,
-                            class: 'filterrific-periodically-observed',
-                            :placeholder => "Search genre, name .."
-                          )%>
-                        </div>
-
-                        Play
-                       <%=check_box("application", "choice", {:multiple => true}, true, nil) %>
-                       Listen
-                       <%=check_box("application", "choice", {:multiple => true}, false, nil)%>
-                      <div>
-                        <br>
-                        <%= link_to 'Reset filters', reset_filterrific_url, class: 'btn btn-primary btn-xl page-scroll' %>
-                      </div>
-                    <%# add an automated spinner to your form when the list is refreshed %>
-                    <%= render_filterrific_spinner %>
-                      <!-- make it work! -->
-                    <% end %>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-                  </div>
 
 
 
             </div>
-          </div>
+            </div>
+
+
+                  <div class="col-md-6" style="">
+                        <div id="map" style='width: 100%; height: 800px; min-height: xxx; overflow: hidden; float: right;'></div></div>
+
+
+            </div>
+
         </div>
       </div>
       <div class="py-5"></div>
