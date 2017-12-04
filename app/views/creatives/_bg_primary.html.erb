@@ -1,0 +1,20 @@
+<section class="bg-primary" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">Come find some great friends and music!</h2>
+                <hr class="light">
+                <p class="text-faded">Our mission is to spread the joy of music by allowing our users to find spontaneous jam sessions around them!</p>
+                    <% if logged_in? %>
+                <%= link_to 'Get Started!', jam_sessions_path, "data-toggle" => "modal", class: "btn btn-default btn-xl" %>
+
+                            <% else %>
+  <%= link_to 'Get Started!', "#signup-modal", "data-toggle" => "modal", class: "btn btn-default btn-xl" %>
+
+                            <% end %>
+            </div>
+        </div>
+    </div>
+</section>
+<%= render 'sessions/login_modal' %>
+<%= render 'users/signup_modal' %>

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get 'users/new'
   resources :users
-  root 'static_pages#landingpage'
+  root 'creatives#index'
   get 'loginpage', to: 'static_pages#loginpage' # OLD
   # get 'about', to: 'static_pages#about'
   get 'display_map', to: 'application#display_map'  # OLD
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '/profile/edit', to: 'users#edit'
   get '/profile/edit', to: 'users#edit'
 post   '/login',   to: 'sessions#create'
+get 'creatives/index'
 get '/logout',  to: 'sessions#destroy'
 post '/signup',  to: 'users#create'
 get 'tab_show', to: 'jam_sessions#tab_show'

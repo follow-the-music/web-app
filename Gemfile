@@ -25,6 +25,7 @@ gem 'rails-controller-testing'
 gem 'geocoder' # for geocoding
 gem 'gmaps4rails'
 gem 'underscore-rails'
+gem 'frontend-generators'
 gem 'will_paginate', '~> 3.1', '>= 3.1.6'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
 # Use CoffeeScript for .coffee assets and views
