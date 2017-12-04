@@ -11,7 +11,7 @@
         <div  align="center">
         <%= form_tag(tabs_index_path, method: :get) do %>
           <%= text_field_tag :tab, params[:tab],placeholder: 'Search chords and tabs' %>
-          <%= submit_tag 'Search',name: nil %>
+          <%= submit_tag 'Search',name: nil, class: 'btn btn-primary btn-xl page-scroll'%>
         <% end %>
         </div>
         <br><br>

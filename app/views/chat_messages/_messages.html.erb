@@ -1,5 +1,3 @@
-<div id='messages-start-<%= jam_session.id %>'> </div>
-
 <div id='messages-<%= jam_session.id %>'>
 	<% chat_messages.reverse.each do |message| %>
 		<%= render 'chat_messages/message', message: message %>

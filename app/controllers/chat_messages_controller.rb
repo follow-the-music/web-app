@@ -24,9 +24,17 @@ class ChatMessagesController < ApplicationController
   # POST /chat_messages
   # POST /chat_messages.json
   def create
+
     @chat_message = ChatMessage.new(chat_message_params)
     @chat_message.author_id = current_user.id
     @chat_message.save
+
+    # FORCE SYNCHRONIZATION
+    while (! @chat_message.id) do
+      puts "\n\tWAITING ..."
+    end
+
+    Pusher.trigger("chat-update-channel", "post-to-chat-#{@chat_message.jam_session_id}", { message: "hello world" })
 
     respond_to do |format|
       format.html { return false }
