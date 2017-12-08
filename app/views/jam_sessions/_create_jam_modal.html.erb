@@ -61,15 +61,6 @@
 								<% genres_array =["pop","rock","jazz","soul","metal","house"]  %>
 								<%= form.collection_select(:genre, genres_array, :to_s, :to_s,:include_blank=>true) %></div>
 						</div><br>
-						<div class="field">
-							<%= form.label :address %>
-							<div class="input-group">
-				        <span class="input-group-addon" id="basic-addon1">
-				          <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-				        </span>
-				        <%= form.text_field :address, id: :jam_session_address, :required => true, class: 'form-control', placeholder: "1 Melody Way, Boston MA" %>
-				      </div>
-						</div><br>
 
 					  <div class="field">
 					    <%= form.label :description %>

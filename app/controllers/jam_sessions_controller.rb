@@ -8,7 +8,10 @@ class JamSessionsController < ApplicationController
   def index
     @filterrific = initialize_filterrific(
      JamSession,
-     params[:filterrific]
+     params[:filterrific],
+     select_options: {
+        select_genre: JamSession.options_for_select
+      },
      ) or return
      @jam_sessions = @filterrific.find.page(params[:page])
 

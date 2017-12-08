@@ -6,7 +6,10 @@ class JamSession < ApplicationRecord
   self.per_page = 4
   filterrific(
     available_filters: [
-      :search_query,
+      :search_query_address,
+      :search_query_jam_name,
+      :search_query_host_name,
+      :select_genre
     ]
   )
   def host_name(host_id)
@@ -23,8 +26,11 @@ class JamSession < ApplicationRecord
     # where("name LIKE ? OR descripton LIKE ?", search_query, search_query)
     JamSession.where("name LIKE ?", "%#{search_query}%").or(JamSession.where("description LIKE ?", "%#{search_query}%")).or(JamSession.where("address LIKE ?", "%#{search_query}%"))
   }
-  def near(given_address,disrtance)
-    JamSession.near(given_address, distance)
+  scope :select_genre, lambda { |select_genre|
+    JamSession.where(genre: [select_genre])
+  }
+  def self.options_for_select
+    ["pop","rock","jazz","soul","metal","house"]
   end
   def search_near
     @userLocation = request.location #gets the ip of the user
