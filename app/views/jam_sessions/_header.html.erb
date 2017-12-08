@@ -26,7 +26,7 @@
                   <%= f.text_field(
                     :search_query,
                     class: 'filterrific-periodically-observed',
-                    :placeholder => "Name"
+                    :placeholder => "Jam Name"
                   )%>
                   Genre:
                   <select name="genre">
@@ -38,16 +38,21 @@
 
                 </div>
                 <div>
-
+                  <%= f.text_field(
+                    :search_query,
+                    class: 'filterrific-periodically-observed',
+                    :placeholder => "Host Name"
+                  )%>
                 </div>
-                Start Time:
-                <div id="slidecontainer">
-                  <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                </div> 10:00am <br>
-                End Time:
-                <div id="slidecontainer">
-                  <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                </div> 10:00pm
+              Time:
+                <select name="genre">
+                <option value="volvo">Now</option>
+                <option value="saab">Next 3 Hours</option>
+                <option value="fiat">Next 12 Hours</option>
+                <option value="audi">Next 24 Hours</option>
+                </select>
+
+
               <div>
                 <br>
                 <%= link_to 'Reset filters', reset_filterrific_url, class: 'btn btn-primary page-scroll' %>
