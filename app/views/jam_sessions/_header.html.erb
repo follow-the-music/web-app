@@ -46,6 +46,7 @@
                 <%= render_filterrific_spinner %>
                   <!-- make it work! -->
                 <% end %>
+
                   </div>
                 </div>
               </div>
@@ -106,7 +107,7 @@
             </div>
 
 
-                  <div class="col-md-6" style="">
+                  <div class="col-md-6"  style="color:black">
                         <div id="map" style='width: 100%; height: 800px; min-height: xxx; overflow: hidden; float: right;'></div></div>
 
 
@@ -121,14 +122,15 @@
       <script type="text/javascript">
 
       var locations = [];
-
+      var links = [];
       <% @jam_sessions.each do |location| %>
-        var place = [<%= location.latitude %>, <%= location.longitude %>];
+        var place = [<%= location.latitude %>, <%= location.longitude %>, "<%= location.name %>" ];
         locations.push(place);
+        var link_id =  <%= location.id %>
+        links.push(link_id);
       <% end %>
 
         function initMap(){
-
             var map = new google.maps.Map(document.getElementById('map'), {
               zoom: 13,
               center: new google.maps.LatLng(42.37, -71.2),
@@ -142,18 +144,23 @@
             for (i = 0; i < locations.length; i++) {
               marker = new google.maps.Marker({
                 position: new google.maps.LatLng(locations[i][0], locations[i][1]),
-                map: map
+                map: map,
              });
+             var name = locations[i][2];
+            // var id = links[i];
+             infowindow.setContent(locations[i][2] + ': <a data-toggle="modal" href="#modal-for-jam_session\:0">See Session    </a>');
+             //infowindow.setContent('<a href="http://www.google.com">google link</a>');
+           }
 
-        }
 
+           google.maps.event.addListener(marker, 'click', function() {
+             //infowindow.setContent(locations[i][2] + ': <a data-toggle="modal" href="#modal-for-jam_session\:0">See Session    </a>');
+             infowindow.open(map, marker);
 
-          google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            return function() {
-              infowindow.setContent(locations[i][0]);
-              infowindow.open(map, marker);
-            }
-          })(marker, i));
+             //display name of jam session and audio file
+             //and link to modal
+
+           });
         }
       </script>
       <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_E9YsDaw5Jfj1HC4WKNjepV_maFzCVAQ&callback=initMap"
