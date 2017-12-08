@@ -31,6 +31,14 @@ class JamSession < ApplicationRecord
     # @searchResults = Geocoder.search(search_locations)
     # @locations = @searchResults.near(@userLocation, 50, :order => :distance)
   end
+  # has_attached_file :audio  ,
+  #                    :url => "/assets/:class/:id/:attachment/:style.:extension",
+  #                    :path => ":rails_root/public/assets/:class/:id/:attachment/:style.:extension"
+
+  has_attached_file :audio_file
+  validates_attachment :audio_file, :content_type => {:content_type => ['audio/mpeg', 'audio/x-mpeg', 'audio/mp3', 'audio/x-mp3', 'audio/mpeg3', 'audio/x-mpeg3', 'audio/mpg', 'audio/x-mpg', 'audio/x-mpegaudio']},
+   :file_name => { :matches => [ /mp3\Z/]}
+
 # def self.full_p
 # end
 # def self.full_l
