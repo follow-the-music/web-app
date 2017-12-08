@@ -105,18 +105,11 @@
                 <div class="row"><%= link_to "Schedule A Session", "#modal-to-create-jam_session", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll'%></div>
                 </div>
 
-
-
-
-
             </div>
             </div>
-
 
                   <div class="col-md-6" style="color:black">
-                        <div id="map" style='width: 100%; height: 800px; min-height: xxx; overflow: hidden; float: right; padding-right: 0px; margin: 0px'></div></div>
-
-
+                  <div id="map" style='width: 100%; height: 800px; min-height: xxx; overflow: hidden; float: right; padding-right: 0px; margin: 0px'></div></div>
             </div>
 
         </div>
@@ -144,7 +137,7 @@
               mapTypeId: google.maps.MapTypeId.ROADMAP
             });
 
-            var infowindow = new google.maps.InfoWindow();
+            //var infowindow = new google.maps.InfoWindow();
 
             var marker, i;
 
@@ -152,22 +145,47 @@
               marker = new google.maps.Marker({
                 position: new google.maps.LatLng(locations[i][0], locations[i][1]),
                 map: map,
+                name: locations[i][2]
              });
-             var name = locations[i][2];
+             attachInfowindow(marker, name);
+
+            // var name = locations[i][2];
+            //infowindow.setcontent("hello");
             // var id = links[i];
-             infowindow.setContent(locations[i][2] + ': <a data-toggle="modal" href="#modal-for-jam_session\:0">See Session    </a>');
+             //infowindow.setContent(locations[i][2] + ': <a data-toggle="modal" href="#modal-for-jam_session\:0">See Session    </a>');
              //infowindow.setContent('<a href="http://www.google.com">google link</a>');
            }
 
+           function attachInfowindow(marker, secretMessage) {
+            var infowindow = new google.maps.InfoWindow({
+              content: marker.name + ': <a data-toggle="modal" href="#modal-for-jam_session\:0">See Session    </a>'
+            });
 
-           google.maps.event.addListener(marker, 'click', function() {
-             //infowindow.setContent(locations[i][2] + ': <a data-toggle="modal" href="#modal-for-jam_session\:0">See Session    </a>');
-             infowindow.open(map, marker);
+            marker.addListener('click', function() {
+              infowindow.open(marker.get('map'), marker);
+            });
+          }
 
-             //display name of jam session and audio file
-             //and link to modal
 
-           });
+
+          //  google.maps.event.addListener(marker, 'click', function() {
+          //    var infowindow = new google.maps.InfoWindow({
+          //       content: "hello"
+          //     });
+           //
+          //   //    infowindow = new google.maps.InfoWindow({});
+          //   //  //if (typeof infowindow === 'undefined') {
+          //   //       infowindow = new google.maps.InfoWindow({});
+          //   //   //}
+           //
+           //
+          //    //infowindow.setContent(this.name + ': <a data-toggle="modal" href="#modal-for-jam_session\:0">See Session    </a>');
+          //    infowindow.open(map, marker);
+           //
+          //    //display name of jam session and audio file
+          //    //and link to modal
+           //
+          //  });
         }
       </script>
       <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_E9YsDaw5Jfj1HC4WKNjepV_maFzCVAQ&callback=initMap"
