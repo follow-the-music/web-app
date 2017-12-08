@@ -64,6 +64,8 @@ p {
 .field_with_errors {
   @extend .has-error;
   .form-control {
+    color: red;
+    //color: $state-danger-text;
   }
 }
 @mixin box_sizing {
