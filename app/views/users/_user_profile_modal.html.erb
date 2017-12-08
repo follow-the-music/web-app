@@ -21,9 +21,13 @@
 				<%= image_tag user.avatar.url(:thumb) %>
 			</div>
 
-			<div class="modal-footer">
-				<%= link_to "Edit", profile_edit_path, class: "btn btn-primary btn-xl page-scroll" %>
-			</div>
+			<% if user == current_user %>
+
+				<div class="modal-footer">
+					<%= link_to "Edit", '#modal-for-editing-user', class: "btn btn-primary btn-xl page-scroll", "data-toggle" => "modal" %>
+				</div>
+
+			<% end %>
 
 		</div>
 	</div>
