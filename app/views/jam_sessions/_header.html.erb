@@ -151,9 +151,10 @@
 
 
            function attachInfowindow(marker) {
-             
+
             var infowindow = new google.maps.InfoWindow({
-              content: marker.name + ': <a data-toggle="modal" href="#modal-for-jam_session\:0">See Session    </a>'
+              //content: marker.name + ': <a data-toggle="modal" href="#modal-for-jam_session\:0">See Session    </a>'
+              content: marker.name + ': <%= link_to session.name, "#modal-for-jam_session\\:0", "data-toggle" => "modal" %>'
             });
 
             marker.addListener('click', function() {
@@ -165,6 +166,7 @@
       </script>
       <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_E9YsDaw5Jfj1HC4WKNjepV_maFzCVAQ&callback=initMap"
       type="text/javascript"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLOd9ztHnKznOi9gjtbpgQ0N4D9R_lXR8&libraries=places"></script>
     </body>
 
   </section>
