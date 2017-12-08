@@ -45,8 +45,8 @@ class GuestSessionAssociationsController < ApplicationController
         @guest_session_association = GuestSessionAssociation.new(user_id:session[:user_id],jam_session_id:guest_session_association_params[0],player:true)
         respond_to do |format|
           if @guest_session_association.save
-            format.html { redirect_to jam_sessions_path }
-            format.json { render :show, status: :created, location: @guest_session_association }
+            format.html { redirect_back(fallback_location: root_path) }
+
           else
             format.html { render :new }
             format.json { render json: @guest_session_association.errors, status: :unprocessable_entity }
@@ -62,8 +62,7 @@ class GuestSessionAssociationsController < ApplicationController
         @guest_session_association = GuestSessionAssociation.new(user_id:session[:user_id],jam_session_id:guest_session_association_params[0],player:false)
         respond_to do |format|
           if @guest_session_association.save
-            format.html { redirect_to @guest_session_association, notice: 'Guest session association was successfully created.' }
-            format.json { render :show, status: :created, location: @guest_session_association }
+            format.html { redirect_to @guest_session_association, notice: 'Session is full.' }
           else
             format.html { render :new }
             format.json { render json: @guest_session_association.errors, status: :unprocessable_entity }
