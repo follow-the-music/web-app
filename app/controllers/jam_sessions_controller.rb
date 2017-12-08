@@ -40,9 +40,13 @@ class JamSessionsController < ApplicationController
   def tab_show
     @url=params[:url]
     require 'net/http'
-    @result = Net::HTTP.get(URI.parse('http://www.songsterr.com/a/ra/songs/byartists.xml?artists=Metallica,"Led%20Zeppelin"'))
+    @result = Net::HTTP.get(URI.parse('https://www.songsterr.com/a/ra/songs/byartists.xml?artists=Metallica,"Led%20Zeppelin"'))
+    @result2 = Net::HTTP.get(URI.parse('https://www.songsterr.com/a/wa/bestMatchForQueryString?s={all i want}&a={kodaline}'))
+
     # # result = Net::HTTP.get(URI.parse('http://www.example.com'), '/about.html')
-    # xml = Nokogiri::XML(@result)
+    # render :xml => @result
+    xml = Nokogiri::XML(@result)
+    @artists = xml.xpath("//artist//name")
     # items = Hash.from_xml(xml.to_xml)
     # @all_items = Array.new
     #   items['item'].map do |item|
