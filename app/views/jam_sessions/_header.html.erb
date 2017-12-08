@@ -30,9 +30,14 @@
                       <%= f.text_field(
                         :search_query,
                         class: 'filterrific-periodically-observed',
-                        :placeholder => "Name"
+                        :placeholder => "Jam Name"
                       )%>
                     </div>
+                                     <%= f.text_field(
+                     :search_query,
+                     class: 'filterrific-periodically-observed',
+                     :placeholder => "Host Name"
+                   )%>
                     <div>
                       Genre:
                       <select name="genre">
@@ -42,10 +47,13 @@
   <option value="audi">Funk</option>
 </select>
                     </div>
-                    Times:
-                    <div id="slidecontainer">
-                      <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                    </div>
+                                 Time:
+                 <select name="genre">
+                 <option value="volvo">Now</option>
+                 <option value="saab">Next 3 Hours</option>
+                 <option value="fiat">Next 12 Hours</option>
+                <option value="audi">Next 24 Hours</option>
+                 </select>
                   <div>
                     <br>
                     <%= link_to 'Reset filters', reset_filterrific_url, class: 'btn btn-primary page-scroll' %>
@@ -137,6 +145,8 @@
               mapTypeId: google.maps.MapTypeId.ROADMAP
             });
 
+            //var infowindow = new google.maps.InfoWindow();
+
             var marker, i;
 
             for (i = 0; i < locations.length; i++) {
@@ -146,15 +156,11 @@
                 name: locations[i][2]
              });
              attachInfowindow(marker);
-
-            }
-
+}
 
            function attachInfowindow(marker) {
-
             var infowindow = new google.maps.InfoWindow({
-              //content: marker.name + ': <a data-toggle="modal" href="#modal-for-jam_session\:0">See Session    </a>'
-              content: marker.name + ': <%= link_to session.name, "#modal-for-jam_session\\:0", "data-toggle" => "modal" %>'
+              content: marker.name + ': <%= j link_to "Session Info", "#modal-for-jam_session\\:1", "data-toggle" => "modal" %>'
             });
 
             marker.addListener('click', function() {
@@ -162,11 +168,12 @@
             });
           }
 
+
+
         }
       </script>
       <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_E9YsDaw5Jfj1HC4WKNjepV_maFzCVAQ&callback=initMap"
       type="text/javascript"></script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLOd9ztHnKznOi9gjtbpgQ0N4D9R_lXR8&libraries=places"></script>
     </body>
 
   </section>
@@ -177,7 +184,6 @@
 <% end %>
 
 <%= render 'jam_sessions/create_jam_modal' %>
-
 
 <%= render 'jam_sessions/tabs_index_modal'%>
 
