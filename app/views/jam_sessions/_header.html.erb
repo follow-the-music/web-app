@@ -30,14 +30,22 @@
                       <%= f.text_field(
                         :search_query,
                         class: 'filterrific-periodically-observed',
-                        :placeholder => "Search genre, name .."
+                        :placeholder => "Name"
                       )%>
                     </div>
-
-                    Play
-                   <%=check_box("application", "choice", {:multiple => true}, true, nil) %>
-                   Listen
-                   <%=check_box("application", "choice", {:multiple => true}, false, nil)%>
+                    <div>
+                      Genre:
+                      <select name="genre">
+  <option value="volvo">Any</option>
+  <option value="saab">Pop</option>
+  <option value="fiat">Rock</option>
+  <option value="audi">Funk</option>
+</select>
+                    </div>
+                    Times:
+                    <div id="slidecontainer">
+                      <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    </div>
                   <div>
                     <br>
                     <%= link_to 'Reset filters', reset_filterrific_url, class: 'btn btn-primary page-scroll' %>
@@ -46,6 +54,7 @@
                 <%= render_filterrific_spinner %>
                   <!-- make it work! -->
                 <% end %>
+
                   </div>
                 </div>
               </div>
@@ -62,7 +71,6 @@
                               <div class="card">
                               <div class="card-body"style='height: 340px;'>
                                 <h4>Your Sessions</h4>
-                                <h6 class="text-muted">Click one for more information!</h6>
                                 <p class=" p-y-1">    <%= render(
                                       partial: 'jam_sessions/yoursessions',
                                       locals: { jam_sessions: @jam_sessions }
@@ -88,14 +96,13 @@
                 <div class="card">
                 <div class="card-body"style='height: 650px;'>
                   <h4>Jam Sessions</h4>
-                  <h6 class="text-muted">Click one for more information!</h6>
-                  <p class=" p-y-1">  <%= render(
+                  <p class=" p-y-1" style="float:left">  <%= render(
                     partial: 'jam_sessions/list',
                     locals: { jam_sessions: @jam_sessions }
                   ) %></p>
                 </div>
                 </div>
-                <div class="row"><%= link_to "Create A Session", "#modal-to-create-jam_session", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll'%></div>
+                <div class="row"><%= link_to "Schedule A Session", "#modal-to-create-jam_session", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll'%></div>
                 </div>
 
 
@@ -106,8 +113,8 @@
             </div>
 
 
-                  <div class="col-md-6" style="">
-                        <div id="map" style='width: 100%; height: 800px; min-height: xxx; overflow: hidden; float: right;'></div></div>
+                  <div class="col-md-6" style="color:black">
+                        <div id="map" style='width: 100%; height: 800px; min-height: xxx; overflow: hidden; float: right; padding-right: 0px; margin: 0px'></div></div>
 
 
             </div>
@@ -121,14 +128,16 @@
       <script type="text/javascript">
 
       var locations = [];
-
+      var links = [];
       <% @jam_sessions.each do |location| %>
-        var place = [<%= location.latitude %>, <%= location.longitude %>];
+        var place = [<%= location.latitude %>, <%= location.longitude %>, "<%= location.name %>" ];
         locations.push(place);
+        var link_id =  <%= location.id %>
+        links.push(link_id);
       <% end %>
-
+      var sliderA = new Slider("#ex16a", { min: 0, max: 10, value: 0, focus: true });
+      var sliderB = new Slider("#ex16b", { min: 0, max: 10, value: [0, 10], focus: true });
         function initMap(){
-
             var map = new google.maps.Map(document.getElementById('map'), {
               zoom: 13,
               center: new google.maps.LatLng(42.37, -71.2),
@@ -142,18 +151,23 @@
             for (i = 0; i < locations.length; i++) {
               marker = new google.maps.Marker({
                 position: new google.maps.LatLng(locations[i][0], locations[i][1]),
-                map: map
+                map: map,
              });
+             var name = locations[i][2];
+            // var id = links[i];
+             infowindow.setContent(locations[i][2] + ': <a data-toggle="modal" href="#modal-for-jam_session\:0">See Session    </a>');
+             //infowindow.setContent('<a href="http://www.google.com">google link</a>');
+           }
 
-        }
 
+           google.maps.event.addListener(marker, 'click', function() {
+             //infowindow.setContent(locations[i][2] + ': <a data-toggle="modal" href="#modal-for-jam_session\:0">See Session    </a>');
+             infowindow.open(map, marker);
 
-          google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            return function() {
-              infowindow.setContent(locations[i][0]);
-              infowindow.open(map, marker);
-            }
-          })(marker, i));
+             //display name of jam session and audio file
+             //and link to modal
+
+           });
         }
       </script>
       <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_E9YsDaw5Jfj1HC4WKNjepV_maFzCVAQ&callback=initMap"
@@ -169,5 +183,6 @@
 
 <%= render 'jam_sessions/create_jam_modal' %>
 
-
 <%= render 'jam_sessions/tabs_index_modal'%>
+
+<%= render 'users/edit_modal' %>

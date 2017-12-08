@@ -83,26 +83,39 @@
 							  </div>
 							</div>
 						</div>
+						<br><br>
 
 						<div class = "col-md-6">
 							<div class = "field">
 								<%= form.label :audio %>
 							<p>Record monitor volume: <input type="range" max="1" step="0.1" value=".5" onchange="changeVolume(this.value)"/></p>
 
-							<%= form.label "Record" %>
 							<%=form.button "Record", :type => 'button', :class => 'btn btn-primary', :onclick => 'startRecording(this);' %>
-							<%= form.label "Stop" %>
-							<%=form.button :audio, :type => 'button', :class => 'btn btn-warning', :onclick => 'return stopRecording(this);' %>
 
+							<%=form.button "Stop", :type => 'button', :class => 'btn btn-warning',id: :jam_session_audio, :onclick => 'return stopRecording(this);' %>
 
 					</div>
 				</div>
+				<br><br>
+				<div class = "col-md-6">
+					<div class = "field">
+						<%= form.label :audio_file %>
+						<%=	form.file_field :audio_file%>
+					</div>
+				</div>
+				<br><br>
+
 				</div>
 				<p>
 					<p>
+						<br><br>
 
 				<div class="modal-footer">
-					<%= form.submit "Create Jam Session", class: "btn btn-primary btn-xl page-scroll" %>
+			 <!-- form.submit "Create Jam Session", class: "btn btn-danger", :onSubmit => 'saveAudio()'  -->
+					<script type="text/javascript">
+
+					</script>
+					<%= form.submit "Schedule Jam Session", class: "btn btn-primary btn-xl page-scroll" %>
 				</div>
 
 	    <% end %>

@@ -15,6 +15,10 @@ textarea {
   resize: vertical;
 }
 
+#map {
+  color: #ffffff;
+}
+
 .center {
   text-align: center;
 }
@@ -60,7 +64,12 @@ p {
 .field_with_errors {
   @extend .has-error;
   .form-control {
-    color: $state-danger-text;
+<<<<<<< HEAD
+    color: red;
+    //color: $state-danger-text;
+=======
+    // color: $state-danger-text;
+>>>>>>> ca09fea51fac0ac85449cc3c8a773ca8d31cd178
   }
 }
 @mixin box_sizing {

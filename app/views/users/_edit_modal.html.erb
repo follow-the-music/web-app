@@ -1,0 +1,66 @@
+<div class="modal fade" id="modal-for-editing-user" title="Edit Profile">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<div>
+					<h4>
+						<small>
+							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							User Profile
+						</small>
+					</h4>
+				</div>
+				<h3>
+					Edit Profile
+				</h3>
+			</div>
+
+			<%= form_with(model: current_user, local: true) do |form| %>
+				<div class="modal-body">
+
+				  <div class="field">
+				    <%= form.label :name %>
+						<div class="input-group">
+			        <span class="input-group-addon" id="basic-addon1">
+			          <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+			        </span>
+			        <%= form.text_field :name, id: :user_name, class: 'form-control' %>
+			      </div>
+				  </div><br>
+
+				  <div class="field">
+				    <%= form.label :email %>
+						<div class="input-group">
+			        <span class="input-group-addon" id="basic-addon1">
+			          <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+			        </span>
+			        <%= form.text_field :email, id: :user_email, class: 'form-control' %>
+			      </div>
+				  </div><br>
+
+					<div class="field">
+				  	<%= form.label :avatar, "Photo" %>
+						<div class="input-group">
+			        <span class="input-group-addon" id="basic-addon1">
+			          <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+			        </span>
+							<%= form.file_field :avatar, class: 'form-control' %>
+			      </div>
+					</div>
+
+				</div>
+
+				<div class="modal-footer">
+
+				  <div class="actions">
+				    <%= form.submit 'Update', class: 'btn btn-success btn-lg' %>
+				  </div>
+
+				</div>
+
+			<% end %>
+
+		</div>
+	</div>
+</div>
