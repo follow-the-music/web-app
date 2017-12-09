@@ -58,7 +58,7 @@
 				        <span class="input-group-addon" id="basic-addon1">
 				          <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
 				        </span>
-								<% genres_array =["pop","rock","jazz","soul","metal","house"]  %>
+								<% genres_array =["pop","rock","jazz","soul","metal","classical","house"]  %>
 								<%= form.collection_select(:genre, genres_array, :to_s, :to_s,:include_blank=>true) %></div>
 						</div><br>
 
@@ -92,7 +92,31 @@
 							  </div>
 							</div>
 						</div>
-						<br><br>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="field">
+									<%= form.label :start_time %>
+									<div class="input-group">
+										<span class="input-group-addon" id="basic-addon1">
+											<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+											</span>
+											<%= form.time_select :start_time, id: :jam_session_start_time, :required => true, ampm: true, class: 'form-control'%>
+										</div>
+									</div>
+								</div>
+							<div class="col-md-6">
+								<div class="field">
+									<%= form.label :end_time %>
+									<div class="input-group">
+										<span class="input-group-addon" id="basic-addon1">
+											<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+										</span>
+										<%= form.time_select :end_time, id: :jam_session_end_time,:required => true,ampm: true, class: 'form-control'%>
+								</div>
+						</div>
+					</div>
+				</div>
+					<br><br>
 
 						<div class = "col-md-6">
 							<div class = "field">

@@ -1,5 +1,5 @@
-<div id="filterrific_results">
-
+<!-- <div id="filterrific_results"> -->
+<div>
   <% @jam_sessions.each do |session| %>
     <br>
     <div class='row'>
@@ -12,11 +12,22 @@
 <% end %>
  <%= link_to  "#modal-for-jam_session\\:#{session.id}", class: "btn", "data-toggle" => "modal" do %>
 <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-<% end %>
-Time: 5:00 pm - 8:00 pm Today
-      </div>
+  <% end %>
+  <br>
+
+    <%start_t=session.start_time%>
+    <%end_t=session.end_time%>
+    <%if (!start_t.blank?)%>
+    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+      <%=start_t.strftime("%I:%M %p")%> -
+    <%end%>
+    <%if (!end_t.blank?)%>
+      <%=end_t.strftime("%I:%M %p")%>
+    <%end%>
+
+  </div>
 
     </div>
   <%end%>
-  <%= will_paginate @jam_sessions %>
+  <%= will_paginate @jam_sessions, :param_name=>'jam_sessions_page' %>
 </div>

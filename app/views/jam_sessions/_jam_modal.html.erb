@@ -56,8 +56,15 @@
 					<div class="col-sm-6">
 						<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
 						<e>
-							<%=jam_session.created_at%>
-							<!-- [INSERT TIME & DATE HERE] -->
+							<%start_t=jam_session.start_time%>
+							<%end_t=jam_session.end_time%>
+							<%if (!start_t.blank?)%>
+								<%=start_t.strftime("%I:%M %p")%> -
+							<%end%>
+							<%if (!end_t.blank?)%>
+								<%=end_t.strftime("%I:%M %p")%>
+							<%end%>
+
 						</e>
 					</div>
 				</div>

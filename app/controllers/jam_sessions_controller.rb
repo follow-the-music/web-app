@@ -6,21 +6,10 @@ class JamSessionsController < ApplicationController
   # GET /jam_sessions
   # GET /jam_sessions.json
   def index
-    @filterrific = initialize_filterrific(
-     JamSession,
-     params[:filterrific],
-     select_options: {
-        select_genre: JamSession.options_for_select
-      },
-     ) or return
-     @jam_sessions = @filterrific.find.page(params[:page])
 
-     respond_to do |format|
-       format.html
-       format.js
-     end
+     @your_sessions= JamSession.where(id: GuestSessionAssociation.where(user_id: current_user.id).pluck(:jam_session_id)).order(:name).paginate(page: params[:your_sessions_page])
+     @jam_sessions= JamSession.search(params[:host_search],params[:name_search], params[:genre_search], params[:time_search]).order(:name).paginate(:page => params[:jam_sessions_page])
 
-    # @jam_sessions = JamSession.all.order(:name).paginate(:page => params[:page])
   end
 
   def tabs_index
@@ -147,6 +136,6 @@ class JamSessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def jam_session_params
-      params.require(:jam_session).permit(:longitude, :latitude, :host_id, :max_players, :max_listeners, :name, :description, :address, :tab,:url, :audio, :audio_file, :genre)
+      params.require(:jam_session).permit(:longitude, :latitude, :host_id, :max_players, :max_listeners, :name, :description, :address, :tab,:url, :audio, :audio_file, :genre, :host_search, :name_search, :your_sessions_page, :jam_sessions_page, :reset, :genre_search, :start_time, :end_time, :time_search)
     end
 end
