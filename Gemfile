@@ -12,6 +12,7 @@ gem 'rails', '~> 5.1.4'
 gem 'bootstrap-sass', '3.3.7'
 gem 'jquery-rails'
 gem 'bcrypt',         '3.1.11'
+gem "paperclip"
 gem 'aws-sdk', '~> 2.3'
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -42,7 +43,7 @@ gem 'filterrific'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'geetar'
-gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+
 gem 'rails_admin', '~> 1.2'
 gem 'pusher'
 
