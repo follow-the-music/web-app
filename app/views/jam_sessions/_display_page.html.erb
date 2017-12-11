@@ -1,5 +1,5 @@
 
-  <section id="services" class="no-padding">
+  <section id="bs-example-navbar-collapse-1" class="no-padding" >
 
     <body>
 
@@ -9,9 +9,9 @@
     <%= text_field_tag :host_search, params[:host_search], :id=>"host", placeholder: "Search Host" %>
     <%= text_field_tag :name_search, params[:name_search],:id=>"name-search", placeholder: "Search Name, Description" %>
 
-    <%= select_tag(:genre_search, options_for_select([['Pop', 'pop'], ['Rock', 'rock'],["Jazz","jazz"],["Soul","soul"],["Metal","metal"],["House","house"],["Classical","classical"]]),:include_blank=>true, id:"genre") %>
+    <%= select_tag(:genre_search, options_for_select([['Pop', 'pop'], ['Rock', 'rock'],["Jazz","jazz"],["Soul","soul"],["Metal","metal"],["House","house"],["Classical","classical"]]),:include_blank=>"Any Genre", id:"genre") %>
     <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-    <%= select_tag(:time_search, options_for_select([['Now', 1], ['Next 3 Hours', 2],["Next 12 Hours",3],["Next 24 Hours ",4]]),:include_blank=>"Anytime", id:"time") %>
+    <%= select_tag(:time_search, options_for_select([['Now', 1], ['Next 3 Hours', 2],["Next 12 Hours",3],["Next 24 Hours ",4]]),:include_blank=>"Any Time", id:"time") %>
 
     <%=button_tag "Reset Filters", :type => 'button', :onclick=>"ClearFields();", class:'btn btn-primary btn-m page-scroll'%>
     <%= submit_tag "Search", :name => nil,class:'btn btn-primary btn-m page-scroll' %>
@@ -26,11 +26,8 @@
   </script>
 </div>
         <div class="container-fluid" style="border:1px solid #cecece; padding: 0px">
-          <div class="col-md-8" style="color:black">
-          <div id="map" style='width: 100%; height: 800px; min-height: xxx; overflow: hidden; float: right; padding-right: 0px; margin: 0px'></div></div>
-  <div class="card-body"style='height: 650px;'>
-        <div class="col-md-3"  style="padding-right:30px">
-          <div class="row">
+
+        <div class="col-md-6"  style="padding-right:30px">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
               <li role="presentation" class="active">
@@ -44,13 +41,13 @@
             <!-- Tab panes -->
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane active" id="individual">
-                <div class="row h-90">
+                <div class="row h-75">
                 <%= render(
                   partial: 'jam_sessions/list',
                   locals: { jam_sessions: @jam_sessions }
                 ) %>
               </div>
-<div class="bottomdiv"><%= link_to "Schedule A Session", "#modal-to-create-jam_session", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll'%></div>
+<div class="row"><%= link_to "Schedule A Session", "#modal-to-create-jam_session", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll'%></div>
 
               </div>
               <div role="tabpanel" class="tab-pane" id="company">
@@ -64,13 +61,13 @@
               </div>
             </div>
 
-          </div>
         </div>
 
 
 
 
-        </div>
+        <div class="col-md-6" style="color:black">
+        <div id="map" style='width: 100%; height: 800px; min-height: xxx; overflow: hidden; float: right; padding-right: 0px; margin: 0px'></div></div>
       </div>
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
