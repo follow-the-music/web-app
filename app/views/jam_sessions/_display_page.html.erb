@@ -1,0 +1,138 @@
+
+  <section id="services" class="no-padding">
+
+    <body>
+
+<div class="container-fluid" style="padding:10px">
+
+  <%= form_tag(jam_sessions_path, :method => "get", id: "jam-search") do %>
+    <%= text_field_tag :host_search, params[:host_search], :id=>"host", placeholder: "Search Host" %>
+    <%= text_field_tag :name_search, params[:name_search],:id=>"name-search", placeholder: "Search Name, Description" %>
+
+    <%= select_tag(:genre_search, options_for_select([['Pop', 'pop'], ['Rock', 'rock'],["Jazz","jazz"],["Soul","soul"],["Metal","metal"],["House","house"],["Classical","classical"]]),:include_blank=>true, id:"genre") %>
+    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+    <%= select_tag(:time_search, options_for_select([['Now', 1], ['Next 3 Hours', 2],["Next 12 Hours",3],["Next 24 Hours ",4]]),:include_blank=>"Anytime", id:"time") %>
+
+    <%=button_tag "Reset Filters", :type => 'button', :onclick=>"ClearFields();", class:'btn btn-primary btn-m page-scroll'%>
+    <%= submit_tag "Search", :name => nil,class:'btn btn-primary btn-m page-scroll' %>
+  <% end %>
+  <script>
+  function ClearFields() {
+       document.getElementById("host").value = "";
+       document.getElementById("name").value = "";
+       document.getElementById("genre").value = "";
+       document.getElementById("time").value = "";
+  }
+  </script>
+</div>
+        <div class="container-fluid" style="border:1px solid #cecece; padding: 0px">
+          <div class="col-md-8" style="color:black">
+          <div id="map" style='width: 100%; height: 800px; min-height: xxx; overflow: hidden; float: right; padding-right: 0px; margin: 0px'></div></div>
+  <div class="card-body"style='height: 650px;'>
+        <div class="col-md-3"  style="padding-right:30px">
+          <div class="row">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#individual" aria-controls="individual" role="tab" data-toggle="tab">Jam Sessions</a>
+              </li>
+              <li role="presentation">
+                <a href="#company" aria-controls="company" role="tab" data-toggle="tab">Your Sessions</a>
+              </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="individual">
+                <div class="row h-90">
+                <%= render(
+                  partial: 'jam_sessions/list',
+                  locals: { jam_sessions: @jam_sessions }
+                ) %>
+              </div>
+<div class="bottomdiv"><%= link_to "Schedule A Session", "#modal-to-create-jam_session", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll'%></div>
+
+              </div>
+              <div role="tabpanel" class="tab-pane" id="company">
+                <%= render(
+                      partial: 'jam_sessions/yoursessions',
+                      locals: { jam_sessions: @jam_sessions }
+                    )%>
+                    <div class="row">
+                    <%= link_to 'Find Chords', "#modal-for-tab-index", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll' %>
+                      </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+
+
+        </div>
+      </div>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+      <script type="text/javascript">
+
+      var locations = [];
+      var links = [];
+      <% @jam_sessions.each do |location| %>
+        var place = [<%= location.latitude %>, <%= location.longitude %>, "<%= location.name %>" ];
+        locations.push(place);
+        var link_id =  <%= location.id %>
+        links.push(link_id);
+      <% end %>
+      var sliderA = new Slider("#ex16a", { min: 0, max: 10, value: 0, focus: true });
+      var sliderB = new Slider("#ex16b", { min: 0, max: 10, value: [0, 10], focus: true });
+        function initMap(){
+            var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 13,
+              center: new google.maps.LatLng(42.37, -71.2),
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            //var infowindow = new google.maps.InfoWindow();
+
+            var marker, i;
+
+            for (i = 0; i < locations.length; i++) {
+              marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i][0], locations[i][1]),
+                map: map,
+                name: locations[i][2]
+             });
+             attachInfowindow(marker);
+}
+
+           function attachInfowindow(marker) {
+            var infowindow = new google.maps.InfoWindow({
+              content: marker.name + ': <%= j link_to "Session Info", "#modal-for-jam_session\\:1", "data-toggle" => "modal" %>'
+            });
+
+            marker.addListener('click', function() {
+              infowindow.open(marker.get('map'), marker);
+            });
+          }
+
+
+
+        }
+      </script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_E9YsDaw5Jfj1HC4WKNjepV_maFzCVAQ&callback=initMap"
+      type="text/javascript"></script>
+    </body>
+
+  </section>
+<%= render 'jam_sessions/tabs_index_modal'%>
+<%@jam_sessions.each do |jam_session|%>
+  <%= render 'jam_sessions/jam_modal', jam_session: jam_session %>
+<% end %>
+
+<%= render 'jam_sessions/create_jam_modal' %>
+
+<%= render 'jam_sessions/tabs_index_modal'%>
+
+<%= render 'users/edit_modal' %>

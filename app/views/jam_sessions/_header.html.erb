@@ -1,11 +1,21 @@
 <header>
-  <section id="page-top" >
+  <section id="services" >
 
     <body>
-      <div class="py-5"></div>
-      <div class="py-5">
 
-        <div class="container">
+<div class="container-fluid">
+  <%= form_tag(jam_sessions_path, :method => "get", id: "jam-search") do %>
+    <%= text_field_tag :host_search, params[:host_search], :id=>"host", placeholder: "Search Host" %>
+    <%= text_field_tag :name_search, params[:name_search],:id=>"name-search", placeholder: "Search Name, Description" %>
+
+    <%= select_tag(:genre_search, options_for_select([['Pop', 'pop'], ['Rock', 'rock'],["Jazz","jazz"],["Soul","soul"],["Metal","metal"],["House","house"],["Classical","classical"]]),:include_blank=>true, id:"genre") %>
+    <%= select_tag(:time_search, options_for_select([['Now', 1], ['Next 3 Hours', 2],["Next 12 Hours",3],["Next 24 Hours ",4]]),:include_blank=>true, id:"time") %>
+
+    <%=button_tag "Reset Filters", :type => 'button', :onclick=>"ClearFields();", class:'btn btn-primary btn-xl page-scroll'%>
+    <%= submit_tag "Search", :name => nil,class:'btn btn-primary btn-xl page-scroll' %>
+  <% end %>
+</div>
+        <div class="container-fluid">
             <div class="col-md-3"  style="padding-right:30px">
                 <div class="row">
                   <div class="center jumbotron" style="color:black">
