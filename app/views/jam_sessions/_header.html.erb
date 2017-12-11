@@ -6,96 +6,54 @@
       <div class="py-5">
 
         <div class="container">
-
-
-
-
-
             <div class="col-md-3"  style="padding-right:30px">
                 <div class="row">
-
-
-
                   <div class="center jumbotron" style="color:black">
-                <div class="card">
-                  <div class="card-body">
-                    <h4>Filter your search!</h4>
-                    <%=form_for_filterrific @filterrific do |f| %>
-                      <%= f.text_field(
-                        :search_query,
-                        class: 'filterrific-periodically-observed',
-                        :placeholder => "Search address"
-                      )%>
-                    <div>
-                      <%= f.text_field(
-                        :search_query,
-                        class: 'filterrific-periodically-observed',
-                        :placeholder => "Jam Name"
-                      )%>
-                    </div>
-                                     <%= f.text_field(
-                     :search_query,
-                     class: 'filterrific-periodically-observed',
-                     :placeholder => "Host Name"
-                   )%>
-                    <div>
-                      Genre:
-                      <select name="genre">
-  <option value="volvo">Any</option>
-  <option value="saab">Pop</option>
-  <option value="fiat">Rock</option>
-  <option value="audi">Funk</option>
-</select>
-                    </div>
-                                 Time:
-                 <select name="genre">
-                 <option value="volvo">Now</option>
-                 <option value="saab">Next 3 Hours</option>
-                 <option value="fiat">Next 12 Hours</option>
-                <option value="audi">Next 24 Hours</option>
-                 </select>
-                  <div>
-                    <br>
-                    <%= link_to 'Reset filters', reset_filterrific_url, class: 'btn btn-primary page-scroll' %>
-                  </div>
-                <%# add an automated spinner to your form when the list is refreshed %>
-                <%= render_filterrific_spinner %>
-                  <!-- make it work! -->
-                <% end %>
+                    <div class="card">
+                      <div class="card-body"
+                        <h4>Filter your search!</h4>
+                      <%= form_tag(jam_sessions_path, :method => "get", id: "jam-search") do %>
+                        <%= text_field_tag :host_search, params[:host_search], :id=>"host", placeholder: "Search Host" %>
+                        <%= text_field_tag :name_search, params[:name_search],:id=>"name-search", placeholder: "Search Name, Description" %>
 
+                        <%= select_tag(:genre_search, options_for_select([['Pop', 'pop'], ['Rock', 'rock'],["Jazz","jazz"],["Soul","soul"],["Metal","metal"],["House","house"],["Classical","classical"]]),:include_blank=>true, id:"genre") %>
+                        <%= select_tag(:time_search, options_for_select([['Now', 1], ['Next 3 Hours', 2],["Next 12 Hours",3],["Next 24 Hours ",4]]),:include_blank=>true, id:"time") %>
+
+                        <%=button_tag "Reset Filters", :type => 'button', :onclick=>"ClearFields();", class:'btn btn-primary btn-xl page-scroll'%>
+                        <%= submit_tag "Search", :name => nil,class:'btn btn-primary btn-xl page-scroll' %>
+                      <% end %>
+                    </div>
                   </div>
                 </div>
               </div>
-
-
-
-
-
-          </div>
+              <script>
+              function ClearFields() {
+                   document.getElementById("host").value = "";
+                   document.getElementById("name").value = "";
+                   document.getElementById("genre").value = "";
+                   document.getElementById("time").value = "";
+              }
+              </script>
             <div class="row">
 
+                <div class="center jumbotron" style="color:black">
+                <div class="card">
+                <div class="card-body"style='height: 340px;'>
+                  <h4>Your Sessions</h4>
+                  <p class=" p-y-1">    <%= render(
+                        partial: 'jam_sessions/yoursessions',
+                        locals: { jam_sessions: @jam_sessions }
+                      )%></p>
+                </div>
+                </div>
+                <br><br>
+                <br><br>
 
-                              <div class="center jumbotron" style="color:black">
-                              <div class="card">
-                              <div class="card-body"style='height: 340px;'>
-                                <h4>Your Sessions</h4>
-                                <p class=" p-y-1">    <%= render(
-                                      partial: 'jam_sessions/yoursessions',
-                                      locals: { jam_sessions: @jam_sessions }
-                                    ) %></p>
-                              </div>
-                              </div>
-                              <div class="row">
-                              <%= link_to 'Find Chords', "#modal-for-tab-index", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll' %>
-                                </div>
-                              </div>
-
-
-
-
-
-
-            </div>
+                <div class="row">
+                <%= link_to 'Find Chords', "#modal-for-tab-index", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll' %>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="col-md-3">
@@ -110,6 +68,9 @@
                   ) %></p>
                 </div>
                 </div>
+                <br>
+                <br>
+                <br>
                 <div class="row"><%= link_to "Schedule A Session", "#modal-to-create-jam_session", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll'%></div>
                 </div>
 
@@ -155,18 +116,12 @@
                 map: map,
                 name: locations[i][2]
              });
-             attachInfowindow(marker, name);
+             attachInfowindow(marker);
+}
 
-            // var name = locations[i][2];
-            //infowindow.setcontent("hello");
-            // var id = links[i];
-             //infowindow.setContent(locations[i][2] + ': <a data-toggle="modal" href="#modal-for-jam_session\:0">See Session    </a>');
-             //infowindow.setContent('<a href="http://www.google.com">google link</a>');
-           }
-
-           function attachInfowindow(marker, secretMessage) {
+           function attachInfowindow(marker) {
             var infowindow = new google.maps.InfoWindow({
-              content: marker.name + ': <a data-toggle="modal" href="#modal-for-jam_session\:0">See Session    </a>'
+              content: marker.name + ': <%= j link_to "Session Info", "#modal-for-jam_session\\:1", "data-toggle" => "modal" %>'
             });
 
             marker.addListener('click', function() {
@@ -176,24 +131,6 @@
 
 
 
-          //  google.maps.event.addListener(marker, 'click', function() {
-          //    var infowindow = new google.maps.InfoWindow({
-          //       content: "hello"
-          //     });
-           //
-          //   //    infowindow = new google.maps.InfoWindow({});
-          //   //  //if (typeof infowindow === 'undefined') {
-          //   //       infowindow = new google.maps.InfoWindow({});
-          //   //   //}
-           //
-           //
-          //    //infowindow.setContent(this.name + ': <a data-toggle="modal" href="#modal-for-jam_session\:0">See Session    </a>');
-          //    infowindow.open(map, marker);
-           //
-          //    //display name of jam session and audio file
-          //    //and link to modal
-           //
-          //  });
         }
       </script>
       <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_E9YsDaw5Jfj1HC4WKNjepV_maFzCVAQ&callback=initMap"

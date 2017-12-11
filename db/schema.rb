@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171204044720) do
+ActiveRecord::Schema.define(version: 20171208181529) do
 
   create_table "chat_messages", force: :cascade do |t|
     t.text "content"
@@ -51,6 +51,9 @@ ActiveRecord::Schema.define(version: 20171204044720) do
     t.string "audio_file_content_type"
     t.integer "audio_file_file_size"
     t.datetime "audio_file_updated_at"
+    t.string "genre"
+    t.datetime "start_time"
+    t.datetime "end_time"
   end
 
   create_table "users", force: :cascade do |t|

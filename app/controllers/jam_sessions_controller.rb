@@ -1,20 +1,15 @@
+require 'nokogiri'
+require 'open-uri'
 class JamSessionsController < ApplicationController
   before_action :set_jam_session, only: [:show, :edit, :update, :destroy]
 
   # GET /jam_sessions
   # GET /jam_sessions.json
   def index
-    @filterrific = initialize_filterrific(
-     JamSession,
-     params[:filterrific]
-     ) or return
-     @jam_sessions = @filterrific.find.page(params[:page])
 
-     respond_to do |format|
-       format.html
-       format.js
-     end
-    # @jam_sessions = JamSession.all.order(:name).paginate(:page => params[:page])
+     @your_sessions= JamSession.where(id: GuestSessionAssociation.where(user_id: current_user.id).pluck(:jam_session_id)).order(:name).paginate(page: params[:your_sessions_page])
+     @jam_sessions= JamSession.search(params[:host_search],params[:name_search], params[:genre_search], params[:time_search]).order(:name).paginate(:page => params[:jam_sessions_page])
+
   end
 
   def tabs_index
@@ -36,6 +31,21 @@ class JamSessionsController < ApplicationController
 
   def tab_show
     @url=params[:url]
+    require 'net/http'
+    @result = Net::HTTP.get(URI.parse('https://www.songsterr.com/a/ra/songs/byartists.xml?artists=Metallica,"Led%20Zeppelin"'))
+    @result2 = Net::HTTP.get(URI.parse('https://www.songsterr.com/a/wa/bestMatchForQueryString?s={all i want}&a={kodaline}'))
+
+    # # result = Net::HTTP.get(URI.parse('http://www.example.com'), '/about.html')
+    # render :xml => @result
+    xml = Nokogiri::XML(@result)
+    @artists = xml.xpath("//artist//name")
+    # items = Hash.from_xml(xml.to_xml)
+    # @all_items = Array.new
+    #   items['item'].map do |item|
+    #     new = Item.new
+    #     new.title = item['title']
+    #     @all_items.push(new)
+    #   end
   end
 
   def all_sessions_json
@@ -126,6 +136,6 @@ class JamSessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def jam_session_params
-      params.require(:jam_session).permit(:longitude, :latitude, :host_id, :max_players, :max_listeners, :name, :description, :address, :tab,:url, :audio, :audio_file)
+      params.require(:jam_session).permit(:longitude, :latitude, :host_id, :max_players, :max_listeners, :name, :description, :address, :tab,:url, :audio, :audio_file, :genre, :host_search, :name_search, :your_sessions_page, :jam_sessions_page, :reset, :genre_search, :start_time, :end_time, :time_search)
     end
 end

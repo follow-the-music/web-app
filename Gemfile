@@ -46,6 +46,7 @@ gem 'geetar'
 
 gem 'rails_admin', '~> 1.2'
 gem 'pusher'
+gem 'nokogiri', '~> 1.6', '>= 1.6.8'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
