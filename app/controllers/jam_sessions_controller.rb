@@ -83,14 +83,15 @@ end
 
     @jam_session = JamSession.new(jam_session_params)
     @jam_session.host_id=session[:user_id]
-    # @association= GuestSessionAssociation.new(user_id:@jam_session.host_id, jam_session_id:@jam_sesion,player:true)
+    @association=GuestSessionAssociation.new(user_id:@jam_session.host_id, jam_session_id: @jam_session, player:true)
     # @jam_session.audio=
 
     respond_to do |format|
       if @jam_session.save
-        # @association.save
+        @association.save
         format.html { redirect_to jam_sessions_path, notice: 'Jam session was successfully created.' }
         format.json { render :show, status: :created, location: @jam_session }
+
       else
         format.html { render :new }
 
