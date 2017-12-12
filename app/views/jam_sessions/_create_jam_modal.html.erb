@@ -119,9 +119,6 @@
 					<br><br>
 
 						<div class = "col-md-6">
-							<div class = "field">
-								<%= form.label :audio_file %>
-									<%= form.file_field :audio_file, value:@sound%>
 								<div class="container">
 									<%= javascript_include_tag asset_path("p5.min.js"), "data-turbolinks-track" => true   %>
 									<%= javascript_include_tag asset_path("p5.dom.min.js") , "data-turbolinks-track" => true  %>
@@ -196,7 +193,7 @@
 											// 		data : data,
 											// });
 
-											// $.post('/set_audio',{audio:soundFile});
+											// $.post('/set_audio',{audio:soundFile,contentType:"audio/wav"});
 											// $('body').hide();
 
 										// saveSound(soundFile, 'mySound.wav'); // save file
@@ -209,12 +206,12 @@
 					</div>
 				</div>
 				<br><br>
-				<div class = "col-md-6">
+				<!-- <div class = "col-md-6">
 					<div class = "field">
 						<%= form.label :audio_file %>
 						<%=	form.file_field :audio_file%>
 					</div>
-				</div>
+				</div> -->
 				<br><br>
 
 				</div>
