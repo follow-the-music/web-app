@@ -1,5 +1,5 @@
 
-  <section id="bs-example-navbar-collapse-1" class="no-padding" >
+  <section id="navbar navbar-fixed-bottom" class="no-padding" style="height:100%;">
 
     <body>
 
@@ -15,6 +15,10 @@
 
     <%=button_tag "Reset Filters", :type => 'button', :onclick=>"ClearFields();", class:'btn btn-primary btn-m page-scroll'%>
     <%= submit_tag "Search", :name => nil,class:'btn btn-primary btn-m page-scroll' %>
+
+<span class="pull-right"><%= link_to 'Find Chords', "#modal-for-tab-index", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll' %>
+  <%= link_to "Schedule A Session", "#modal-to-create-jam_session", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll'%>
+    </span>
   <% end %>
   <script>
   function ClearFields() {
@@ -25,11 +29,11 @@
   }
   </script>
 </div>
-        <div class="container-fluid" style="border:1px solid #cecece; padding: 0px">
+        <div class="container-fluid" style="border:1px solid #cecece; padding: 0px; height:100%; min-height: 100vh; overflow-y:hidden;">
 
         <div class="col-md-6"  style="padding-right:30px">
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
               <li role="presentation" class="active">
                 <a href="#individual" aria-controls="individual" role="tab" data-toggle="tab">Jam Sessions</a>
               </li>
@@ -40,24 +44,22 @@
 
             <!-- Tab panes -->
             <div class="tab-content">
-              <div role="tabpanel" class="tab-pane active" id="individual">
-                <div class="row h-75">
+              <div role="tabpanel" class="tab-pane active" id="individual" style="text-align:center;">
+
                 <%= render(
                   partial: 'jam_sessions/list',
                   locals: { jam_sessions: @jam_sessions }
                 ) %>
-              </div>
-<div class="row"><%= link_to "Schedule A Session", "#modal-to-create-jam_session", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll'%></div>
+
+
 
               </div>
-              <div role="tabpanel" class="tab-pane" id="company">
+              <div role="tabpanel" class="tab-pane" id="company" style="text-align:center;">
                 <%= render(
                       partial: 'jam_sessions/yoursessions',
                       locals: { jam_sessions: @jam_sessions }
                     )%>
-                    <div class="row">
-                    <%= link_to 'Find Chords', "#modal-for-tab-index", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll' %>
-                      </div>
+
               </div>
             </div>
 
