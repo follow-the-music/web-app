@@ -79,16 +79,15 @@ end
   # POST /jam_sessions
   # POST /jam_sessions.json
   def create
-    params[:audio_file]=@sound
-
+    # params[:audio_file]=@sound
     @jam_session = JamSession.new(jam_session_params)
     @jam_session.host_id=session[:user_id]
-    @association=GuestSessionAssociation.new(user_id:@jam_session.host_id, jam_session_id: @jam_session, player:true)
     # @jam_session.audio=
+
 
     respond_to do |format|
       if @jam_session.save
-        @association.save
+
         format.html { redirect_to jam_sessions_path, notice: 'Jam session was successfully created.' }
         format.json { render :show, status: :created, location: @jam_session }
 
@@ -98,6 +97,9 @@ end
         format.json { render json: @jam_session.errors, status: :unprocessable_entity }
       end
     end
+    @association=GuestSessionAssociation.new(user_id:@jam_session.host_id, jam_session_id: @jam_session.id, player:true)
+    @association.save
+
   end
 
   # PATCH/PUT /jam_sessions/1
