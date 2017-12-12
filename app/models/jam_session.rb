@@ -3,7 +3,7 @@ class JamSession < ApplicationRecord
   has_many :guest_session_associations
   geocoded_by :address
   after_validation :geocode
-  self.per_page = 6
+  self.per_page = 5
   # filterrific(
   #   available_filters: [
   #     :search_query_address,

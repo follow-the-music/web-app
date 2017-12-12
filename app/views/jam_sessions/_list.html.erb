@@ -2,7 +2,7 @@
 <div class="row">
   <% @jam_sessions.each do |session| %>
     <br>
-    <div class="card-block" ,style="border:1px solid #cecece;">
+    <div class="row" style="border:1px solid #cecece;padding: 15px;">
 
       <div class="col-md-1">
       <% host = User.find(session.host_id) %>
@@ -36,7 +36,7 @@
   <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="font-size: 20px;">  </span>
   <% end %>
 </div>
-<div class="col-md-4" style="text-align:right;">
+<div class="col-md-4" style="text-align:right; color: #6A6A6A;">
   <div class="row">
   <%address=session.address%>
   <%if (!address.blank?)%>
@@ -62,7 +62,6 @@
                 <span class="glyphicon glyphicon-music" aria-hidden="true">  </span>
           <%end%>
   </div>
-  <br>
 </div>
 
 
