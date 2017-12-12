@@ -31,6 +31,7 @@
 						<%= image_tag host.avatar.url(:thumb), class: "img-circle", style: "width: 16px; height: 16px;" %>
 					</span>
 					Hosted by
+					  <%= render 'users/user_profile_modal', user: host %>
 					<% if host.id == current_user.id %>
 					<%= link_to 'Me', "#modal-for-user-#{current_user.id}", "data-dismiss" => "modal",  "data-toggle" => "modal"%>
 					<% else %>
