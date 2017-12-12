@@ -17,6 +17,9 @@
 //= require turbolinks
 //= require underscore
 //= requrie gmaps/google
+//=require p5.min.js
+//=require p5.sound.min.js
+//=require p5.dom.min.js
 //= require filterrific/filterrific-jquery
 //= require_tree .
 $(function() {

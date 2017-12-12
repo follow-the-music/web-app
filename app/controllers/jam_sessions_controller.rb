@@ -19,15 +19,19 @@ class JamSessionsController < ApplicationController
     end
   end
 
-  def upload_file
-    filename = params[:filename]
-    audio = request.raw_post
-    File.open(filename, 'w+b'){|file| file.puts audio}
+def set_audio
+  @sound = [params[:audio]]
+end
 
-    respond_to do | format |
-     format.json { render json: { status: 202 } }
-    end
-  end
+  # def upload_file
+  #   filename = params[:filename]
+  #   audio = request.raw_post
+  #   File.open(filename, 'w+b'){|file| file.puts audio}
+  #
+  #   respond_to do | format |
+  #    format.json { render json: { status: 202 } }
+  #   end
+  # end
 
   def tab_show
     @url=params[:url]
@@ -75,14 +79,15 @@ class JamSessionsController < ApplicationController
   # POST /jam_sessions
   # POST /jam_sessions.json
   def create
+    # params[:audio_file]=@sound
     @jam_session = JamSession.new(jam_session_params)
     @jam_session.host_id=session[:user_id]
-    @association=GuestSessionAssociation.new(user_id:@jam_session.host_id, jam_session_id: @jam_session, player:true)
     # @jam_session.audio=
+
 
     respond_to do |format|
       if @jam_session.save
-        @association.save
+
         format.html { redirect_to jam_sessions_path, notice: 'Jam session was successfully created.' }
         format.json { render :show, status: :created, location: @jam_session }
 
@@ -92,6 +97,9 @@ class JamSessionsController < ApplicationController
         format.json { render json: @jam_session.errors, status: :unprocessable_entity }
       end
     end
+    @association=GuestSessionAssociation.new(user_id:@jam_session.host_id, jam_session_id: @jam_session.id, player:true)
+    @association.save
+
   end
 
   # PATCH/PUT /jam_sessions/1
@@ -139,6 +147,6 @@ class JamSessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def jam_session_params
-      params.require(:jam_session).permit(:longitude, :latitude, :host_id, :max_players, :max_listeners, :name, :description, :address, :tab,:url, :audio, :audio_file, :genre, :host_search, :name_search, :your_sessions_page, :jam_sessions_page, :reset, :genre_search, :start_time, :end_time, :time_search)
+      params.require(:jam_session).permit(:longitude, :latitude, :host_id, :max_players, :max_listeners, :name, :description, :address, :tab,:url, :audio, :audio_file,:sound, :genre, :host_search, :name_search, :your_sessions_page, :jam_sessions_page, :reset, :genre_search, :start_time, :end_time, :time_search)
     end
 end
