@@ -120,22 +120,101 @@
 
 						<div class = "col-md-6">
 							<div class = "field">
-								<%= form.label :audio %>
-							<p>Record monitor volume: <input type="range" max="1" step="0.1" value=".5" onchange="changeVolume(this.value)"/></p>
+								<%= form.label :audio_file %>
+									<%= form.file_field :audio_file, value:@sound%>
+								<div class="container">
+									<%= javascript_include_tag asset_path("p5.min.js"), "data-turbolinks-track" => true   %>
+									<%= javascript_include_tag asset_path("p5.dom.min.js") , "data-turbolinks-track" => true  %>
+									<%= javascript_include_tag asset_path("p5.sound.min.js"), "data-turbolinks-track" => true   %>
+							<script type="text/javascript">
+								var mic, recorder, soundFile;
+								var song;
+								var state = 0; // mousePress will increment from Record, to Stop, to Play
 
-							<%=form.button "Record", :type => 'button', :class => 'btn btn-primary', :onclick => 'startRecording(this);' %>
+								function setup() {
+									createCanvas(400,400);
+									background(200);
+									fill(0);
+									text('Enable mic and click the mouse to begin recording', 20, 20);
 
-							<%=form.button "Stop", :type => 'button', :class => 'btn btn-warning',id: :jam_session_audio, :onclick => 'return stopRecording(this);' %>
+									// create an audio in
+									mic = new p5.AudioIn();
+
+									// users must manually enable their browser microphone for recording to work properly!
+									mic.start();
+
+									// create a sound recorder
+									recorder = new p5.SoundRecorder();
+
+									// connect the mic to the recorder
+									recorder.setInput(mic);
+
+									// create an empty sound file that we will use to playback the recording
+									soundFile = new p5.SoundFile()
+
+								}
+								function preload() {
+									soundFormats('mp3', 'ogg','wav');
+									song=loadSound('<%= asset_path("bensound-retrosoul.mp3")%>');
+								}
+								function mousePressed() {
+									// use the '.enabled' boolean to make sure user enabled the mic (otherwise we'd record silence)
+									if (state === 0 && mic.enabled) {
+
+										// Tell recorder to record to a p5.SoundFile which we will use for playback
+										recorder.record(soundFile);
+
+										background(255,0,0);
+										text('Recording now! Click to stop.', 20, 20);
+										state++;
+									}
+
+									else if (state === 1) {
+										recorder.stop(); // stop recorder, and send the result to soundFile
+										background(0,255,0);
+										text('Recording stopped. Click to play & save', 20, 20);
+										state++;
+									}
+
+									else if (state === 2) {
+										// soundFile.play(); // play the result!
+											soundFile.play();
+											var data = soundFile;
+											// var o={
+											// 		type:"POST",
+											// 		url : '/set_audio',
+											// 		contentType: "audio/wav",
+											// 		data : data,
+											// 		success : function(result) {
+											// 				alert(result.success);
+											// 		}
+											// };
+											// $.ajax({
+											// 		type:"POST",
+											// 		url : '/set_audio',
+											// 		contentType: "audio/wav",
+											// 		data : data,
+											// });
+
+											// $.post('/set_audio',{audio:soundFile});
+											// $('body').hide();
+
+										// saveSound(soundFile, 'mySound.wav'); // save file
+										state++;
+									}
+								}
+								console.log();
+							</script>
 
 					</div>
 				</div>
 				<br><br>
-				<div class = "col-md-6">
+				<!-- <div class = "col-md-6">
 					<div class = "field">
 						<%= form.label :audio_file %>
 						<%=	form.file_field :audio_file%>
 					</div>
-				</div>
+				</div> -->
 				<br><br>
 
 				</div>
@@ -156,7 +235,7 @@
 		</div>
 	</div>
 </div>
-
+<!--
 <script src="/assets/recordLive.js"></script>
 <script src="/assets/recorder.js"></script>
-<script src="/assets/recorderWorker.js"></script>
+<script src="/assets/recorderWorker.js"></script> -->
