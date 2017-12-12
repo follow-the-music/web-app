@@ -31,6 +31,7 @@
 						<%= image_tag host.avatar.url(:thumb), class: "img-circle", style: "width: 16px; height: 16px;" %>
 					</span>
 					Hosted by
+					  <%= render 'users/user_profile_modal', user: host %>
 					<% if host.id == current_user.id %>
 					<%= link_to 'Me', "#modal-for-user-#{current_user.id}", "data-dismiss" => "modal",  "data-toggle" => "modal"%>
 					<% else %>
@@ -164,7 +165,7 @@
 				<% if jam_session.host_id == current_user.id %>
 					<%= link_to "Cancel Jam Session", jam_session, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to cancel this jam session?' } %>
 				<% elsif guest_session_association = GuestSessionAssociation.find_by(user_id: current_user.id, jam_session_id: jam_session.id) %>
-					<%= link_to "Leave Jam Session", guest_session_association, method: :delete, class: 'btn btn-primary btn-xl page-scroll', data: { confirm: 'Are you sure you want to leave this jam session?' } %>
+					<%= link_to "Leave Jam Session", guest_session_association, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to leave this jam session?' } %>
 				<% else %>
 					<% if percent_players < 100 && jam_session.max_players.to_i != 0 %>
 						<%= link_to "Attend as Player", guest_session_association_path(id: jam_session.id, player: TRUE), class: 'btn btn-warning' %>
