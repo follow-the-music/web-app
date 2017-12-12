@@ -1,24 +1,6 @@
 # Follow The Music
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Product Overview
+### Our purpose:
+Our product is a spontaneous jam session scheduling app, where a user can find and attend jam sessions within the next 24 hours near them. 
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
