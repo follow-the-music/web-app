@@ -2,7 +2,7 @@
 <div class="row">
   <% @jam_sessions.each do |session| %>
     <br>
-    <div class="row" style="border:1px solid #cecece;padding: 15px;">
+    <div class="row" style="border:1px solid #cecece;padding: 15px; box-shadow: -5px 5px 4px #888888;">
 
       <div class="col-md-1">
       <% host = User.find(session.host_id) %>
@@ -31,7 +31,7 @@
 <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="font-size: 20px;">  </span>
 <% end %>
 </div>
-<div class = "col-sm-3">
+<div class = "col-sm-3 ">
 
     <audio controls style="width: 150px; color:green;">
     <source src="<%= session.audio_file %>" type="audio/mp3" style="">
