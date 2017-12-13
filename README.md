@@ -28,9 +28,21 @@ You can open up the main page of the app and see a list of jam sessions happenin
 
 Once you've found a jam session you want to go to, you can open up the modal for it and register to attend as a player or listener. From there you can chat with others who will be attending, and find music on our site that you can all play together. 
 
-![alt text](https://i.imgur.com/Q3YxGw5l.png)
-
+![alt text](https://i.imgur.com/eMwUkFa.png)
 *The main page of Follow the Music, where you can see jam sessions listed and displayed on the map.*
+
+![alt text](https://i.imgur.com/48HZ4Li.png)
+*Our landing page.*
+
+![alt text](https://i.imgur.com/AQW0Yuk.png)
+*Our about page.*
+
+
+![alt text](https://i.imgur.com/2qtgQJb.png)
+*Our chat functionality.*
+
+![alt text](https://i.imgur.com/RyUPy8z.png)
+*A jam sessions info page.*
 
 ## Try it yourself
 
