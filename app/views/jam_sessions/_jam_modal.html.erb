@@ -124,28 +124,7 @@
 						<% percent_listeners = 100 %>
 					<% end %>
 				</div>
-				<table align="center",style="text-align:center;">
-				  <thead>
-				    <tr>
-				      <th style="text-align:center;">Participants</th>
-				    </tr>
-				  </thead>
-
-				  <tbody>
-						<%@users= User.where(id: GuestSessionAssociation.where(jam_session_id: jam_session.id).distinct.pluck(:user_id))%>
-
-						<% if @users != nil%>
-					    <% @users.each do |user| %>
-							<%= render 'users/user_profile_modal', user: user %>
-
-					      <ul>
-									<li><%= link_to user.name, "#modal-for-user-#{user.id}", "data-dismiss" => "modal", "data-toggle" => "modal" %></li>
-									<li><%= link_to 'Me', "#modal-for-user-#{current_user.id}", "data-dismiss" => "modal",  "data-toggle" => "modal"%></li>
-								</ul>
-					    <% end %>
-						<%end%>
-				  </tbody>
-				</table>
+				
 
 				<audio controls>
 			 	<source src="<%= jam_session.audio_file %>" type="audio/mp3">

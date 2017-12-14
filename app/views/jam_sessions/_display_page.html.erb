@@ -3,15 +3,17 @@
 
     <body>
 
-<div class="container-fluid" style="padding:10px">
+<div class="container-fluid" style="padding:10px; text-align:right;">
 
   <%= form_tag(jam_sessions_path, :method => "get", id: "jam-search") do %>
   <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-  <%= text_field_tag :name_search, params[:name_search],:id=>"name-search", placeholder: "Search Address" %>
+  <%= text_field_tag :name_search, params[:name_search],:id=>"name-search", placeholder: "Search Address    " %>
+
+  <%= text_field_tag :name_search, params[:name_search],:id=>"name-search", placeholder: "+- Radius    " %>
   <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-  <%= text_field_tag :name_search, params[:name_search],:id=>"name-search", placeholder: "Search Name, Description" %>
+  <%= text_field_tag :name_search, params[:name_search],:id=>"name-search", placeholder: "Search Name, Description   " %>
   <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-    <%= text_field_tag :host_search, params[:host_search], :id=>"host", placeholder: "Search Host" %>
+    <%= text_field_tag :host_search, params[:host_search], :id=>"host", placeholder: "Search Host   " %>
 
   <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
     <%= select_tag(:genre_search, options_for_select([['Pop', 'pop'], ['Rock', 'rock'],["Jazz","jazz"],["Soul","soul"],["Metal","metal"],["House","house"],["Classical","classical"]]),:include_blank=>"Any Genre", id:"genre") %>
@@ -19,13 +21,10 @@
 
 
     <%= select_tag(:time_search, options_for_select([['Now', 1], ['Next 3 Hours', 2],["Next 12 Hours",3],["Next 24 Hours ",4]]),:include_blank=>"Any Time", id:"time") %>
-
     <%=button_tag "Reset Filters", :type => 'button', :onclick=>"ClearFields();", class:'btn btn-primary btn-m page-scroll'%>
     <%= submit_tag "Search", :name => nil,class:'btn btn-primary btn-m page-scroll' %>
 
-<span class="pull-right"><%= link_to 'Find Chords', "#modal-for-tab-index", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll' %>
-  <%= link_to '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-  Schedule A Session'.html_safe, "#modal-to-create-jam_session", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll'%>
+<span class="pull-right">
     </span>
   <% end %>
   <script>
@@ -70,7 +69,11 @@
 
               </div>
             </div>
-
+<div class="row" style="text-align:center; float:bottom;">
+  <%= link_to 'Find Chords', "#modal-for-tab-index", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll' %>
+    <%= link_to '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    Schedule A Session'.html_safe, "#modal-to-create-jam_session", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll'%>
+        </div>
         </div>
 
 
