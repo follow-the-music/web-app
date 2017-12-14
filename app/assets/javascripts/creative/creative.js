@@ -5,10 +5,9 @@
  */
 
 $(document).ready(function(){
-
   (function($) {
       "use strict"; // Start of use strict
-
+  $('select').niceSelect();
       // jQuery for page scrolling feature - requires jQuery Easing plugin
       $('a.page-scroll').bind('click', function(event) {
           var $anchor = $(this);

@@ -41,3 +41,6 @@ $(function() {
      $("#jam-search").submit();
   });
 });
+$(document).ready(function() {
+  $('select').niceSelect();
+});
