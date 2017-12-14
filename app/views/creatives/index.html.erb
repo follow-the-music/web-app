@@ -3,3 +3,13 @@
 <%= render 'header' %>
 <%= render 'bg_primary' %>
 <%= render 'services' %>
+
+<% if get_failed_attempt == 'login' %>
+	<script>
+		$($('#login-modal').modal("show"))
+	</script>
+<% elsif get_failed_attempt == 'signup' %>
+	<script>
+		$($('#signup-modal').modal("show"))
+	</script>
+<% end %>
