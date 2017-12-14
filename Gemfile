@@ -11,9 +11,11 @@ gem 'rails', '~> 5.1.4'
 gem 'bootstrap-sass', '3.3.7'
 gem 'jquery-rails'
 gem 'bcrypt',         '3.1.11'
+gem 'bootstrap_form'
 gem "paperclip"
 gem 'aws-sdk', '~> 2.3'
 gem 'puma', '~> 3.7'
+gem 'form_slider'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'rails_12factor', group: :production
