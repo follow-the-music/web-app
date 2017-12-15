@@ -161,12 +161,26 @@
                 map: map,
                 name: locations[i][2]
              });
-             attachInfowindow(marker);
+             var boxText =  document.createElement("div");
+             var desiredLink = "#modal-for-jam_session\\:" + links[i];
+             var desiredText = locations[i][2];
+             boxText.innerHTML = '<a data-toggle="modal" href="' + desiredLink + '">' + desiredText + '</a>';
+             attachInfowindow(marker, boxText);
 }
 
-           function attachInfowindow(marker) {
+// var boxText = document.createElement("div");
+//     boxText.style.cssText = "border: 1px solid black; margin-top: 8px; background: yellow; padding: 5px;";
+//     boxText.innerHTML = "City Hall, Sechelt<br>British Columbia<br>Canada";
+
+
+           function attachInfowindow(marker, boxText) {
             var infowindow = new google.maps.InfoWindow({
-              content: marker.name + ': <%= j link_to "Session Info", "#modal-for-jam_session\\:1", "data-toggle" => "modal" %>'
+                //content: marker.name + ': <%= j link_to "Session Info", "#modal-for-jam_session\\:5", "data-toggle" => "modal" %>'
+             //content: "hello"
+             content: boxText
+             //content: '<a href="'+desiredLink+'">'+ desiredText+'</a>'
+              //content: document.getElementById("demo").innerHTML = '<a data-toggle="modal" href="#modal-for-jam_session\:5">Session Info</a>'
+              //content: marker.name + ': <%= j link_to "Session Info", "#modal-for-jam_session\\:5", "data-toggle" => "modal" %>'
             });
 
             marker.addListener('click', function() {
