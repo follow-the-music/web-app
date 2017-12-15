@@ -94,7 +94,15 @@ aside {
   color:white;
     border-color: white;
 }
-
+.break-word {
+  width: 100%;
+  overflow-wrap: break-word;
+  text-align:bottom;
+  text-transform: uppercase;
+  font-size:100%;
+  font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+  font-weight: 700;
+}
 .nav-tabs > li > a{
   background-color: #6B8E23;
   color:white;
