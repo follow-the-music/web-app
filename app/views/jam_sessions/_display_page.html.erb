@@ -4,7 +4,7 @@
 
     <body>
 <form>
-<div class="container-fluid" style="padding:10px; text-align:right;">
+<div class="container-fluid" style="padding-top:15px; text-align:right; padding-bottom:5px;">
 <div>
   <%= form_tag(jam_sessions_path, :method => "get", id: "jam-search") do %>
   <div class="col-md-2" style="text-align:left;">
@@ -80,9 +80,10 @@
 <script src="path/to/jquery.nice-select.js"></script>
 </div>
 </form>
-        <div class="container-fluid" style="border:1px solid #cecece; padding: 0px; height:100%; min-height: 100vh; overflow-y:hidden; ">
+        <div class="container-fluid" style="border:1px solid #cecece; padding: 0px; overflow-y:hidden; ">
 
-        <div class="col-md-6"  style="padding-right:30px">
+        <div class="col-md-6"  style="padding-right:0px;">
+          <div class="row" style="height: 790px;padding-left:0px;">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs nav-justified" role="tablist">
               <li role="presentation" class="active">
@@ -94,8 +95,8 @@
             </ul>
 
             <!-- Tab panes -->
-            <div class="tab-content">
-              <div role="tabpanel" class="tab-pane active" id="individual" style="margin:30px;">
+            <div class="tab-content" >
+              <div role="tabpanel" class="tab-pane active" id="individual" style="padding:30px;">
 
                 <%= render(
                   partial: 'jam_sessions/list',
@@ -113,10 +114,12 @@
 
               </div>
             </div>
-<div class="row" style="text-align:center; float:bottom;">
-  <%= link_to 'Find Chords', "#modal-for-tab-index", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll' %>
-    <%= link_to '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-    Schedule A Session'.html_safe, "#modal-to-create-jam_session", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll'%>
+          </div>
+<div class="row" style="text-align:center; float:bottom;padding-left:0px;height:60px;">
+
+    <%= link_to '
+    Schedule A Session'.html_safe, "#modal-to-create-jam_session", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll', style:'width:69%;height:100%;' %>
+      <%= link_to 'Find Chords', "#modal-for-tab-index", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll', style:'width:30%; height:100%' %>
         </div>
         </div>
 
@@ -124,7 +127,7 @@
 
 
         <div class="col-md-6" style="color:black">
-        <div id="map" style='width: 100%; height: 800px; min-height: xxx; overflow: hidden; float: right; padding-right: 0px; margin: 0px'></div></div>
+        <div id="map" style='width: 100%; height: 850px; min-height: xxx; overflow: hidden; float: right; padding-right: 0px; margin: 0px'></div></div>
       </div>
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>

@@ -77,6 +77,36 @@ aside {
 .no-padding {
     padding: 0;
 }
+.nav-tabs{
+  background-color: #6B8E23;
+}
+.nav-tabs > li{
+  background-color:#161616;
+  color:white;
+    border-color: white;
+}
+.nav-tabs > li.active,
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  background-color: #556B2F;
+  color:white;
+    border-color: white;
+}
+
+.nav-tabs > li > a{
+  background-color: #6B8E23;
+  color:white;
+    border-color: white;
+  border: medium none;
+}
+.nav-tabs > li > a:hover{
+  background-color: #556B2F !important;
+    border: medium none;
+    border-color: white;
+    border-radius: 0;
+  color:white;
+}
 
 .navbar-default {
     border-color: rgba(34,34,34,.05);
@@ -439,6 +469,9 @@ fieldset[disabled] .btn-primary.active {
 .btn-primary .badge {
     color: #6B8E23;
     background-color: #fff;
+}
+body, html, .container-fluid {
+     height: 100%;
 }
 
 .btn {
