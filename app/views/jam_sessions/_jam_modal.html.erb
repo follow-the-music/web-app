@@ -78,7 +78,7 @@
 						<div class="col-sm-6">
 							<span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
 							Players:
-							<%= GuestSessionAssociation.where(jam_session_id: jam_session.id, player: true).distinct.count %>
+							<%= GuestSessionAssociation.where(jam_session_id: jam_session.id, player: true).distinct.count-1 %>
 							/
 							<%= jam_session.max_players %>
 						</div>
@@ -98,7 +98,7 @@
 				<div class="row text-center">
 					<% if jam_session.max_players.to_i != 0 %>
 						<div class="col-sm-6">
-							<% percent_players = 100 * GuestSessionAssociation.where(jam_session_id: jam_session.id, player: true).distinct.count.to_i / jam_session.max_players.to_i %>
+							<% percent_players = 100 * (GuestSessionAssociation.where(jam_session_id: jam_session.id, player: true).distinct.count.to_i-1) / jam_session.max_players.to_i %>
 
 							<div class="progress">
 	  						<div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar"
@@ -124,7 +124,7 @@
 						<% percent_listeners = 100 %>
 					<% end %>
 				</div>
-				
+
 
 				<audio controls>
 			 	<source src="<%= jam_session.audio_file %>" type="audio/mp3">
