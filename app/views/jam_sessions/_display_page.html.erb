@@ -2,7 +2,28 @@
   <section class="no-padding">
 
     <body>
+      <%= form_with(model: current_user, local: true, multipart:true) do |form| %>
+
+        <div class="field">
+          <%= form.label :name %>
+          <%= form.text_field :name, id: :user_name %>
+        </div>
+
+        <div class="field">
+          <%= form.label :email %>
+          <%= form.text_field :email, id: :user_email %>
+        </div>
+      <div class="field">
+        <%= form.label :avatar, "Photo" %>
+        <%= form.file_field :avatar %>
+      </div>
+        <div class="actions">
+          <%= form.submit %>
+        </div>
+      <% end %>
 <form>
+
+
 <div class="container-fluid" style="padding-top:15px; text-align:right; padding-bottom:5px;">
 <div>
   <%= form_tag(jam_sessions_path, :method => "get", id: "jam-search") do %>
