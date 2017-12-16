@@ -118,7 +118,7 @@
 <div class="row" style="text-align:center; float:bottom;padding-left:0px; padding-top:30px;">
 
     <%= link_to '
-    Schedule A Session'.html_safe, "#modal-to-create-jam_session", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll', style:'width:69%;height:100%;' %>
+    Schedule A Session'.html_safe, "#modal-to-create-jam_session", "data-toggle" => "modal",  :html => { :onclick => "setStart(1);" },class: 'btn btn-primary btn-xl page-scroll', style:'width:69%;height:100%;' %>
       <%= link_to 'Find Chords', "#modal-for-tab-index", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll', style:'width:30%; height:100%' %>
         </div>
         </div>

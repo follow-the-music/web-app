@@ -15,13 +15,13 @@ Rails.application.configure do
   config.paperclip_defaults = {
     storage: :s3,
     s3_credentials: {
-      bucket: ENV.fetch('S3_BUCKET_NAME'),
-      access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
-      secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
-      s3_region: ENV.fetch('AWS_REGION'),
+      bucket: 'follow-the-music-develop',
+      access_key_id: 'AKIAJENVA3MBVSJMNU3Q',
+      secret_access_key: '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',
+      s3_region: 'us-east-2',
     }
   }
-}
+
   # Enable/disable caching. By default caching is disabled.
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true

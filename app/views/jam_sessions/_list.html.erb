@@ -32,10 +32,11 @@
 <% end %>
 </div>
 <div class = "col-sm-1 ">
-
+  <%if (session.audio_file_file_name != nil) %>
     <audio controls style="width: 150px; color:green;">
     <source src="<%= session.audio_file %>" type="audio/mp3" style="">
     </audio>
+  <%end%>
 </div>
 
 <div class="col-md-5" style="text-align:right; color: #6A6A6A;">

@@ -130,8 +130,10 @@
                 var audioFile;
 								var start=0;
 								function setup() {
-									if(start==1){
-										var c=document.getElementById("myCanvas")
+									// if(start==1){
+										createCanvas(400,400);
+	  								background(200);
+	  								fill(0);
 										// background(200);
 										// fill(0);
 										// text('Enable mic and click the mouse to begin recording', 20, 20);
@@ -150,18 +152,18 @@
 
 										// create an empty sound file that we will use to playback the recording
 										soundFile = new p5.SoundFile()
-									}
+									// }
 
 								}
 								function preload() {
-									if(start==1){
+									// if(start==1){
 										soundFormats('mp3', 'ogg','wav');
 										song=loadSound('<%= asset_path("bensound-retrosoul.mp3")%>');
-									}
+									// }
 
 								}
 								function record() {
-									if (start==1){
+									// if (start==1){
 										// use the '.enabled' boolean to make sure user enabled the mic (otherwise we'd record silence)
 										if (state === 0 && mic.enabled) {
 
@@ -185,6 +187,9 @@
 												soundFile.play();
 												var data = soundFile;
 												audioFile=soundFile;
+												var audio_id=document.getElementById("audio");
+												document.getElementById("audio").value="amk";
+												console.log(document.getElementById("audio").value);
 												// var o={
 												// 		type:"POST",
 												// 		url : '/set_audio',
@@ -207,23 +212,29 @@
 											// saveSound(soundFile, 'mySound.wav'); // save file
 											state++;
 										}
-									}
+									// }
 								}
 								function setStart(s){
 									start=s;
 									if(start==1){
 										setup();
+										record();
 									}
 								}
 								function returnAudio(){
 									if(start==1){
-										if(audioFile!=null){
-											// document.getElementById("create_form").elements["audio"].value="amk";
+										// if(audioFile!=null){
+
 											// document.getElementById("create_form").elements["name"].value="amk";
-													$('.audio').val("amk");
-													$('.name').val("amk");
+													// $('.audio').val("amk");
+													// $('.name').val("amk");
 											  // email = $('input[name="user[email]"]').val();
-										}
+										// }
+										// $.ajax({
+					        	// 			url : "https://localhost:3000/jam_sessions/set_audio",
+					        	// 			type : "post",
+					        	// 			data : { audio: "amk"}
+					    			// });
 									}
 								}
 								console.log();
@@ -240,13 +251,15 @@
 				</div>
 				<div class = "col-md-6">
 					<div class = "field">
-						<%=	form.hidden_field :audio , :id=>:audio%>
+						<%=	form.text_field :audio , :id=>:audio, :value=>"amkamk"%>
 					</div>
 					<canvas class="myCanvas" width="400" height="300" style="border:1px ">
 	 				</canvas>
-
+					<%= javascript_include_tag asset_path("p5.min.js"), "data-turbolinks-track" => true   %>
+					<%= javascript_include_tag asset_path("p5.dom.min.js") , "data-turbolinks-track" => true  %>
+					<%= javascript_include_tag asset_path("p5.sound.min.js"), "data-turbolinks-track" => true   %>
 					<div class="container">
-					  <input type="checkbox" id="audio_btn" onclick='record()'/>
+					  <input type="checkbox" id="audio_btn" onclick='setStart(1)'/>
 					  <label for="btn"></label>
 					  <div class="time">
 					    <div class="h_m"></div>
@@ -274,7 +287,3 @@
 		</div>
 	</div>
 </div>
-<!--
-<script src="/assets/recordLive.js"></script>
-<script src="/assets/recorder.js"></script>
-<script src="/assets/recorderWorker.js"></script> -->
