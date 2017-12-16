@@ -17,10 +17,15 @@
 				<h3>
 					<%= image_tag user.avatar.url(:thumb), class: "img-circle", style: "width: 30px; height: 30px;" %>
 					<%= user.name %>
+					<br>
+					<small><%= user.email %></small>
 				</h3>
 
 				<br>
-				<%= user.email %>
+
+				<blockquote>
+					<%= user.biography %>
+				</blockquote>
 			</div>
 
 			<% if user == current_user %>
