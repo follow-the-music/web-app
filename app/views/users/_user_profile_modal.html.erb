@@ -11,14 +11,16 @@
 						</small>
 					</h4>
 				</div>
-				<h3>
-					<%= user.name %>
-				</h3>
 			</div>
 
 			<div class="modal-body">
+				<h3>
+					<%= image_tag user.avatar.url(:thumb), class: "img-circle", style: "width: 30px; height: 30px;" %>
+					<%= user.name %>
+				</h3>
+
+				<br>
 				<%= user.email %>
-				<%= image_tag user.avatar.url(:thumb) %>
 			</div>
 
 			<% if user == current_user %>
