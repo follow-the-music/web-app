@@ -11,7 +11,7 @@ Rails.application.configure do
 
   # Show full error reports.
   config.consider_all_requests_local = true
-  Paperclip.options[:command_path] = "/usr/local/bin/"
+
   config.paperclip_defaults = {
     storage: :s3,
     s3_credentials: {
