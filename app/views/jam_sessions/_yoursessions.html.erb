@@ -1,5 +1,5 @@
 <!-- <div id="filterrific_results"> -->
-<div class="row">
+<div class="row" style="height:90%;">
   <% @your_sessions.each do |session| %>
   <br>
   <div class="row" style="border:1px solid #cecece;padding: 15px; box-shadow: -5px 5px 4px #888888;">
@@ -11,12 +11,12 @@
 </div>
 <div class="col-sm-3">
     <% if host.id == current_user.id %>
-    <span class="glyphicon glyphicon-home" aria-hidden="true">  </span>
+<span class="glyphicon glyphicon-home" aria-hidden="true" style="padding-right:3px;">    </span>
     <% else %>
     <% end %>
 <%name=session.name%>
-<%= link_to  "#modal-for-jam_session\\:#{session.id}", class: "btn", style: "font-size:150%;", "data-toggle" => "modal" do %>
-<%=name%>
+<%= link_to  "#modal-for-jam_session\\:#{session.id}", class: "break-word", style: "font-size:150%;overflow-wrap: break-word;", "data-toggle" => "modal" do %>
+<p class="break-word" style="display:inline;">  <%=name%></p>
 <% end %>
 
 
@@ -31,14 +31,14 @@
 <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="font-size: 20px;">  </span>
 <% end %>
 </div>
-<div class = "col-sm-3 ">
+<div class = "col-sm-1 " style="text-align:left;">
 
   <audio controls style="width: 150px; color:green;">
   <source src="<%= session.audio_file %>" type="audio/mp3" style="">
   </audio>
 </div>
 
-<div class="col-md-3" style="text-align:right; color: #6A6A6A;">
+<div class="col-md-5" style="text-align:right; color: #6A6A6A;">
 <div class="row">
 <%address=session.address%>
 <%if (!address.blank?)%>
@@ -69,5 +69,4 @@
 
   </div>
   <% end %>
-  <%= will_paginate @your_sessions, :param_name => 'your_sessions_page'%>
 </div>

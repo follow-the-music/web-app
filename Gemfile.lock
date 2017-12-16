@@ -58,6 +58,7 @@ GEM
       sass (>= 3.3.4)
     bootstrap-will_paginate (0.0.11)
       will_paginate
+    bootstrap_form (2.7.0)
     builder (3.2.3)
     byebug (9.1.0)
     capybara (2.15.4)
@@ -89,6 +90,13 @@ GEM
     filterrific (2.1.2)
     font-awesome-rails (4.7.0.2)
       railties (>= 3.2, < 5.2)
+    form_slider (0.0.5)
+      coffee-rails
+      jquery-rails
+      jquery-ui-rails
+      rails (>= 3.2.0)
+    formtastic (3.1.5)
+      actionpack (>= 3.2.13)
     frontend-generators (0.2.0)
       rainbow (= 2.0.0)
       turf (= 0.0.5)
@@ -292,10 +300,13 @@ DEPENDENCIES
   bcrypt (= 3.1.11)
   bootstrap-sass (= 3.3.7)
   bootstrap-will_paginate (~> 0.0.10)
+  bootstrap_form
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   filterrific
+  form_slider
+  formtastic (~> 3.0)
   frontend-generators
   geetar
   geocoder
