@@ -1,6 +1,4 @@
-<script src="path/to/jquery.js"></script>
-<script src="path/to/jquery.nice-select.js"></script>
-
+<html>
 <style>
 /* stying of the markers */
 /* The location pointed to by the popup tip. */
@@ -38,7 +36,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 120px;
+  width: 80px;
   height: 40px;
   transform: translate(-50%, -100%);
   /* Style the info window. */
@@ -52,290 +50,288 @@
   text-align: center;
   vertical-align: center;
   padding-top: 12px;
-  font-weight: bold;
 }
 </style>
 
+<section class="no-padding">
 
 
-<section id="navbar navbar-fixed-bottom" class="no-padding" style="height:100%;">
 
-  <body>
-    <form>
-      <div class="container-fluid" style="padding-top:15px; text-align:right; padding-bottom:5px;">
-        <div>
-          <%= form_tag(jam_sessions_path, :method => "get", id: "jam-search") do %>
-          <div class="col-md-2" style="text-align:left;">
-
-            <div class="input-group">
-              <span class="input-group-addon">
-                <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
-              </span>
-              <%= text_field_tag :name_search, params[:name_search],:id=>"name-search", placeholder: "Search Address    " , class: 'form-control'%>
+    <body>
+<form>
 
 
+<div class="container-fluid" style="padding-top:15px; text-align:right; padding-bottom:5px;">
+<div>
+  <%= form_tag(jam_sessions_path, :method => "get", id: "jam-search") do %>
+  <div class="col-md-2" style="text-align:left;">
+
+ <div class="input-group">
+  <span class="input-group-addon">
+      <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
+</span>
+  <%= text_field_tag :name_search, params[:name_search],:id=>"name-search", placeholder: "Search Address    " , class: 'form-control'%>
+
+
+</div>
+
+<%=link_to "Reset Filters", :onclick=>"ClearFields();", :style=>"text-align:left;"%>
+</div>
+<div class="col-md-1" style="text-align:center;">
+    <%= range_field_tag "Radius", params[:name_search],:id=>"name-search", placeholder: "+- Radius    ", class: 'form-control' %>
+
+</div>
+  <div class="col-md-2">
+    <div class="input-group">
+     <span class="input-group-addon">
+         <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
+   </span>
+  <%= text_field_tag :name_search, params[:name_search],:id=>"name-search", placeholder: "Search Name, Description   ", class: 'form-control' %>
+</div>
+</div>
+<div class="col-md-2">
+  <div class="input-group">
+   <span class="input-group-addon">
+       <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+ </span>
+
+    <%= text_field_tag :host_search, params[:host_search], :id=>"host", placeholder: "Search Host   " , class: 'form-control'%>
+</div>
+</div>
+<div class="col-md-2">
+  <div class="input-group">
+   <span class="input-group-addon">
+       <i class="glyphicon glyphicon-music" aria-hidden="true"></i>
+ </span>
+    <%= select_tag(:genre_search, options_for_select([['Pop', 'pop'], ['Rock', 'rock'],["Jazz","jazz"],["Soul","soul"],["Metal","metal"],["House","house"],["Classical","classical"]]),:include_blank=>"Any Genre", id:"genre", :class => 'form-control') %>
+</div>
+</div>
+<div class="col-md-2">
+  <div class="input-group">
+   <span class="input-group-addon">
+       <i class="glyphicon glyphicon-time" aria-hidden="true"></i>
+ </span>
+    <%= select_tag(:time_search, options_for_select([['Now', 1], ['Next 3 Hours', 2],["Next 12 Hours",3],["Next 24 Hours ",4]]),:include_blank=>"Any Time", id:"time",:class => 'form-control') %>
+  </div>
+</div>
+  <div class="col-md-1" style="text-align:center;">
+
+    <%= submit_tag "Search", :name => nil,class:'btn btn-primary btn-s page-scroll', style: 'width:100%; height:100%;'%>
+</div>
+</div>
+<div style="text-align:left;">
+
+</div>
+<span class="pull-right">
+    </span>
+  <% end %>
+  <script>
+  function ClearFields() {
+       document.getElementById("host").value = "";
+       document.getElementById("name").value = "";
+       document.getElementById("genre").value = "";
+       document.getElementById("time").value = "";
+  }
+  </script>
+</div>
+</form>
+        <div class="container-fluid" style="border:1px solid #cecece;padding:10px ">
+
+        <div class="col-md-6"  style="">
+          <div class="row" style="height: 770px; overflow-y:scroll;  padding-right:10px;">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#individual" class="nav-font" aria-controls="individual" role="tab" data-toggle="tab">Jam Sessions</a>
+              </li>
+              <li role="presentation">
+                <a href="#company" class="nav-font" aria-controls="company" role="tab" data-toggle="tab">Your Sessions</a>
+              </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content" >
+              <div role="tabpanel" class="tab-pane active" id="individual" style="padding:30px;">
+
+                <%= render(
+                  partial: 'jam_sessions/list',
+                  locals: { jam_sessions: @jam_sessions }
+                ) %>
+
+
+
+              </div>
+              <div role="tabpanel" class="tab-pane" id="company" style="margin:30px;">
+                <%= render(
+                      partial: 'jam_sessions/yoursessions',
+                      locals: { jam_sessions: @jam_sessions }
+                    )%>
+
+              </div>
             </div>
+          </div>
 
-            <%=link_to "Reset Filters", :onclick=>"ClearFields();", :style=>"text-align:left;"%>
-          </div>
-          <div class="col-md-1" style="text-align:center;">
-            <%= range_field_tag "Radius", params[:name_search],:id=>"name-search", placeholder: "+- Radius    ", class: 'form-control' %>
-
-          </div>
-          <div class="col-md-2">
-            <div class="input-group">
-              <span class="input-group-addon">
-                <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
-              </span>
-              <%= text_field_tag :name_search, params[:name_search],:id=>"name-search", placeholder: "Search Name, Description   ", class: 'form-control' %>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="input-group">
-              <span class="input-group-addon">
-                <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
-              </span>
-
-              <%= text_field_tag :host_search, params[:host_search], :id=>"host", placeholder: "Search Host   " , class: 'form-control'%>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="input-group">
-              <span class="input-group-addon">
-                <i class="glyphicon glyphicon-music" aria-hidden="true"></i>
-              </span>
-              <%= select_tag(:genre_search, options_for_select([['Pop', 'pop'], ['Rock', 'rock'],["Jazz","jazz"],["Soul","soul"],["Metal","metal"],["House","house"],["Classical","classical"]]),:include_blank=>"Any Genre", id:"genre", :class => 'form-control') %>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="input-group">
-              <span class="input-group-addon">
-                <i class="glyphicon glyphicon-time" aria-hidden="true"></i>
-              </span>
-              <%= select_tag(:time_search, options_for_select([['Now', 1], ['Next 3 Hours', 2],["Next 12 Hours",3],["Next 24 Hours ",4]]),:include_blank=>"Any Time", id:"time",:class => 'form-control') %>
-            </div>
-          </div>
-          <div class="col-md-1" style="text-align:center;">
-
-            <%= submit_tag "Search", :name => nil,class:'btn btn-primary btn-s page-scroll', style: 'width:100%; height:100%;'%>
-          </div>
         </div>
-        <div style="text-align:left;">
 
-        </div>
-        <span class="pull-right">
-        </span>
-        <% end %>
-        <script>
-        function ClearFields() {
-          document.getElementById("host").value = "";
-          document.getElementById("name").value = "";
-          document.getElementById("genre").value = "";
-          document.getElementById("time").value = "";
-        }
-        </script>
-        <script src="path/to/jquery.js"></script>
-        <script src="path/to/jquery.nice-select.js"></script>
+
+
+
+        <div class="col-md-6" style="color:black;">
+          <div class="row" style="text-align:center; float:bottom;padding-left:0px;height:40px;">
+
+              <%= link_to '
+              Schedule A Session'.html_safe, "#modal-to-create-jam_session", "data-toggle" => "modal", class: 'btn btn-primary btn-m page-scroll', style:'width:49%;height:100%;' %>
+                <%= link_to 'Find Chords', "#modal-for-tab-index", "data-toggle" => "modal", class: 'btn btn-primary btn-m page-scroll', style:'width:50%; height:100%' %>
+                  </div>
+                  <div class="row">
+        <div id="map" style='width: 100%; height: 850px; min-height: xxx; overflow: hidden; float: right; padding-right: 0px; margin: 0px'></div></div>
       </div>
-    </form>
-    <div class="container-fluid" style="border:1px solid #cecece; padding: 0px; overflow-y:hidden; ">
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
-      <div class="col-md-6"  style="padding-right:0px;">
-        <div class="row" style="height: 790px;padding-left:0px;">
-          <!-- Nav tabs -->
-          <ul class="nav nav-tabs nav-justified" role="tablist">
-            <li role="presentation" class="active">
-              <a href="#individual" aria-controls="individual" role="tab" data-toggle="tab">Jam Sessions</a>
-            </li>
-            <li role="presentation">
-              <a href="#company" aria-controls="company" role="tab" data-toggle="tab">Your Sessions</a>
-            </li>
-          </ul>
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1PWWPtYyzQ8ez5J_rnqdp-7BqWBSJp4k"></script>
+      <script>
 
-          <!-- Tab panes -->
-          <div class="tab-content" >
-            <div role="tabpanel" class="tab-pane active" id="individual" style="padding:30px;">
 
-              <%= render(
-              partial: 'jam_sessions/list',
-              locals: { jam_sessions: @jam_sessions }
-              ) %>
+      var locations = [];
+      var links = [];
+      var desiredLink;
+      var desiredText;
+      var currentMarker;
+
+      <% @jam_sessions.each do |location| %>
+      var place = [<%= location.latitude %>, <%= location.longitude %>, "<%= location.name %>" ];
+      locations.push(place);
+      var link_id =  <%= location.id %>
+      links.push(link_id);
+      <% end %>
 
 
 
-            </div>
-            <div role="tabpanel" class="tab-pane" id="company" style="margin:30px;">
-              <%= render(
-              partial: 'jam_sessions/yoursessions',
-              locals: { jam_sessions: @jam_sessions }
-              )%>
+      USGSOverlay.prototype = new google.maps.OverlayView();
 
-            </div>
-          </div>
-        </div>
-        <div class="row" style="text-align:center; float:bottom;padding-left:0px;height:60px;">
+      // Initialize the map and the custom overlay.
 
-          <%= link_to '
-          Schedule A Session'.html_safe, "#modal-to-create-jam_session", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll', style:'width:69%;height:100%;' %>
-          <%= link_to 'Find Chords', "#modal-for-tab-index", "data-toggle" => "modal", class: 'btn btn-primary btn-xl page-scroll', style:'width:30%; height:100%' %>
-        </div>
-      </div>
-
-
-
-
-      <div class="col-md-6" style="color:black">
-        <div id="map" style='width: 100%; height: 850px; min-height: xxx; overflow: hidden; float: right; padding-right: 0px; margin: 0px'></div>
-        <div id="content">
-          Hello world!
-        </div>
-      </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1PWWPtYyzQ8ez5J_rnqdp-7BqWBSJp4k"></script>
-    <script>
-
-
-    var locations = [];
-    var links = [];
-    var desiredLink;
-    var desiredText;
-    var currentMarker;
-
-    <% @jam_sessions.each do |location| %>
-    var place = [<%= location.latitude %>, <%= location.longitude %>, "<%= location.name %>" ];
-    locations.push(place);
-    var link_id =  <%= location.id %>
-    links.push(link_id);
-    <% end %>
-
-
-
-    USGSOverlay.prototype = new google.maps.OverlayView();
-
-    // Initialize the map and the custom overlay.
-
-    function initMap() {
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 13,
-        center: new google.maps.LatLng(42.37, -71.2),
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      });
-
-
-
-      //creates a marker based on the user's current position
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-          var pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-          var userMarker = new google.maps.Marker({
-            map: map,
-            icon: 'http://www.robotwoods.com/dev/misc/bluecircle.png'
-          });
-
-          userMarker.setPosition(pos);
-          map.setCenter(pos);
-
-        }, function() {
-          handleLocationError(true, userMarker, map.getCenter());
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: new google.maps.LatLng(42.37, -71.2),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
         });
-      } else {
-        // Browser doesn't support Geolocation
-        handleLocationError(false, userMarker, map.getCenter());
-      }
-
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        userMarker.setPosition(pos);
-      }
 
 
-      var i, bounds, lat, long, overlay;
 
-      for (i = 0; i < locations.length; i++) {
-        currentMarker = i;
-        lat = locations[i][0];
-        long = locations[i][1];
-        bounds = new google.maps.LatLngBounds(
-          new google.maps.LatLng(lat, long),
-          new google.maps.LatLng(lat + 0.001, long + 0.013));
+        //creates a marker based on the user's current position
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            var userMarker = new google.maps.Marker({
+              map: map,
+              icon: 'http://www.robotwoods.com/dev/misc/bluecircle.png'
+            });
 
-          var link = "#modal-for-jam_session\\:" + links[i];
-          var text = locations[i][2];
+            userMarker.setPosition(pos);
+            map.setCenter(pos);
 
-          overlay = new USGSOverlay(bounds, map, link, text);
+          }, function() {
+            handleLocationError(true, userMarker, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, userMarker, map.getCenter());
         }
 
-      }
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+          userMarker.setPosition(pos);
+        }
 
-      /** @constructor */
-      function USGSOverlay(bounds, map, link, text) {
 
-        // Initialize all properties.
-        this.bounds_ = bounds;
+        var i, bounds, lat, long, overlay;
 
-        this.map_ = map;
-        this.link_ = link;
-        this.text_ = text;
+        for (i = 0; i < locations.length; i++) {
+          currentMarker = i;
+          lat = locations[i][0];
+          long = locations[i][1];
+          bounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(lat, long),
+            new google.maps.LatLng(lat + 0.001, long + 0.013));
 
-        // Explicitly call setMap on this overlay.
-        this.setMap(map);
-      }
+            var link = "#modal-for-jam_session\\:" + links[i];
+            var text = locations[i][2];
 
-      /**
-      * onAdd is called when the map's panes are ready and the overlay has been
-      * added to the map.
-      */
-      USGSOverlay.prototype.onAdd = function() {
+            overlay = new USGSOverlay(bounds, map, link, text);
+          }
 
-        var div = document.createElement('div');
-        div.classList.add('popup-bubble-content');
+        }
 
-        desiredLink = "#modal-for-jam_session\\:" + links[currentMarker];
-        desiredText = locations[currentMarker][2];
+        /** @constructor */
+        function USGSOverlay(bounds, map, link, text) {
 
-        div.innerHTML += '<a data-toggle="modal" href="' + this.link_ + '">' + this.text_ + '</a>';
+          // Initialize all properties.
+          this.bounds_ = bounds;
 
-        this.div_ = div;
+          this.map_ = map;
+          this.link_ = link;
+          this.text_ = text;
 
-        //add element to clickable layer
-        this.getPanes(desiredLink, desiredText).overlayMouseTarget.appendChild(div);
-      };
+          // Explicitly call setMap on this overlay.
+          this.setMap(map);
+        }
 
-      USGSOverlay.prototype.draw = function() {
+        /**
+        * onAdd is called when the map's panes are ready and the overlay has been
+        * added to the map.
+        */
+        USGSOverlay.prototype.onAdd = function() {
 
-        // We use the south-west and north-east
-        // coordinates of the overlay to peg it to the correct position and size.
-        // To do this, we need to retrieve the projection from the overlay.
-        var overlayProjection = this.getProjection();
+          var div = document.createElement('div');
+          div.classList.add('popup-bubble-content');
 
-        // Retrieve the south-west and north-east coordinates of this overlay
-        // in LatLngs and convert them to pixel coordinates.
-        // We'll use these coordinates to resize the div.
-        var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
-        var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
+          desiredLink = "#modal-for-jam_session\\:" + links[currentMarker];
+          desiredText = locations[currentMarker][2];
 
-        // Resize the image's div to fit the indicated dimensions.
-        var div = this.div_;
-        div.style.left = sw.x + 0.05 + 'px';
-        div.style.top = ne.y + 'px';
-      };
+          div.innerHTML += '<a data-toggle="modal" href="' + this.link_ + '">' + this.text_ + '</a>';
 
-      // The onRemove() method will be called automatically from the API if
-      // we ever set the overlay's map property to 'null'.
-      USGSOverlay.prototype.onRemove = function() {
-        this.div_.parentNode.removeChild(this.div_);
-        this.div_ = null;
-      };
+          this.div_ = div;
 
-      google.maps.event.addDomListener(window, 'load', initMap);
-      </script>
-    </head>
+          //add element to clickable layer
+          this.getPanes(desiredLink, desiredText).overlayMouseTarget.appendChild(div);
+        };
+
+        USGSOverlay.prototype.draw = function() {
+
+          // We use the south-west and north-east
+          // coordinates of the overlay to peg it to the correct position and size.
+          // To do this, we need to retrieve the projection from the overlay.
+          var overlayProjection = this.getProjection();
+
+          // Retrieve the south-west and north-east coordinates of this overlay
+          // in LatLngs and convert them to pixel coordinates.
+          // We'll use these coordinates to resize the div.
+          var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
+          var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
+
+          // Resize the image's div to fit the indicated dimensions.
+          var div = this.div_;
+          div.style.left = sw.x + 'px';
+          div.style.top = ne.y + 'px';
+        };
+
+        // The onRemove() method will be called automatically from the API if
+        // we ever set the overlay's map property to 'null'.
+        USGSOverlay.prototype.onRemove = function() {
+          this.div_.parentNode.removeChild(this.div_);
+          this.div_ = null;
+        };
+
+        google.maps.event.addDomListener(window, 'load', initMap);
+        </script>
+
+
 
     <%= render 'jam_sessions/tabs_index_modal'%>
     <%@jam_sessions.each do |jam_session|%>
@@ -347,5 +343,4 @@
     <%= render 'jam_sessions/tabs_index_modal'%>
 
     <%= render 'users/edit_modal' %>
-
     </html>
