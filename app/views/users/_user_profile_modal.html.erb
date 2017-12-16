@@ -5,12 +5,20 @@
 			<div class="modal-header">
 				<div>
 					<h4>
+						<%= render 'users/stars', profile_user: user %>
 						<small>
 							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 							User Profile
 						</small>
 					</h4>
 				</div>
+
+				<script>
+					$($('#stars-for-user-<%= user.id %>').click(function() {
+						<% Star.toggle current_user, user %>
+						$('#stars-for-user-<%= user.id %>').replaceWith("<%= j render 'users/stars', profile_user: user %>");
+					}));
+				</script>
 			</div>
 
 			<div class="modal-body">
