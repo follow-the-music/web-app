@@ -45,7 +45,7 @@
 
 		var channel = pusher.subscribe('chat-update-channel');
     channel.bind('post-to-chat-<%= @jam_session.id %>', function(data) {
-			$('#messages-<%= jam_session.id %>').replaceWith("HATS<% chat_messages = ChatMessage.where(jam_session_id: @jam_session.id) %> <%= j render 'chat_messages/messages', chat_messages: chat_messages, jam_session: @jam_session %>");
+			$('#messages-<%= jam_session.id %>').replaceWith("HATS<%= j render 'chat_messages/messages', jam_session: @jam_session %>");
     });
 	</script>
 
