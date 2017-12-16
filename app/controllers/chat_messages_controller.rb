@@ -30,11 +30,16 @@ class ChatMessagesController < ApplicationController
     @chat_message.save
 
     # FORCE SYNCHRONIZATION
-    while (! @chat_message.id) do
+    while (! @chat_message.persisted?) do
       puts "\n\tWAITING ..."
     end
 
-    Pusher.trigger("chat-update-channel", "post-to-chat-#{@chat_message.jam_session_id}", { message: "hello world" })
+    if @chat_message.persisted?
+      puts "\n\n\n\t\t\t*** SAVED !!! ***"
+      Pusher.trigger("chat-update-channel", "post-to-chat-#{@chat_message.jam_session_id}", { message: "hello world" })
+    else
+      puts "\n\n\n\t\t\t*** NOT SAVED !!! ***"
+    end
 
     respond_to do |format|
       format.html { return false }
