@@ -14,6 +14,15 @@ class JamSession < ApplicationRecord
   def host_name(host_id)
     @name= User.where(id:host_id).pluck(:name)
   end
+
+  def self.old
+    if (self.end_time>=DateTime.now.change(offset: "-3000")-30.minutes)
+      return false
+    else
+      return true
+  end
+  end
+
   def self.search(search_host, search_name, search_genre, search_time)
     # if search_host.blank? && search_name.blank?
       # return JamSession.all.order(:name).paginate(:page => params[:jam_sessions_page])
