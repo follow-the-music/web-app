@@ -1,5 +1,3 @@
-<script src="path/to/jquery.js"></script>
-<script src="path/to/jquery.nice-select.js"></script>
 
 
 
@@ -57,71 +55,122 @@
 }
 </style>
 
+<section class="no-padding">
+
+    <body>
+<form>
 
 
-<section id="navbar navbar-fixed-bottom" class="no-padding" style="height:100%;">
+<div class="container-fluid" style="padding-top:15px; text-align:right; padding-bottom:5px;">
+<div>
+  <%= form_tag(jam_sessions_path, :method => "get", id: "jam-search") do %>
+  <div class="col-md-2" style="text-align:left;">
 
-  <body>
-    <form>
-      <div class="container-fluid" style="padding-top:15px; text-align:right; padding-bottom:5px;">
-        <div>
-          <%= form_tag(jam_sessions_path, :method => "get", id: "jam-search") do %>
-          <div class="col-md-2" style="text-align:left;">
-
-            <div class="input-group">
-              <span class="input-group-addon">
-                <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
-              </span>
-              <%= text_field_tag :name_search, params[:name_search],:id=>"name-search", placeholder: "Search Address    " , class: 'form-control'%>
+ <div class="input-group">
+  <span class="input-group-addon">
+      <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
+</span>
+  <%= text_field_tag :name_search, params[:name_search],:id=>"name-search", placeholder: "Search Address    " , class: 'form-control'%>
 
 
+</div>
+
+<%=link_to "Reset Filters", :onclick=>"ClearFields();", :style=>"text-align:left;"%>
+</div>
+<div class="col-md-1" style="text-align:center;">
+    <%= range_field_tag "Radius", params[:name_search],:id=>"name-search", placeholder: "+- Radius    ", class: 'form-control' %>
+
+</div>
+  <div class="col-md-2">
+    <div class="input-group">
+     <span class="input-group-addon">
+         <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
+   </span>
+  <%= text_field_tag :name_search, params[:name_search],:id=>"name-search", placeholder: "Search Name, Description   ", class: 'form-control' %>
+</div>
+</div>
+<div class="col-md-2">
+  <div class="input-group">
+   <span class="input-group-addon">
+       <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+ </span>
+
+    <%= text_field_tag :host_search, params[:host_search], :id=>"host", placeholder: "Search Host   " , class: 'form-control'%>
+</div>
+</div>
+<div class="col-md-2">
+  <div class="input-group">
+   <span class="input-group-addon">
+       <i class="glyphicon glyphicon-music" aria-hidden="true"></i>
+ </span>
+    <%= select_tag(:genre_search, options_for_select([['Pop', 'pop'], ['Rock', 'rock'],["Jazz","jazz"],["Soul","soul"],["Metal","metal"],["House","house"],["Classical","classical"]]),:include_blank=>"Any Genre", id:"genre", :class => 'form-control') %>
+</div>
+</div>
+<div class="col-md-2">
+  <div class="input-group">
+   <span class="input-group-addon">
+       <i class="glyphicon glyphicon-time" aria-hidden="true"></i>
+ </span>
+    <%= select_tag(:time_search, options_for_select([['Now', 1], ['Next 3 Hours', 2],["Next 12 Hours",3],["Next 24 Hours ",4]]),:include_blank=>"Any Time", id:"time",:class => 'form-control') %>
+  </div>
+</div>
+  <div class="col-md-1" style="text-align:center;">
+
+    <%= submit_tag "Search", :name => nil,class:'btn btn-primary btn-s page-scroll', style: 'width:100%; height:100%;'%>
+</div>
+</div>
+<div style="text-align:left;">
+
+</div>
+<span class="pull-right">
+    </span>
+  <% end %>
+  <script>
+  function ClearFields() {
+       document.getElementById("host").value = "";
+       document.getElementById("name").value = "";
+       document.getElementById("genre").value = "";
+       document.getElementById("time").value = "";
+  }
+  </script>
+</div>
+</form>
+        <div class="container-fluid" style="border:1px solid #cecece;padding:10px ">
+
+        <div class="col-md-6"  style="">
+          <div class="row" style="height: 770px; overflow-y:scroll;  padding-right:10px;">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#individual" class="nav-font" aria-controls="individual" role="tab" data-toggle="tab">Jam Sessions</a>
+              </li>
+              <li role="presentation">
+                <a href="#company" class="nav-font" aria-controls="company" role="tab" data-toggle="tab">Your Sessions</a>
+              </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content" >
+              <div role="tabpanel" class="tab-pane active" id="individual" style="padding:30px;">
+
+                <%= render(
+                  partial: 'jam_sessions/list',
+                  locals: { jam_sessions: @jam_sessions }
+                ) %>
+
+
+
+              </div>
+              <div role="tabpanel" class="tab-pane" id="company" style="margin:30px;">
+                <%= render(
+                      partial: 'jam_sessions/yoursessions',
+                      locals: { jam_sessions: @jam_sessions }
+                    )%>
+
+              </div>
             </div>
-
-            <%=link_to "Reset Filters", :onclick=>"ClearFields();", :style=>"text-align:left;"%>
           </div>
-          <div class="col-md-1" style="text-align:center;">
-            <%= range_field_tag "Radius", params[:name_search],:id=>"name-search", placeholder: "+- Radius    ", class: 'form-control' %>
-
-          </div>
-          <div class="col-md-2">
-            <div class="input-group">
-              <span class="input-group-addon">
-                <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
-              </span>
-              <%= text_field_tag :name_search, params[:name_search],:id=>"name-search", placeholder: "Search Name, Description   ", class: 'form-control' %>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="input-group">
-              <span class="input-group-addon">
-                <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
-              </span>
-
-              <%= text_field_tag :host_search, params[:host_search], :id=>"host", placeholder: "Search Host   " , class: 'form-control'%>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="input-group">
-              <span class="input-group-addon">
-                <i class="glyphicon glyphicon-music" aria-hidden="true"></i>
-              </span>
-              <%= select_tag(:genre_search, options_for_select([['Pop', 'pop'], ['Rock', 'rock'],["Jazz","jazz"],["Soul","soul"],["Metal","metal"],["House","house"],["Classical","classical"]]),:include_blank=>"Any Genre", id:"genre", :class => 'form-control') %>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="input-group">
-              <span class="input-group-addon">
-                <i class="glyphicon glyphicon-time" aria-hidden="true"></i>
-              </span>
-              <%= select_tag(:time_search, options_for_select([['Now', 1], ['Next 3 Hours', 2],["Next 12 Hours",3],["Next 24 Hours ",4]]),:include_blank=>"Any Time", id:"time",:class => 'form-control') %>
-            </div>
-          </div>
-          <div class="col-md-1" style="text-align:center;">
-
-            <%= submit_tag "Search", :name => nil,class:'btn btn-primary btn-s page-scroll', style: 'width:100%; height:100%;'%>
-          </div>
-        </div>
-        <div style="text-align:left;">
+<div class="row" style="text-align:center; float:bottom;padding-left:0px; padding-top:30px;">
 
         </div>
         <span class="pull-right">
@@ -185,11 +234,8 @@
 
 
 
-      <div class="col-md-6" style="color:black">
-        <div id="map" style='width: 100%; height: 850px; min-height: xxx; overflow: hidden; float: right; padding-right: 0px; margin: 0px'></div>
-        <div id="content">
-          Hello world!
-        </div>
+        <div class="col-md-6" style="color:black;">
+        <div id="map" style='width: 100%; height: 850px; min-height: xxx; overflow: hidden; float: right; padding-right: 0px; margin: 0px'></div></div>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

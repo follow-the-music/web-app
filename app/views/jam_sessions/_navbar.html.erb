@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand page-scroll" href=".."> Follow The Music</a>
+            <a class="nav-font" style="font-size:140%" href=".."> Follow The Music</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -18,23 +18,23 @@
             <!-- HOME -->
 
             <li>
-                <a class="page-scroll" href="..#about"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About</a>
+                <a class="nav-font" href="..#about"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About</a>
             </li>
             <% if logged_in? %>
 
               <!-- JAM SESSIONS -->
-              <li class="nav-item">
+              <li class="nav-font">
                 <%= link_to '<span class="glyphicon glyphicon-music" aria-hidden="true"></span>
                 Jam Sessions'.html_safe, jam_sessions_path %>
               </li>
 
-              <li class="nav-item">
+              <li class="nav-font">
                 <%= link_to '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
               '.html_safe + current_user.name, "#modal-for-user-#{current_user.id}", "data-toggle" => "modal" %>
 
               </li>
 
-              <li class="nav-item">
+              <li class="nav-font">
                 <%= link_to '<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
                 Log Out'.html_safe, logout_path, method: :get, data: { confirm: 'Are you sure you wish to log out?' } %>
               </li>
