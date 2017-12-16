@@ -20,7 +20,7 @@ class JamSessionsController < ApplicationController
   end
 
 def set_audio
-  @sound = params[:audio]
+  @sound = jam_session_params[:audio]
 end
 
   # def upload_file
@@ -79,9 +79,11 @@ end
   # POST /jam_sessions
   # POST /jam_sessions.json
   def create
+    set_audio
     # params[:audio_file]=@sound
     @jam_session = JamSession.new(jam_session_params)
     @jam_session.host_id=session[:user_id]
+    byebug
     @jam_session.audio_file=@sound
     # @jam_session.audio=
 
