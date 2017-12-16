@@ -21,11 +21,13 @@
 					<small><%= user.email %></small>
 				</h3>
 
-				<br>
+				<% if user.biography %>>
+					<br>
+					<blockquote>
+						<%= user.biography %>
+					</blockquote>
+				<% end %>
 
-				<blockquote>
-					<%= user.biography %>
-				</blockquote>
 			</div>
 
 			<% if user == current_user %>
