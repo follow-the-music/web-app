@@ -15,7 +15,10 @@ body {
 body {
     font-family: Merriweather,'Helvetica Neue',Arial,sans-serif;
 }
-
+.grayout {
+    opacity: 0.6; /* Real browsers */
+    filter: alpha(opacity = 60); /* MSIE */
+}
 hr {
     max-width: 50px;
     border-color: #6B8E23;
@@ -98,9 +101,7 @@ aside {
   width: 100%;
   overflow-wrap: break-word;
   text-align:bottom;
-  text-transform: uppercase;
-  font-size:100%;
-  font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+  vertical-align:middle;
   font-weight: 700;
 }
 .nav-font {

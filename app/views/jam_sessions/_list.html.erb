@@ -2,44 +2,46 @@
 <div class="row" style-"padding:15px;">
   <% @jam_sessions.each do |session| %>
     <br>
-    <div class="row" style="border:1px solid #cecece;padding: 15px; box-shadow: -5px 5px 4px #888888;">
+    <div class="row" style="border:1px solid #cecece;padding: 15px; box-shadow: -1px 1px 4px #888888; vertical-align:middle;">
 
-      <div class="col-md-1">
+      <div class="col-md-1" style="vertical-align:middle;">
       <% host = User.find(session.host_id) %>
   <%= render 'users/user_profile_modal', user: host %>
       <%= link_to image_tag(User.find(id=session.host_id).avatar.url(:thumb)), "#modal-for-user-#{host.id}", "data-dismiss" => "modal",  "data-toggle" => "modal"%>
 </div>
-  <div class="col-sm-3">
+  <div class="col-sm-3"  style="padding:10px;">
+
       <% if host.id == current_user.id %>
-      <span class="glyphicon glyphicon-home" aria-hidden="true"style="padding-right:3px;">  </span>
+      <span class="glyphicon glyphicon-home" aria-hidden="true"style="padding-right:3px;vertical-align:middle;">  </span>
       <% else %>
       <% end %>
 <%name=session.name%>
-<%= link_to  "#modal-for-jam_session\\:#{session.id}", class: "break-word", style: "font-size:150%;overflow-wrap: break-word;", "data-toggle" => "modal" do %>
-<p class="break-word" style="display:inline;">  <%=name%></p>
+<%= link_to  "#modal-for-jam_session\\:#{session.id}", "data-toggle" => "modal" do %>
+<p class="break-word" style="display:inline;vertical-align:middle;text-align:center;"> <b> <%=name%></b></p>
 <% end %>
 
 
 </div>
-<div class = "col-sm-2">
+<div class = "col-sm-2"  style="padding:10px;">
 
 
   <%= link_to "#modal-for-chat_message\\:#{session.id}", class: "btn", "data-toggle" => "modal" do %>
-    <span class="glyphicon glyphicon-comment" aria-hidden="true" style="font-size: 20px;">  </span>
+    <span class="glyphicon glyphicon-comment" aria-hidden="true" style="font-size: 20px;vertical-align:middle;">  </span>
 <% end %>
 <%= link_to  "#modal-for-jam_session\\:#{session.id}", class: "btn", "data-toggle" => "modal" do %>
-<span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="font-size: 20px;">  </span>
+<span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="font-size: 20px;vertical-align:middle;">  </span>
 <% end %>
 </div>
-<div class = "col-sm-1 ">
+
+<div class = "col-sm-1 " style="padding:10px;">
   <%if (session.audio_file_file_name != nil) %>
-    <audio controls style="width: 150px; color:green;">
-    <source src="<%= session.audio_file %>" type="audio/mp3" style="">
+    <audio controls style="width: 150px; color:green;vertical-align:middle;">
+    <source src="<%= session.audio_file %>" type="audio/mp3" style="vertical-align:middle;">
     </audio>
   <%end%>
 </div>
 
-<div class="col-md-5" style="text-align:right; color: #6A6A6A;">
+<div class="col-md-5" style="text-align:right; color: #6A6A6A;vertical-align:middle;">
   <div class="row">
   <%address=session.address%>
   <%if (!address.blank?)%>

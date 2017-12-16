@@ -1,5 +1,6 @@
 <div id='messages-<%= jam_session.id %>'>
-	<% chat_messages.reverse.each do |message| %>
+	<% chat_messages = ChatMessage.where(jam_session_id: @jam_session.id).reverse %>
+	<% chat_messages.each do |message| %>
 		<%= render 'chat_messages/message', message: message %>
 	<% end %>
 </div>
