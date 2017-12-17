@@ -80,19 +80,19 @@ aside {
 .no-padding {
     padding: 0;
 }
-.nav-tabs{
+.nav-tabs-temp{
   background-color: #6B8E23;
     border-color: white;
 }
-.nav-tabs > li{
+.nav-tabs-temp > li{
   background-color: #6B8E23;
   color:white;
     border-color: white;
 }
-.nav-tabs > li.active,
-.nav-tabs > li.active > a,
-.nav-tabs > li.active > a:hover,
-.nav-tabs > li.active > a:focus {
+.nav-tabs-temp > li.active,
+.nav-tabs-temp > li.active > a,
+.nav-tabs-temp > li.active > a:hover,
+.nav-tabs-temp > li.active > a:focus {
   background-color: #556B2F;
   color:white;
     border-color: white;
@@ -110,13 +110,13 @@ aside {
   font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
   font-weight: 700;
 }
-.nav-tabs > li > a{
+.nav-tabs-temp > li > a{
   background-color: #6B8E23;
   color:white;
     border-color: white;
   border: medium none;
 }
-.nav-tabs > li > a:hover{
+.nav-tabs-temp > li > a:hover{
   background-color: #556B2F !important;
     border: medium none;
     border-color: white;
