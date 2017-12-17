@@ -12,8 +12,8 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
-Rails.application.config.assets.precompile += %w( filterrific/filterrific-spinner.gif )
 Rails.application.config.assets.precompile += %w( creative/manifest.js creative/manifest.css )
 Rails.application.config.assets.precompile += %w( p5.min.js )
 Rails.application.config.assets.precompile += %w( p5.dom.min.js )
 Rails.application.config.assets.precompile += %w( p5.sound.min.js )
+Rails.application.config.assets.precompile += %w( bensound-retrosoul.mp3 )

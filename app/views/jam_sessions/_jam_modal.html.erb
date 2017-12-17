@@ -125,10 +125,11 @@
 					<% end %>
 				</div>
 
-
+				<%if (jam_session.audio_file_file_name != nil) %>
 				<audio controls>
 			 	<source src="<%= jam_session.audio_file %>" type="audio/mp3">
 				</audio>
+				<%end%>
 
 				<br>
 				<em>

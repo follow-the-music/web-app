@@ -20,7 +20,6 @@
 <p class="break-word" style="display:inline;vertical-align:middle;">  <%=name%></p>
 <% end %>
 
-
 </div>
 <div class = "col-sm-2"  style="padding:10px;">
 
@@ -32,10 +31,13 @@
 <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="font-size: 20px;vertical-align:middle;">  </span>
 <% end %>
 </div>
+
 <div class = "col-sm-1 " style="padding:10px;">
+  <%if (session.audio_file_file_name != nil) %>
   <audio controls style="width: 150px; color:green;vertical-align:middle;">
   <source src="<%= session.audio_file %>" type="audio/mp3" style="vertical-align:middle;">
   </audio>
+  <%end%>
 </div>
 
 <div class="col-md-5" style="text-align:right; color: #6A6A6A;vertical-align:middle;">

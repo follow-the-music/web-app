@@ -1,0 +1,42 @@
+<!-- <body>
+  <IFRAME width="1000" height=1000 min-height: xxx sandbox='allow-forms allow-scripts' src="<%= @url %>"
+  frameborder="0" />
+</body> -->
+<% id = "modal-for-tab-list" %>
+
+<div class="modal fade" id='<%= id %>', title="Tab List">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+        <h1>Search</h1>
+        <br><br>
+      </div>
+
+      <div class="modal-body">
+        <div>
+          <table align="center",style="text-align:center;">
+
+            <%if (@search != nil && @search.results!=nil)%>
+              <th>Title</th>
+              <th>Artist</th>
+              <th>Tab Type</th>
+              <%@search.results.each do |result|%>
+              <%= render 'tab_show_chords_modal',:chords=>result.content.html_safe%>
+
+              <tr>
+                <td><%=link_to result.title, tab_show_chords_path(chords: result.content.html_safe, tab_name:result.title)%></td>
+								<!-- <td>link_to result.title, "#modal-for-tabs","data-toggle" => "modal",class: 'btn btn-primary btn-m page-scroll', style:'width:50%; height:100%'</td> -->
+                <td><%=result.artist%>  </td>
+                <td><%=result.tab_type%> </td>
+              </tr>
+              <%end%>
+            <%end%>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
