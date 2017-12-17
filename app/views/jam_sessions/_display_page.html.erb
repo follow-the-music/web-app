@@ -39,6 +39,10 @@
   width: 100px;
   height: 40px;
   transform: translate(-50%, -100%);
+  text-transform: uppercase;
+  font-size:100%;
+  font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+  font-weight: 700;
   /* Style the info window. */
   background-color: white;
   padding: 5px;
@@ -269,6 +273,7 @@
             var text = locations[i][2];
 
             overlay = new USGSOverlay(bounds, map, link, text);
+
           }
 
         }
@@ -293,19 +298,26 @@
         */
         USGSOverlay.prototype.onAdd = function() {
 
-          var div = document.createElement('div');
+          var div = document.createElement("BUTTON");
           div.classList.add('popup-bubble-content');
+          // Append the text to <button>
+desiredLink = "#modal-for-jam_session\\:" + links[currentMarker];
+desiredText = locations[currentMarker][2];
+          var t = document.createTextNode(this.text_);       // Create a text node
+          div.appendChild(t);
+          div.addEventListener ("click", function() {
+                div.innerHTM ='<a data-toggle="modal" href="' + this.link_ + '">' + this.text_ + '</a>';
+});
 
-          desiredLink = "#modal-for-jam_session\\:" + links[currentMarker];
-          desiredText = locations[currentMarker][2];
 
-          div.innerHTML += '<a data-toggle="modal" href="' + this.link_ + '">' + this.text_ + '</a>';
+          div.innerHTM += '<a data-toggle="modal" href="' + this.link_ + '">' + this.text_ + '</a>';
 
           this.div_ = div;
 
           //add element to clickable layer
           this.getPanes(desiredLink, desiredText).overlayMouseTarget.appendChild(div);
         };
+
 
         USGSOverlay.prototype.draw = function() {
 
