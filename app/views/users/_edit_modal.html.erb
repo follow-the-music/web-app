@@ -46,7 +46,13 @@
 			          <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
 			        </span>
 							<%= form.file_field :avatar, class: 'form-control' %>
+
 			      </div>
+					</div><br>
+
+					<div class="field">
+						<%= form.label :biography %>
+						<%= form.text_area :biography, id: :user_biography, class: 'form-control' %>
 					</div>
 
 				</div>
