@@ -16,3 +16,4 @@ Rails.application.config.assets.precompile += %w( creative/manifest.js creative/
 Rails.application.config.assets.precompile += %w( p5.min.js )
 Rails.application.config.assets.precompile += %w( p5.dom.min.js )
 Rails.application.config.assets.precompile += %w( p5.sound.min.js )
+Rails.application.config.assets.precompile += %w( bensound-retrosoul.mp3 )

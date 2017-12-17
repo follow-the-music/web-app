@@ -1,26 +1,27 @@
 require 'nokogiri'
 require 'open-uri'
+require 'json'
 class JamSessionsController < ApplicationController
   before_action :set_jam_session, only: [:show, :edit, :update, :destroy]
 
   # GET /jam_sessions
   # GET /jam_sessions.json
   def index
-
      @your_sessions= JamSession.where(id: GuestSessionAssociation.where(user_id: current_user.id).pluck(:jam_session_id)).order(:name).paginate(page: params[:your_sessions_page])
      @jam_sessions= JamSession.search(params[:host_search],params[:name_search], params[:genre_search], params[:time_search]).order(:name).paginate(:page => params[:jam_sessions_page])
-
   end
 
   def tabs_index
     client = Geetar::Client.new
     if params[:tab]!=nil
         @search = Geetar::Search.new(client, params[:tab])
+        # render :partial=> 'jam_sessions/tab_show_modal'
     end
+    @chords=params[:chords]
+
   end
 
 def set_audio
-byebug
   @sound = jam_session_params[:audio]
 
 end
@@ -36,24 +37,37 @@ end
   # end
 
   def tab_show
-    @url=params[:url]
-    require 'net/http'
-    @result = Net::HTTP.get(URI.parse('https://www.songsterr.com/a/ra/songs/byartists.xml?artists=Metallica,"Led%20Zeppelin"'))
-    @result2 = Net::HTTP.get(URI.parse('https://www.songsterr.com/a/wa/bestMatchForQueryString?s={all i want}&a={kodaline}'))
-
-    # # result = Net::HTTP.get(URI.parse('http://www.example.com'), '/about.html')
-    # render :xml => @result
-    xml = Nokogiri::XML(@result)
-    @artists = xml.xpath("//artist//name")
-    # items = Hash.from_xml(xml.to_xml)
-    # @all_items = Array.new
-    #   items['item'].map do |item|
-    #     new = Item.new
-    #     new.title = item['title']
-    #     @all_items.push(new)
-    #   end
+    #code to use the Songsterr API. The API did not meet our needs so we decided not to use it.
+    #Instead we used the UltimateGuitar API.
+    # @url=params[:url]
+    # require 'net/http'
+    # require 'json'
+    # @result = Net::HTTP.get(URI.parse('https://www.songsterr.com/a/ra/songs/byartists.xml?artists=Metallica,"Led%20Zeppelin"'))
+    # @result2 = Net::HTTP.get(URI.parse('https://www.songsterr.com/a/wa/bestMatchForQueryString?s={all i want}&a={kodaline}'))
+    # # @result=JSON.parse(@result.replace(/&quot;g,'"'))
+    # # @artists=JSON.parse(@result)
+    #
+    # # # result = Net::HTTP.get(URI.parse('http://www.example.com'), '/about.html')
+    # # render :xml => @result
+    # xml =  Nokogiri::XML.parse(@result)
+    # # @artists = xml.xpath("//artist//name")
+    # @songs=xml.xpath("//title")
+    # @song_ids=xml.xpath("//@id")
+    # @song_id_array=Array.new
+    # @song_ids.each do |id|
+    #   @song_id_array.push(id)
+    # end
+    # @artists_list=Array.new
+    # @artists = xml.xpath("//artist//name")
+    # @artists.each do |artist|
+    #     @artists_list.push(artist.text)
+    # end
   end
+  def tab_show_chords
+      @chords=params[:chords]
+      @tab_name=params[:tab_name]
 
+  end
   def all_sessions_json
    render :text=>(@sessions).to_json
   end
@@ -84,9 +98,8 @@ end
     # params[:audio_file]=@sound
     @jam_session = JamSession.new(jam_session_params)
     @jam_session.host_id=session[:user_id]
-    @jam_session.audio_file=@sound
-    @jam_session.name=@sound
-    # @jam_session.audio=
+    # @jam_session.audio_file=@sound
+    # @jam_session.name=@sound
 
 
     respond_to do |format|
@@ -151,6 +164,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def jam_session_params
-      params.require(:jam_session).permit(:longitude, :latitude, :host_id, :max_players, :max_listeners, :name, :description, :address, :tab,:url, :audio, :audio_file,:sound, :genre, :host_search, :name_search, :your_sessions_page, :jam_sessions_page, :reset, :genre_search, :start_time, :end_time, :time_search)
+      params.require(:jam_session).permit(:longitude, :latitude, :host_id, :max_players, :max_listeners, :name, :description, :address, :tab,:url, :audio, :audio_file,:sound, :genre, :host_search, :name_search, :your_sessions_page, :jam_sessions_page, :reset,:chords,:tab_name, :genre_search, :start_time, :end_time, :time_search)
     end
 end

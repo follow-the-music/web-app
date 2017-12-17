@@ -335,6 +335,10 @@
 
 
     <%= render 'jam_sessions/tabs_index_modal'%>
+    <!-- <%= render 'jam_sessions/tab_show_modal'%>
+    <%= render 'jam_sessions/tab_show_chords_modal'%> -->
+
+
     <%@jam_sessions.each do |jam_session|%>
     <%= render 'jam_sessions/jam_modal', jam_session: jam_session %>
     <% end %>

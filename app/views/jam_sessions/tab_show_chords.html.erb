@@ -1,0 +1,9 @@
+<%= render 'navbar' %>
+<div style="text-align:center;">
+<%if @tab_name != nil%>
+  <h2><strong><%=@tab_name%><strong><h2>
+<%end%>
+<%if @chords != nil%>
+    <%=@chords.html_safe%>
+<%end%>
+</div>

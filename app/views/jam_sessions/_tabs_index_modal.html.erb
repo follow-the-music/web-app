@@ -12,27 +12,13 @@
         <%= form_tag(tabs_index_path, method: :get) do %>
           <%= text_field_tag :tab, params[:tab],placeholder: 'Search chords and tabs' %>
           <%= submit_tag 'Search',name: nil, class: 'btn btn-primary btn-xl page-scroll'%>
+					<!-- link_to "Search", "#modal-for-tab-list","data-toggle" => "modal",class: 'btn btn-primary btn-m page-scroll', style:'width:50%; height:100%'  -->
+					<!-- render 'jam_sessions/tab_show_modal', tab: params[:tab]  -->
+
         <% end %>
         </div>
         <br><br>
-        <div>
-          <table align="center",style="text-align:center;">
 
-            <%if (@search != nil && @search.results!=nil)%>
-              <th>Title</th>
-              <th>Artist</th>
-              <th>Tab Type</th>
-              <%@search.results.each do |result|%>
-              <tr>
-                <td><%= link_to result.title, tab_show_path(url:result.original_url) %></td>
-                <td><%=result.artist%>  </td>
-                <td><%=result.tab_type%> </td>
-              </tr>
-              <!-- result.content # Returns the raw html of the tab's content -->
-              <%end%>
-            <%end%>
-          </table>
-        </div>
       </div>
       <div class="modal-footer">
 

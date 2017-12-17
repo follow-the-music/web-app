@@ -1,0 +1,20 @@
+<% id = "modal-for-tabs" %>
+<div class="modal fade" id='<%= id %>', title="Chords">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+        <h1><%=@tab_name%></h1>
+        <br><br>
+      </div>
+			<div class="modal-body">
+				<div  align="center">
+          <%if @chords != nil%>
+  				    <%=@chords.html_safe%>
+          <%end%>
+				</div>
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>
+	</div>
+</div>
