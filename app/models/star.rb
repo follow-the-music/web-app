@@ -13,7 +13,7 @@ class Star < ApplicationRecord
 		if star
 			star.delete
 		else
-			star = Star.create donor_id: current_user.id, recipient_id: user.id
+			star = Star.create(donor_id: current_user.id, recipient_id: user.id)
 		end
 
 		return !! star
