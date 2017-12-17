@@ -71,16 +71,14 @@
   <span class="input-group-addon">
       <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
 </span>
-  <%= text_field_tag :name_search, params[:name_search],:id=>"name-search", placeholder: "Search Address    " , class: 'form-control'%>
-
-
-</div>
+  <%= text_field_tag :location, params[:location],:id=>"name-search", placeholder: "Search Address    " , class: 'form-control'%>
+  </div>
 
 <%=link_to "Reset Filters", :onclick=>"ClearFields();", :style=>"text-align:left;"%>
 </div>
 <div class="col-md-1" style="text-align:center;">
-    <%= range_field_tag "Radius", params[:name_search],:id=>"name-search", placeholder: "+- Radius    ", class: 'form-control' %>
-
+  <%= text_field_tag :distance, params[:distance],:id=>"name-search", placeholder: "Distance    " , class: 'form-control'%>
+  
 </div>
   <div class="col-md-2">
     <div class="input-group">

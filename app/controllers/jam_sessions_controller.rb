@@ -8,7 +8,11 @@ class JamSessionsController < ApplicationController
   # GET /jam_sessions.json
   def index
      @your_sessions= JamSession.where(id: GuestSessionAssociation.where(user_id: current_user.id).pluck(:jam_session_id)).order(:name).paginate(page: params[:your_sessions_page])
-     @jam_sessions= JamSession.search(params[:host_search],params[:name_search], params[:genre_search], params[:time_search]).order(:name).paginate(:page => params[:jam_sessions_page])
+     if params[:location].present?
+       @jam_sessions= JamSession.near(params[:location], params[:distance] || 10).search(params[:host_search],params[:name_search], params[:genre_search], params[:time_search]).order(:name).paginate(:page => params[:jam_sessions_page])
+     else
+         @jam_sessions = JamSession.search(params[:host_search],params[:name_search], params[:genre_search], params[:time_search]).order(:name).paginate(:page => params[:jam_sessions_page])
+     end
   end
 
   def tabs_index
