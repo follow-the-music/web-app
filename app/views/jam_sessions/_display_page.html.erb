@@ -121,8 +121,8 @@
 <div style="text-align:left;">
 
 </div>
-<span class="pull-right">
-    </span>
+
+
   <% end %>
   <script>
   function ClearFields() {
@@ -134,23 +134,24 @@
   </script>
 </div>
 </form>
-        <div class="container-fluid" style="border-top:1px solid #cecece; padding-bottom:0px;">
+        <div class="container-fluid" style="border-top:1px solid #cecece; padding:0px;">
 
         <div class="col-md-6"  style="">
-          <div class="row" style="height: 87vh; overflow-y:scroll;  padding-right:10px;">
+          <div class="row" style="height: 87vh; overflow-y:scroll; padding-left:0px;">
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs nav-justified" role="tablist">
+            <span class="pull-left"><ul class="nav nav-pills nav-justified" role="tablist">
               <li role="presentation" class="active">
-                <a href="#individual" class="nav-font" aria-controls="individual" role="tab" data-toggle="tab">Jam Sessions</a>
+                <a href="#individual" class="nav-link active" style="padding-left:0px;" aria-controls="individual" role="tab" data-toggle="tab">Jam Sessions</a>
               </li>
               <li role="presentation">
-                <a href="#company" class="nav-font" aria-controls="company" role="tab" data-toggle="tab">Your Sessions</a>
+                <a href="#company" class="nav-link active" aria-controls="company" role="tab" data-toggle="tab">Your Sessions</a>
               </li>
-            </ul>
+            </ul></span>
+
 
             <!-- Tab panes -->
             <div class="tab-content" >
-              <div role="tabpanel" class="tab-pane active" id="individual" style="margin:30px;">
+              <div role="tabpanel" class="tab-pane active" id="individual" style="margin:30px; padding-left:20px; padding-right:20px;">
 
                 <%= render(
                   partial: 'jam_sessions/list',
@@ -161,7 +162,7 @@
 
 
               </div>
-              <div role="tabpanel" class="tab-pane" id="company" style="margin:30px;">
+              <div role="tabpanel" class="tab-pane" id="company" style="margin:30px;padding-left:20px; padding-right:20px;">
                 <%= render(
                       partial: 'jam_sessions/yoursessions',
                       locals: { jam_sessions: @jam_sessions }
