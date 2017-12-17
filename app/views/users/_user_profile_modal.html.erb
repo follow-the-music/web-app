@@ -5,20 +5,37 @@
 			<div class="modal-header">
 				<div>
 					<h4>
+						<%= render 'users/stars', profile_user: user %>
 						<small>
 							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 							User Profile
 						</small>
 					</h4>
 				</div>
-				<h3>
-					<%= user.name %>
-				</h3>
+
+				<script>
+					$($('#stars-for-user-<%= user.id %>').click(function() {
+						<% Star.toggle current_user, user %>
+						$('#stars-for-user-<%= user.id %>').replaceWith("<%= j render 'users/stars', profile_user: user %>");
+					}));
+				</script>
 			</div>
 
 			<div class="modal-body">
-				<%= user.email %>
-				<%= image_tag user.avatar.url(:thumb) %>
+				<h3>
+					<%= image_tag user.avatar.url(:thumb), class: "img-circle", style: "width: 30px; height: 30px;" %>
+					<%= user.name %>
+					<br>
+					<small><%= user.email %></small>
+				</h3>
+
+				<% if user.biography %>
+					<br>
+					<blockquote>
+						<%= user.biography %>
+					</blockquote>
+				<% end %>
+
 			</div>
 
 			<% if user == current_user %>
