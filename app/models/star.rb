@@ -1,17 +1,19 @@
 class Star < ApplicationRecord
 
-	def self.toggle(donor, recipient)
+	def self.toggle(current_user, user)
 
-		if !donor.id || !recipient.id
+		if !current_user.id || !user.id
 			return nil
 		end
 
-		star = Star.find_by(donor_id: donor.id, recipient_id: recipient.id)
+		puts "\n\n\n\t\t* DONOR ID:  #{current_user.id}\n\t\t* RECIPIENT ID:  #{user.id}\n\n\n"
+
+		star = Star.find_by(donor_id: current_user.id, recipient_id: user.id)
 
 		if star
 			star.delete
 		else
-			star = Star.create donor_id: donor.id, recipient_id: recipient.id
+			star = Star.create donor_id: current_user.id, recipient_id: user.id
 		end
 
 		return !! star
