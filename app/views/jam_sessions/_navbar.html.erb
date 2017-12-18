@@ -1,0 +1,81 @@
+<nav id="mainNav">
+    <div class="container-fluid"  style="border-bottom:1px solid #cecece;">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="nav navbar-nav navbar-left">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" style="    text-transform: uppercase;
+    font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+    font-weight: 700;
+    color: #6B8E23" href=".."><span><%= image_tag("icon.png", size: "30x30", :alt => "Lizzie") %></span>  Follow The Music</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+
+            <!-- HOME -->
+
+            <li>
+                <a class="nav-font" href="..#about"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About</a>
+            </li>
+            <% if logged_in? %>
+
+              <!-- JAM SESSIONS -->
+              <li class="nav-font">
+                <%= link_to '<span class="glyphicon glyphicon-music" aria-hidden="true"></span>
+                Jam Sessions'.html_safe, jam_sessions_path %>
+              </li>
+
+              <li class="nav-font">
+                <%= link_to '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+              '.html_safe + current_user.name, "#modal-for-user-#{current_user.id}", "data-toggle" => "modal" %>
+
+              </li>
+
+              <li class="nav-font">
+                <%= link_to '<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                Log Out'.html_safe, logout_path, method: :get, data: { confirm: 'Are you sure you wish to log out?' } %>
+              </li>
+
+              <!-- USER (DROPDOWN) -->
+
+            <% else %>
+
+              <!-- SIGN UP -->
+              <li class="nav-item">
+                <%= link_to '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                Sign Up'.html_safe, "#signup-modal", :class => "btn", "data-toggle" => "modal" %>
+              </li>
+
+              <!-- LOG IN -->
+              <li class="nav-item">
+                <%= link_to '<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                Log In'.html_safe, "#login-modal", :class => "btn", "data-toggle" => "modal" %>
+              </li>
+
+            <% end %>
+
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<%= render 'sessions/login_modal' %>
+<%= render 'users/signup_modal' %>
+<% if logged_in? %>
+  <%= render 'users/user_profile_modal', user: current_user %>
+<% end %>
+
+<style>
+
+nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none !important;
+    background-color: white !important;
+}
+</style>

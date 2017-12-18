@@ -1,0 +1,51 @@
+<div class="modal fade" id="modal-for-user-<%= user.id %>" title="User Profile">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<div>
+					<h4>
+						<%= render 'users/stars', profile_user: user %>
+						<small>
+							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							User Profile
+						</small>
+					</h4>
+				</div>
+
+				<script>
+					$($('#stars-for-user-<%= user.id %>').click(function() {
+						<% Star.toggle current_user, user %>
+						$('#stars-for-user-<%= user.id %>').replaceWith("<%= j render 'users/stars', profile_user: user %>");
+					}));
+				</script>
+			</div>
+
+			<div class="modal-body">
+				<h3>
+					<%= image_tag user.avatar.url(:thumb), class: "img-circle", style: "width: 30px; height: 30px;" %>
+					<%= user.name %>
+					<br>
+					<small><%= user.email %></small>
+				</h3>
+
+				<% if user.biography %>
+					<br>
+					<blockquote>
+						<%= user.biography %>
+					</blockquote>
+				<% end %>
+
+			</div>
+
+			<% if user == current_user %>
+
+				<div class="modal-footer">
+					<%= link_to "Edit", '#modal-for-editing-user', class: "btn btn-primary btn-xl page-scroll", "data-toggle" => "modal" %>
+				</div>
+
+			<% end %>
+
+		</div>
+	</div>
+</div>

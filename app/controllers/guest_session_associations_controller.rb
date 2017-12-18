@@ -10,12 +10,13 @@ class GuestSessionAssociationsController < ApplicationController
   # GET /guest_session_associations/1
   # GET /guest_session_associations/1.json
   def show
-    @jam_session=JamSession.find(@guest_session_association.jam_session_id)
+    @jam_session= JamSession.find(@guest_session_association.jam_session_id)
     @host_name = User.where(id:@jam_session.host_id).pluck(:name)[0]
     @users= User.where(id: GuestSessionAssociation.where(jam_session_id: @jam_session.id).distinct.pluck(:user_id))
     @jam_players_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:true).distinct.count
     @jam_listeners_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:false).distinct.count
     @chat_messages = ChatMessage.where(jam_session_id: @jam_session.id).sort_by { |message| message.created_at}
+    redirect_to jam_sessions_path
   end
 
   # GET /guest_session_associations/new
@@ -34,27 +35,22 @@ class GuestSessionAssociationsController < ApplicationController
     @users = User.where(id: GuestSessionAssociation.where(jam_session_id: @jam_session.id).distinct.pluck(:user_id))
     @players = User.where(id: GuestSessionAssociation.where(jam_session_id: @jam_session.id, player:true).distinct.pluck(:user_id))
     @jam_players_count = @players.count
-    #@jam_players_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:true).distinct.count
-    #@jam_listeners_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:false).distinct.count
 
     if session[:player]
-    #  @jam_players_count = GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:true).distinct.count
-    #  @max_players_count = GuestSessionAssociation.where(jam_session_id: @jam_session.id).max_players
-    #  if JamSession.where(id:guest_session_association_params[0]).pluck(:max_players) > @jam_players_count
+
       if @jam_session.max_players > @players
         @guest_session_association = GuestSessionAssociation.new(user_id:session[:user_id],jam_session_id:guest_session_association_params[0],player:true)
         respond_to do |format|
           if @guest_session_association.save
-            format.html { redirect_to @guest_session_association, notice: 'Guest session association was successfully created.' }
-            format.json { render :show, status: :created, location: @guest_session_association }
+            format.html { redirect_back(fallback_location: root_path) }
+
           else
             format.html { render :new }
             format.json { render json: @guest_session_association.errors, status: :unprocessable_entity }
           end
         end
       else
-        format.html { redirect_to @guest_session_association, notice: 'Session is full.' }
-        format.json { render :show, status: :unprocessable_entity, location: @guest_session_association }
+        format.html { redirect_to jam_sessions_path }
      end
     else
       @jam_listeners_count= GuestSessionAssociation.where(jam_session_id: @jam_session.id,player:false).distinct.count
@@ -62,8 +58,7 @@ class GuestSessionAssociationsController < ApplicationController
         @guest_session_association = GuestSessionAssociation.new(user_id:session[:user_id],jam_session_id:guest_session_association_params[0],player:false)
         respond_to do |format|
           if @guest_session_association.save
-            format.html { redirect_to @guest_session_association, notice: 'Guest session association was successfully created.' }
-            format.json { render :show, status: :created, location: @guest_session_association }
+            format.html { redirect_to @guest_session_association, notice: 'Session is full.' }
           else
             format.html { render :new }
             format.json { render json: @guest_session_association.errors, status: :unprocessable_entity }
@@ -92,10 +87,9 @@ class GuestSessionAssociationsController < ApplicationController
   # DELETE /guest_session_associations/1
   # DELETE /guest_session_associations/1.json
   def destroy
-
     @guest_session_association.destroy
     respond_to do |format|
-      format.html { redirect_to guest_session_associations_path, notice: 'Guest session association was successfully destroyed.' }
+      format.html { redirect_to jam_sessions_path }
       format.json { head :no_content }
     end
   end

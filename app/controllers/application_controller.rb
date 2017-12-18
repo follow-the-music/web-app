@@ -1,17 +1,17 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
     include SessionsHelper
+    include ApplicationHelper
 
-  def display_map
-    @jam_sessions = JamSession.all
-  end
-  # def check(current_session)
-  #   @not_in_jam_session=GuestSessionAssociation.where(:jam_session_id=>current_session.id, :user_id=> session[:user_id]).nil?
-  #   @not_in_jam_session
-  # end
-
-  def choice
-    # write the code to set this with the choice button
-    session[:player]=true
-  end
+    def choice
+      # write the code to set this with the choice button
+      @display_play=false
+      @display_listen=false
+      if params[:play]==true
+        @display_play=true
+      end
+      if params[:listen]==TRUE
+        @display_listen=true
+      end
+    end
 end

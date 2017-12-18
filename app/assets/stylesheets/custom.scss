@@ -1,6 +1,5 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
 /* universal */
 
 body {
@@ -13,6 +12,10 @@ section {
 
 textarea {
   resize: vertical;
+}
+
+#map {
+  color: #ffffff;
 }
 
 .center {
@@ -49,6 +52,15 @@ p {
   line-height: 1.7em;
 }
 
+.bottomdiv {
+    border: 1px solid red;
+    height: 50px;
+    width: 50px;
+    position:absolute;
+    left:0;
+    bottom:0;
+}
+
 #error_explanation {
   color: red;
   ul {
@@ -60,7 +72,9 @@ p {
 .field_with_errors {
   @extend .has-error;
   .form-control {
-    color: $state-danger-text;
+    color: red;
+    //color: $state-danger-text;
+    // color: $state-danger-text;
   }
 }
 @mixin box_sizing {
@@ -86,3 +100,37 @@ p {
   color: #fff;
   text-decoration: none;
 }
+.add-on .input-group-btn > .btn {
+  border-left-width:0;left:-2px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+/* stop the glowing blue shadow */
+.add-on .form-control:focus {
+ box-shadow:none;
+ -webkit-box-shadow:none;
+ border-color:#cccccc;
+}
+
+/* enable absolute positioning */
+.inner-addon {
+  position: relative;
+}
+
+/* style glyph */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align glyph */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
+/* align button at bottom */
+.vertical-align-bottom { vertical-align: bottom !important; }

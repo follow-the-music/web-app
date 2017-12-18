@@ -17,4 +17,30 @@
 //= require turbolinks
 //= require underscore
 //= requrie gmaps/google
+//=require p5.min.js
+//=require p5.sound.min.js
+//=require p5.dom.min.js
+//= require filterrific/filterrific-jquery
 //= require_tree .
+$(function() {
+  // $("#list th a, #products .pagination a").live("click", function() {
+  //   $.getScript(this.href);
+  //   return false;
+  // });
+  // $("#jam_search input").keyup(function() {
+  //   $.get($("#jam_search").attr("action"), $("#jam_search").serialize(), null, "script");
+  //   return false;
+  // });
+  $("#name-search").keyup(function(){
+     $("#jam-search").submit();
+  });
+  $("#jam-search").change(function(){
+     $("#jam-search").submit();
+  });
+  $("#name-search").change(function(){
+     $("#jam-search").submit();
+  });
+});
+$(document).ready(function() {
+  $('select').niceSelect();
+});

@@ -1,0 +1,23 @@
+<header>
+  <section id="page-top">
+    <div class="header-content">
+        <div class="header-content-inner">
+            <h1>Follow The Music</h1>
+
+            <hr>
+            <p>  <a class= "page-scroll" href="#about"  style="color:white;" >A place for spontaneous jam sessions, concerts, and new friends!</a>
+            </p>
+            <% if logged_in? %>
+            <%= link_to 'Schedule or Find A Jam Session', jam_sessions_path, "data-toggle" => "modal", class: "btn btn-primary btn-xl page-scroll" %>
+
+                    <% else %>
+                    <%= link_to 'Schedule or Find A Jam Session', "#signup-modal", "data-toggle" => "modal", class: "btn btn-primary btn-xl page-scroll" %>
+
+                    <% end %>
+                  <br>
+                  <br>
+        </div>
+    </div>
+  </section>
+</header>
+<%= render 'users/edit_modal' %>

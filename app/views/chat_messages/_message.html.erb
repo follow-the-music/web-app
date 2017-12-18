@@ -4,11 +4,12 @@
 		<div class='text-left'>
 			<strong>
 				<% user = User.find(message.author_id) %>
-<%= image_tag user.avatar.url(:thumb) %>
+        <%= image_tag user.avatar.url(:thumb), class: "img-circle", style: "width: 20px; height: 20px;" %>
+        <%= render 'users/user_profile_modal', user: user %>
 				<% if current_user.id == user.id %>
-					<%= link_to 'Me', user %>
+          <%= link_to 'Me', "#modal-for-user-#{user.id}", "data-dismiss" => "modal", "data-toggle" => "modal" %>
 				<% else %>
-					<%= link_to user.name, user %>
+          <%= link_to user.name, "#modal-for-user-#{user.id}", "data-toggle" => "modal" %>
 				<% end %>
 
 			</strong>
@@ -28,3 +29,4 @@
 		</div>
 	</div>
 </div><br>
+<%= render 'users/user_profile_modal', user: user %>

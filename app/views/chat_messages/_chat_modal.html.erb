@@ -1,17 +1,12 @@
 <% chat_messages = ChatMessage.where(jam_session_id: jam_session.id) %>
 
-<% id = jam_session.id %>
-
-<div class="modal fade" id="chat-modal-<%= id %>" title="Log In">
+<div class="modal fade" id="modal-for-chat_message:<%= jam_session.id %>" title="Log In">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 
 			<div class="modal-header">
 				<div>
 					<h4>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          	<span aria-hidden="true">&times;</span>
-	        	</button>
 						<small>
 							<span class="glyphicon glyphicon-music" aria-hidden="true"></span>
 							Jam Session
@@ -28,9 +23,8 @@
 				<% @jam_session = jam_session %>
 				<%= render 'chat_messages/form', chat_message: ChatMessage.new, jam_session: @jam_session %>
 			  <br>
-			  <% chat_messages.reverse.each do |message| %>
-			    <%= render 'chat_messages/message', message: message %>
-			  <% end %>
+				<div id="messages-start-<%= jam_session.id %>"></div>
+				<%= render 'chat_messages/messages', chat_messages: chat_messages, jam_session: @jam_session %>
 			</div>
 
 			<div class="modal-footer">
@@ -39,4 +33,38 @@
 
 		</div>
 	</div>
+
+	<!-- Tried to get pusher working, did not work
+	<script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+
+	<script>
+		Pusher.logToConsole = true;
+
+		var pusher = new Pusher('1b7be4869a68995ebc6e', {
+			cluster: 'us2',
+			encrypted: true
+		});
+
+		var channel = pusher.subscribe('chat-update-channel');
+    channel.bind('post-to-chat-<%= @jam_session.id %>', function(data) {
+			$('#messages-<%= jam_session.id %>').replaceWith("HATS<%= j render 'chat_messages/messages', jam_session: @jam_session %>");
+    });
+	</script>
+	-->
+
+	<script>
+		$(function() {
+			$('#post-<%= jam_session.id %>').click(function() {
+				$('#messages-start-<%= jam_session.id %>')
+				.prepend(
+					function() {
+						var content = $('#content-<%= jam_session.id %>').val().toString()
+						// $('#content-<%= jam_session.id %>').val("")
+						return `<% message = ChatMessage.new author_id: current_user.id, jam_session_id: jam_session.id, content: '${content}', created_at: DateTime.now %><%= j render 'chat_messages/message', message: message %>`
+					}
+			);
+			});
+		});
+	</script>
+
 </div>

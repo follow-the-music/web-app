@@ -9,12 +9,9 @@ Rails.application.routes.draw do
 
   get 'users/new'
   resources :users
-  root 'static_pages#landingpage'
+  root 'creatives#index'
   get 'loginpage', to: 'static_pages#loginpage' # OLD
-  get 'about', to: 'static_pages#about'
   get 'display_map', to: 'application#display_map'  # OLD
-  get 'jam', to: 'application#display_map'
-  get  '/choice', to:'static_pages#choice'
   get  '/choosetype',    to: 'static_pages#choosetype'
   get  '/signup',  to: 'users#new'
   get   '/login',   to: 'sessions#new'
@@ -24,8 +21,11 @@ Rails.application.routes.draw do
   get '/profile/edit', to: 'users#edit'
   get '/profile/edit', to: 'users#edit'
 post   '/login',   to: 'sessions#create'
+get 'creatives/index'
 get '/logout',  to: 'sessions#destroy'
 post '/signup',  to: 'users#create'
-
-
+get 'tab_show', to: 'jam_sessions#tab_show'
+get 'tabs_index', to: 'jam_sessions#tabs_index'
+get '/tab_show_chords', to: 'jam_sessions#tab_show_chords'
+delete '/guest_session_association', to: 'guest_session_associations#destroy'
 end

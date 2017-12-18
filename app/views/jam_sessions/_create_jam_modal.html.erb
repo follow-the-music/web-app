@@ -1,18 +1,22 @@
-<% @jam_session = JamSession.new %>
-<div class="modal fade" id="create-jam-modal" title="Create Jam Session">
+<% jam_session = JamSession.new %>
+<div class="modal fade" id="modal-to-create-jam_session" title="Create Jam Session">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-
 			<div class="modal-header">
+				<div>
+					<h4>
+						<small>
+							<span class="glyphicon glyphicon-music" aria-hidden="true"></span>
+							Jam Session
+						</small>
+					</h4>
+				</div>
 				<h3>
 					New Jam Session
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          	<span aria-hidden="true">&times;</span>
-        	</button>
 				</h3>
 			</div>
 
-			<%= form_with(model: jam_session, local: true) do |form| %>
+			<%= form_with(model: jam_session, local: true,id: :create_form, :html => { :onsubmit => "returnAudio()" }) do |form| %>
 
 				<div class="modal-body">
 
@@ -28,46 +32,218 @@
 					    </div>
 					  <% end %>
 
-					  <div class="field">
-					    <%= form.label :max_players %>
-					    <%= form.number_field :max_players, id: :jam_session_max_players %>
-					  </div>
+						<div class="field">
+							<%= form.label :title %>
+							<div class="input-group">
+				        <span class="input-group-addon" id="basic-addon1">
+				          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+				        </span>
+				        <%= form.text_field :name, id: :jam_session_name, :required => true, class: 'form-control', placeholder: "Jam Night at Piper's"%>
+				      </div>
+						</div><br>
 
-					  <div class="field">
-					    <%= form.label :max_listeners %>
-					    <%= form.number_field :max_listeners, id: :jam_session_max_listeners %>
-					  </div>
-
-					  <div class="field">
-					    <%= form.label :name %>
-					    <%= form.text_area :name, id: :jam_session_name %>
-					  </div>
+						<div class="field">
+							<%= form.label :address %>
+							<div class="input-group">
+				        <span class="input-group-addon" id="basic-addon1">
+				          <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+				        </span>
+				        <%= form.text_field :address, id: :jam_session_address, :required => true, class: 'form-control', placeholder: "1 Melody Way, Boston MA" %>
+				      </div>
+						</div><br>
+						<div class="field">
+							<%= form.label :genre %>
+							<div class="input-group">
+				        <span class="input-group-addon" id="basic-addon1">
+				          <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
+				        </span>
+								<% genres_array =["pop","rock","jazz","soul","metal","classical","house"]  %>
+								<%= form.collection_select(:genre, genres_array, :to_s, :to_s,:include_blank=>true, :class => 'form-control') %></div>
+						</div><br>
 
 					  <div class="field">
 					    <%= form.label :description %>
-					    <%= form.text_area :description, id: :jam_session_description %>
-					  </div>
+					    <%= form.text_area :description, id: :jam_session_description, class: 'form-control', placeholder: "Scream, play, or chill at this all night jam party (or 'till we get shut down). Instruments and mike available. Food and drinks (especially) provided."%>
+					  </div><br>
 
+						<div class="row">
+							<div class="col-md-6">
+								<div class="field">
+							    <%= form.label :max_players %>
+									<div class="input-group">
+						        <span class="input-group-addon" id="basic-addon1">
+						          <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
+						        </span>
+						        <%= form.number_field :max_players, id: :jam_session_max_players, value: 1, class: 'form-control' %>
+						      </div>
+							  </div>
+							</div>
+							<div class="col-md-6">
+							 	<div class="field">
+							    <%= form.label :max_listeners %>
+									<div class="input-group">
+						        <span class="input-group-addon" id="basic-addon1">
+						          <span class="glyphicon glyphicon-headphones" aria-hidden="true"></span>
+						        </span>
+						        <%= form.number_field :max_listeners, id: :jam_session_max_listeners, value: 0, class: 'form-control'%>
+						      </div>
+							  </div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="field">
+									<%= form.label :start_time %>
+									<div class="input-group">
+										<span class="input-group-addon" id="basic-addon1">
+											<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+											</span>
+											<%= form.time_select :start_time, id: :jam_session_start_time, :required => true, ampm: true, class: 'form-control'%>
+										</div>
+									</div>
+								</div>
+							<div class="col-md-6">
+								<div class="field">
+									<%= form.label :end_time %>
+									<div class="input-group">
+										<span class="input-group-addon" id="basic-addon1">
+											<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+										</span>
+										<%= form.time_select :end_time, id: :jam_session_end_time,:required => true, ampm: true, :class => 'form-control'%>
+								</div>
+						</div>
+					</div>
 
-						<input onclick="startRecording()" type="button" value="start recording" />
-						<input onclick="stopRecording()" type="button" value="stop recording and play" />
-
-
-						<script>
-
-
-						</script>
-
-					  <div class="field">
-					    <%= form.label :audio %>
-					    <center><%= form.file_field :audio %></center>
-					  </div>
-
-					<% end %>
 				</div>
+					<br><br>
+					<!-- The code that used to work for recording but started not to work because of a deprecated library -->
+					<!-- <div class = "col-md-6"> -->
+							<!-- <div class="container"> -->
+
+								<%= javascript_include_tag asset_path("p5.min.js"), "data-turbolinks-track" => true   %>
+								<%= javascript_include_tag asset_path("p5.dom.min.js") , "data-turbolinks-track" => true  %>
+								<%= javascript_include_tag asset_path("p5.sound.min.js"), "data-turbolinks-track" => true   %>
+						<!-- <script type="text/javascript">
+							var mic, recorder, soundFile;
+							var song;
+							var state = 0; // mousePress will increment from Record, to Stop, to Play
+							var audioFile;
+							var start=0;
+							function setup() {
+								// if(start==1){
+									createCanvas(400,400);
+									background(200);
+									fill(0);
+									// background(200);
+									// fill(0);
+									// text('Enable mic and click the mouse to begin recording', 20, 20);
+
+									// create an audio in
+									mic = new p5.AudioIn();
+
+									// users must manually enable their browser microphone for recording to work properly!
+									mic.start();
+
+									// create a sound recorder
+									recorder = new p5.SoundRecorder();
+
+									// connect the mic to the recorder
+									recorder.setInput(mic);
+
+									// create an empty sound file that we will use to playback the recording
+									soundFile = new p5.SoundFile()
+								// }
+
+							}
+							function preload() {
+								// if(start==1){
+									soundFormats('mp3', 'ogg','wav');
+									song=loadSound('<%= asset_path("nexttoyoufinal.mp3")%>');
+
+								// }
+
+							}
+							function record() {
+								// if (start==1){
+									// use the '.enabled' boolean to make sure user enabled the mic (otherwise we'd record silence)
+									if (state === 0 && mic.enabled) {
+
+										// Tell recorder to record to a p5.SoundFile which we will use for playback
+										recorder.record(soundFile);
+
+										background(255,0,0);
+										// text('Recording now! Click to stop.', 20, 20);
+										state++;
+									}
+
+									else if (state === 1) {
+										recorder.stop(); // stop recorder, and send the result to soundFile
+										background(0,255,0);
+										text('Recording stopped. Click to play & save', 20, 20);
+										state++;
+									}
+
+									else if (state === 2) {
+										// soundFile.play(); // play the result!
+											soundFile.play();
+											var data = soundFile;
+											audioFile=soundFile;
+											// var audio_id=document.getElementById("audio");
+											// document.getElementById("audio").value="amk";
+											// console.log(document.getElementById("audio").value);
+
+										saveSound(soundFile, 'mySound.wav'); // save file
+										state++;
+									}
+								// }
+							}
+							// function setStart(s){
+							// 	start=s;
+							// 	if(start==1){
+							// 		setup();
+							// 		record();
+							// 	}
+							// }
+							// function returnAudio(){
+								// if(start==1){
+									// if(audioFile!=null){
+
+										// document.getElementById("create_form").elements["name"].value="amk";
+												// $('.audio').val("amk");
+												// $('.name').val("amk");
+											// email = $('input[name="user[email]"]').val();
+									// }
+									// $.ajax({
+									// 			url : "https://localhost:3000/jam_sessions/set_audio",
+									// 			type : "post",
+									// 			data : { audio: "amk"}
+									// });
+								// }
+							// }
+							console.log();
+						</script> -->
+<!-- 
+				</div>
+			</div> -->
+				<br><br>
+				<div class = "col-md-6">
+					<div class = "field">
+						<%= form.label :audio_file %>
+						<%=	form.file_field :audio_file%>
+					</div>
+				</div>
+				<br><br>
+
+				</div>
+				<p>
+					<p>
+						<br><br>
 
 				<div class="modal-footer">
-					<%= form.submit "Create Jam Session", class: "btn btn-danger" %>
+					<script type="text/javascript">
+
+					</script>
+					<%= form.submit "Schedule Jam Session", class: "btn btn-primary btn-xl page-scroll" %>
 				</div>
 
 	    <% end %>

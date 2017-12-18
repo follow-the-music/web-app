@@ -1,0 +1,7 @@
+<div id='messages-<%= jam_session.id %>'>
+	<% ActiveRecord::Base.connection.clear_query_cache %>
+	<% chat_messages = ChatMessage.where(jam_session_id: @jam_session.id).reverse %>
+	<% chat_messages.each do |message| %>
+		<%= render 'chat_messages/message', message: message %>
+	<% end %>
+</div>
