@@ -22,35 +22,49 @@
   top: 0;
   left: 0;
   /* Center the tip horizontally. */
+  height:auto;
+  display:block;
   transform: translate(-50%, 0);
   /* The tip is a https://css-tricks.com/snippets/css/css-triangle/ */
   width: 0;
   height: 0;
   /* The tip is 8px high, and 12px wide. */
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: /* TIP_HEIGHT= */ 8px solid white;
 }
 /* The popup bubble itself. */
 .popup-bubble-content {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100px;
-  height: 40px;
   transform: translate(-50%, -100%);
+  text-transform: uppercase;
+  font-size:100%;
+  font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+  font-weight: 700;
   /* Style the info window. */
-  background-color: white;
+  background-color:#6B8E23;
   padding: 5px;
   border-radius: 5px;
   font-family: sans-serif;
   overflow-y: auto;
   max-height: 60px;
-  box-shadow: 0px 2px 10px 1px rgba(0,0,0,0.5);
   text-align: center;
   vertical-align: center;
-  padding-top: 10px;
+  flex-wrap: wrap;/*distance of text from top*/
   font-weight: bold;
+}
+.popup-bubble-content:hover {
+  padding-top: 5px; /*distance of text from top*/
+  font-weight: bold;
+  background-color: #556B2F;
+  color: white;
+  border-style: solid;
+  border-color: #556B2F;
+  border-width: medium;
+}
+
+.popup-bubble-content:btn {
+  padding: 0px;
+
 }
 </style>
 
@@ -267,6 +281,7 @@
             var text = locations[i][2];
 
             overlay = new USGSOverlay(bounds, map, link, text);
+
           }
 
         }
@@ -291,19 +306,49 @@
         */
         USGSOverlay.prototype.onAdd = function() {
 
-          var div = document.createElement('div');
-          div.classList.add('popup-bubble-content');
+          var a = document.createElement('LINK');
+          //a.setAttribute('href', 'http://example.com');
+          //a.setAttribute();
 
+          var div = document.createElement("div");
+          div.classList.add('popup-bubble-content');
+          // Append the text to <button>
           desiredLink = "#modal-for-jam_session\\:" + links[currentMarker];
           desiredText = locations[currentMarker][2];
+          // var t = document.createTextNode(this.text_);       // Create a text node
+          // div.appendChild(t);
+          div.innerHTML +='<a class="btn btn-primary btn-l page-scroll" data-toggle="modal" href="' + this.link_ + '">' + this.text_ + '</a>';
 
-          div.innerHTML += '<a data-toggle="modal" href="' + this.link_ + '">' + this.text_ + '</a>';
+
+          //a.appendChild(div);
+          //a.href = "http://example.com";
+
+          //$('a').click( function(e) {e.preventDefault(); alert("did something"); return false; } )
+
+
+
+          //var str = '<a data-toggle="modal" href="' + this.link_ + '"> </a>'
+
+          div.addEventListener ("click", function() {
+            //$("#modal-for-jam_session\\:22").modal('show');
+            //var hash = desiredLink;
+            //$(hash).modal('toggle');
+            //location.href = desiredLink;
+            //window.location.href = $('a', "http://www.google.com").attr('href');
+            //alert("did something");
+            //window.open(desiredLink, "_self");
+            });
+
 
           this.div_ = div;
 
           //add element to clickable layer
-          this.getPanes(desiredLink, desiredText).overlayMouseTarget.appendChild(div);
+          this.getPanes().overlayMouseTarget.appendChild(div);
+
+
+
         };
+
 
         USGSOverlay.prototype.draw = function() {
 
@@ -332,6 +377,8 @@
         };
 
         google.maps.event.addDomListener(window, 'load', initMap);
+
+
         </script>
 
 
