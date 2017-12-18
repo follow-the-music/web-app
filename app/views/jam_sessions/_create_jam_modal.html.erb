@@ -116,13 +116,14 @@
 					</div>
 				</div>
 					<br><br>
+					<!-- The code that used to work for recording but started not to work because of a deprecated library -->
+					<!-- <div class = "col-md-6"> -->
+							<!-- <div class="container"> -->
 
-					<div class = "col-md-6">
-							<div class="container">
 								<%= javascript_include_tag asset_path("p5.min.js"), "data-turbolinks-track" => true   %>
 								<%= javascript_include_tag asset_path("p5.dom.min.js") , "data-turbolinks-track" => true  %>
 								<%= javascript_include_tag asset_path("p5.sound.min.js"), "data-turbolinks-track" => true   %>
-						<script type="text/javascript">
+						<!-- <script type="text/javascript">
 							var mic, recorder, soundFile;
 							var song;
 							var state = 0; // mousePress will increment from Record, to Stop, to Play
@@ -220,10 +221,10 @@
 								// }
 							// }
 							console.log();
-						</script>
-
+						</script> -->
+<!-- 
 				</div>
-			</div>
+			</div> -->
 				<br><br>
 				<div class = "col-md-6">
 					<div class = "field">
@@ -231,23 +232,6 @@
 						<%=	form.file_field :audio_file%>
 					</div>
 				</div>
-				<!-- <div class = "col-md-6">
-					<div class = "field"> -->
-						<!-- form.text_field :audio , :id=>:audio, :value=>"amkamk" -->
-					<!-- </div> -->
-					<!-- <canvas class="myCanvas" width="400" height="300" style="border:1px ">
-	 				</canvas> -->
-					<%= javascript_include_tag asset_path("p5.min.js"), "data-turbolinks-track" => true   %>
-					<%= javascript_include_tag asset_path("p5.dom.min.js") , "data-turbolinks-track" => true  %>
-					<%= javascript_include_tag asset_path("p5.sound.min.js"), "data-turbolinks-track" => true   %>
-					<!-- <div class="container">
-					  <input type="checkbox" id="audio_btn" onclick='setStart(1)'/>
-					  <label for="btn"></label>
-					  <div class="time">
-					    <div class="h_m"></div>
-					    <div class="s_ms"></div>
-					  </div>
-					</div> -->
 				<br><br>
 
 				</div>
@@ -256,7 +240,6 @@
 						<br><br>
 
 				<div class="modal-footer">
-			 <!-- form.submit "Create Jam Session", class: "btn btn-danger", :onSubmit => 'saveAudio()'  -->
 					<script type="text/javascript">
 
 					</script>
