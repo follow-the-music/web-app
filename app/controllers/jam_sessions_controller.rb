@@ -19,26 +19,14 @@ class JamSessionsController < ApplicationController
     client = Geetar::Client.new
     if params[:tab]!=nil
         @search = Geetar::Search.new(client, params[:tab])
-        # render :partial=> 'jam_sessions/tab_show_modal'
     end
     @chords=params[:chords]
-
   end
 
-def set_audio
-  @sound = jam_session_params[:audio]
+  def set_audio
+    @sound = jam_session_params[:audio]
 
-end
-
-  # def upload_file
-  #   filename = params[:filename]
-  #   audio = request.raw_post
-  #   File.open(filename, 'w+b'){|file| file.puts audio}
-  #
-  #   respond_to do | format |
-  #    format.json { render json: { status: 202 } }
-  #   end
-  # end
+  end
 
   def tab_show
     #code to use the Songsterr API. The API did not meet our needs so we decided not to use it.
@@ -99,7 +87,6 @@ end
   # POST /jam_sessions
   # POST /jam_sessions.json
   def create
-    # params[:audio_file]=@sound
     @jam_session = JamSession.new(jam_session_params)
     @jam_session.host_id=session[:user_id]
     # @jam_session.audio_file=@sound
@@ -152,13 +139,6 @@ end
   def host_name(host_id)
     JamSession.host_name(host_id)
   end
-
-  def stop_recording
-    respond_to do |format|
-      recordLive.js { }
-    end
-  end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.

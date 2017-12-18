@@ -1,4 +1,3 @@
-<!-- <div id="filterrific_results"> -->
 <div class="row" style="">
   <% @your_sessions=  @your_sessions.where('end_time >= ?',DateTime.now.change(offset: "-3000")-30.minutes)%>
   <% @your_sessions.each do |session| %>

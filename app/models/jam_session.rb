@@ -3,14 +3,6 @@ class JamSession < ApplicationRecord
   has_many :guest_session_associations
   geocoded_by :address
   after_validation :geocode
-  # filterrific(
-  #   available_filters: [
-  #     :search_query_address,
-  #     :search_query_jam_name,
-  #     :search_query_host_name,
-  #     :select_genre
-  #   ]
-  # )
   def host_name(host_id)
     @name= User.where(id:host_id).pluck(:name)
   end
@@ -24,10 +16,8 @@ class JamSession < ApplicationRecord
   end
 
   def self.search(search_host, search_name, search_genre, search_time)
-    # if search_host.blank? && search_name.blank?
-      # return JamSession.all.order(:name).paginate(:page => params[:jam_sessions_page])
-      @jam_sessions=JamSession.where('end_time >= ?',DateTime.now.change(offset: "-3000")-30.minutes)
-      # @jam_sessions=JamSession.all
+
+    @jam_sessions=JamSession.where('end_time >= ?',DateTime.now.change(offset: "-3000")-30.minutes)
     if (!search_host.blank?)
       user_id=User.where("name LIKE ?", "%#{search_host}%").pluck(:id)
       @jam_sessions= @jam_sessions.where(host_id:user_id)
@@ -39,8 +29,6 @@ class JamSession < ApplicationRecord
       @jam_sessions= @jam_sessions.where(genre:search_genre)
     end
     if (!search_time.blank?)
-      # @jam_sessions = @jam_sesions.where("name LIKE ?", "calisiyor")
-
       if search_time=='1'
         # now
         # starting within 30 minutes and ending after current time
@@ -81,12 +69,10 @@ class JamSession < ApplicationRecord
   end
   scope :search_query_jam_name, lambda { |search_query_jam_name|
     return nil if search_query.blank?
-    # where("name LIKE ? OR descripton LIKE ?", search_query, search_query)
     JamSession.where("name LIKE ?", "%#{search_query}%").or(JamSession.where("description LIKE ?", "%#{search_query}%")).or(JamSession.where("address LIKE ?", "%#{search_query}%"))
   }
   scope :search_query_host_name, lambda { |search_query_host_name|
     return nil if search_query.blank?
-    # where("name LIKE ? OR descripton LIKE ?", search_query, search_query)
     user_id=User.where("name LIKE ?", "%#{search_query_host_name}%").pluck(:id)
     JamSession.where("host_id LIKE ?", "%#{user_id}%")
   }
@@ -98,20 +84,11 @@ class JamSession < ApplicationRecord
   end
   def search_near
     @userLocation = request.location #gets the ip of the user
-    # @searchResults = Geocoder.search(search_locations)
-    # @locations = @searchResults.near(@userLocation, 50, :order => :distance)
   end
-  # has_attached_file :audio  ,
-  #                    :url => "/assets/:class/:id/:attachment/:style.:extension",
-  #                    :path => ":rails_root/public/assets/:class/:id/:attachment/:style.:extension"
 
   has_attached_file :audio_file
   validates_attachment :audio_file, :content_type => {:content_type => ['audio/mpeg', 'audio/x-mpeg', 'audio/mp3', 'audio/x-mp3', 'audio/mpeg3', 'audio/x-mpeg3', 'audio/mpg', 'audio/x-mpg', 'audio/x-mpegaudio']},
    :file_name => { :matches => [ /mp3\Z/]}
 
-# def self.full_p
-# end
-# def self.full_l
-# end
 
 end

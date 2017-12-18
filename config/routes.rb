@@ -11,9 +11,7 @@ Rails.application.routes.draw do
   resources :users
   root 'creatives#index'
   get 'loginpage', to: 'static_pages#loginpage' # OLD
-  # get 'about', to: 'static_pages#about'
   get 'display_map', to: 'application#display_map'  # OLD
-  # get '/jam', to: 'application#display_map'
   get  '/choosetype',    to: 'static_pages#choosetype'
   get  '/signup',  to: 'users#new'
   get   '/login',   to: 'sessions#new'
@@ -29,5 +27,5 @@ post '/signup',  to: 'users#create'
 get 'tab_show', to: 'jam_sessions#tab_show'
 get 'tabs_index', to: 'jam_sessions#tabs_index'
 get '/tab_show_chords', to: 'jam_sessions#tab_show_chords'
-
+delete '/guest_session_association', to: 'guest_session_associations#destroy'
 end
