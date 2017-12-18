@@ -1,3 +1,5 @@
+
+
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
     <%= form_with(model: chat_message) do |form| %>
@@ -19,7 +21,6 @@
             <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
           </span>
           <%= form.text_field :content, id: "content-#{jam_session.id}", class: 'form-control' %>
-
           <%= form.hidden_field :jam_session_id, id: :jam_session_id, value: @jam_session.id %>
           <span class="actions input-group-btn">
               <%= form.submit "Submit", class: 'btn btn-primary page-scroll', id: "post-#{jam_session.id}" %>
@@ -29,3 +30,42 @@
     <% end %>
   </div>
 </div>
+<script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+
+<script>
+PrivatePub.subscribe("#{@chat_message.jam_session_id}", function(data, channel) {
+  $("#chat").append(data.chat_message);
+});
+	Pusher.logToConsole = true;
+
+	var pusher = new Pusher('1b7be4869a68995ebc6e', {
+		cluster: 'us2',
+		encrypted: true
+	});
+
+	var channel = pusher.subscribe('chat-update-channel');
+	channel.bind('post-to-chat-<%= @jam_session.id %>', function(data) {
+		var x = document.getElementById('content-<%=jam_session.id%>');
+
+		$('#messages-<%= jam_session.id %>').replaceWith(data.content+"<%= (ChatMessage.where(jam_session_id: jam_session.id)).pluck(:content) %><%= j render 'chat_messages/messages', jam_session: @jam_session %>");
+	});
+</script>
+
+
+<script>
+	$(function() {
+		$('#post-<%= jam_session.id %>').click(function() {
+			$('#messages-start-<%= jam_session.id %>')
+			.prepend(
+				function() {
+					var content = $('#content-<%= jam_session.id %>').val().toString()
+					// $('#content-<%= jam_session.id %>').val("")
+					return `<% message = ChatMessage.new author_id: current_user.id, jam_session_id: jam_session.id, content: '${content}', created_at: DateTime.now %><%= j render 'chat_messages/message', message: message %>`
+				}
+		);
+		});
+
+	});
+
+
+</script>

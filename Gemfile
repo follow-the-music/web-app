@@ -14,6 +14,8 @@ gem 'bcrypt',         '3.1.11'
 gem 'bootstrap_form'
 gem "paperclip"
 gem 'aws-sdk', '~> 2.3'
+gem 'private_pub'
+gem 'thin'
 gem 'puma', '~> 3.7'
 gem 'form_slider'
   gem 'formtastic', '~> 3.0'

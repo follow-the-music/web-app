@@ -1,3 +1,5 @@
+
+
 class ChatMessagesController < ApplicationController
   before_action :set_chat_message, only: [:show, :edit, :update, :destroy]
 
@@ -24,7 +26,6 @@ class ChatMessagesController < ApplicationController
   # POST /chat_messages
   # POST /chat_messages.json
   def create
-
     @chat_message = ChatMessage.new(chat_message_params)
     @chat_message.author_id = current_user.id
     @chat_message.save

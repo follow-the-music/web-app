@@ -16,6 +16,7 @@
 //= require rails-ujs
 //= require turbolinks
 //= require underscore
+//= require private_pub
 //= requrie gmaps/google
 //=require p5.min.js
 //=require p5.sound.min.js

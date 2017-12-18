@@ -1,0 +1,6 @@
+  <% publish_to @path do %>
+    alert("Hello! I am an alert box!!");
+    var id = "<%= @jam_session.id %>";
+    var sender_id = "<%= @chat_message.author_id %>";
+    chat_messages.append("<%= j render('partial: message");
+  <% end %>
