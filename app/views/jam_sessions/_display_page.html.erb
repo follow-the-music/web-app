@@ -1,6 +1,8 @@
 <html>
 <style>
 /* stying of the markers */
+
+/* can add arrows to the markers, this is the CSS styling for those*/
 /* The location pointed to by the popup tip. */
 .popup-tip-anchor {
   height: 0;
@@ -22,35 +24,50 @@
   top: 0;
   left: 0;
   /* Center the tip horizontally. */
+  height:auto;
+  display:block;
   transform: translate(-50%, 0);
   /* The tip is a https://css-tricks.com/snippets/css/css-triangle/ */
   width: 0;
   height: 0;
   /* The tip is 8px high, and 12px wide. */
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: /* TIP_HEIGHT= */ 8px solid white;
 }
 /* The popup bubble itself. */
 .popup-bubble-content {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100px;
-  height: 40px;
   transform: translate(-50%, -100%);
+  text-transform: uppercase;
+  font-size:100%;
+  font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+  font-weight: 700;
   /* Style the info window. */
-  background-color: white;
+  background-color:#6B8E23;
   padding: 5px;
   border-radius: 5px;
   font-family: sans-serif;
   overflow-y: auto;
   max-height: 60px;
-  box-shadow: 0px 2px 10px 1px rgba(0,0,0,0.5);
   text-align: center;
   vertical-align: center;
-  padding-top: 10px;
+  flex-wrap: wrap;
   font-weight: bold;
+}
+
+/*on hovering over markers*/
+.popup-bubble-content:hover {
+  padding-top: 5px;
+  font-weight: bold;
+  background-color: #556B2F;
+  color: white;
+  border-style: solid;
+  border-color: #556B2F;
+  border-width: medium;
+}
+
+.popup-bubble-content:btn {
+  padding: 0px;
 }
 </style>
 
@@ -61,6 +78,7 @@
     <body>
 <form>
 
+<!-- SEARCH FORM -->
 
 <div class="container-fluid" style="padding-top:15px; text-align:right; padding-bottom:5px;">
 <div>
@@ -71,6 +89,7 @@
   <span class="input-group-addon">
       <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
 </span>
+<!-- searching by location and distance radius -->
   <%= text_field_tag :location, params[:location],:id=>"name-search", placeholder: "Search Address    " , class: 'form-control'%>
   </div>
 
@@ -85,6 +104,7 @@
      <span class="input-group-addon">
          <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
    </span>
+   <!-- searching by other elements - name, description, genre, time-->
   <%= text_field_tag :name_search, params[:name_search],:id=>"name-search", placeholder: "Search Name, Description   ", class: 'form-control' %>
 </div>
 </div>
@@ -125,6 +145,7 @@
 
   <% end %>
   <script>
+  //reset search form
   function ClearFields() {
        document.getElementById("host").value = "";
        document.getElementById("name").value = "";
@@ -134,6 +155,7 @@
   </script>
 </div>
 </form>
+<!-- displaying list of jam sessions -->
         <div class="container-fluid" style="border-top:1px solid #cecece; padding:0px;">
 
         <div class="col-md-6"  style="">
@@ -175,7 +197,7 @@
         </div>
 
 
-
+        <!--buttons for making session and finding chords -->
 
         <div class="col-md-6" style="color:black;">
           <div class="row" style="text-align:center; float:bottom;padding-left:0px;height:40px;">
@@ -196,13 +218,17 @@
           <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1PWWPtYyzQ8ez5J_rnqdp-7BqWBSJp4k"></script>
       <script>
 
+      // Javascript for map
 
+
+      //hold information about each of the sessions to pass / render in JS
       var locations = [];
       var links = [];
       var desiredLink;
       var desiredText;
       var currentMarker;
 
+      //add needed info to array
       <% @jam_sessions.each do |location| %>
       var place = [<%= location.latitude %>, <%= location.longitude %>, "<%= location.name %>" ];
       locations.push(place);
@@ -211,19 +237,16 @@
       <% end %>
 
 
-
+      //each of the map parkers is an overlay
       USGSOverlay.prototype = new google.maps.OverlayView();
 
       // Initialize the map and the custom overlay.
-
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 13,
           center: new google.maps.LatLng(42.37, -71.2),
           mapTypeId: google.maps.MapTypeId.ROADMAP
         });
-
-
 
         //creates a marker based on the user's current position
         if (navigator.geolocation) {
@@ -252,7 +275,7 @@
           userMarker.setPosition(pos);
         }
 
-
+        //initializing each of the markers, running through a list
         var i, bounds, lat, long, overlay;
 
         for (i = 0; i < locations.length; i++) {
@@ -267,12 +290,13 @@
             var text = locations[i][2];
 
             overlay = new USGSOverlay(bounds, map, link, text);
+
           }
 
         }
 
         /** @constructor */
-        function USGSOverlay(bounds, map, link, text) {
+        function USGSOverlay(bounds, map, link, text) { //for creating an overlay
 
           // Initialize all properties.
           this.bounds_ = bounds;
@@ -289,21 +313,24 @@
         * onAdd is called when the map's panes are ready and the overlay has been
         * added to the map.
         */
+        // called when overlay added to map
         USGSOverlay.prototype.onAdd = function() {
 
-          var div = document.createElement('div');
+          var div = document.createElement("div"); //create a div in the overlay
           div.classList.add('popup-bubble-content');
 
           desiredLink = "#modal-for-jam_session\\:" + links[currentMarker];
           desiredText = locations[currentMarker][2];
 
-          div.innerHTML += '<a data-toggle="modal" href="' + this.link_ + '">' + this.text_ + '</a>';
+          //add a button in the overlay div
+          div.innerHTML +='<a class="btn btn-primary btn-l page-scroll" data-toggle="modal" href="' + this.link_ + '">' + this.text_ + '</a>';
 
           this.div_ = div;
 
           //add element to clickable layer
-          this.getPanes(desiredLink, desiredText).overlayMouseTarget.appendChild(div);
+          this.getPanes().overlayMouseTarget.appendChild(div);
         };
+
 
         USGSOverlay.prototype.draw = function() {
 
@@ -332,9 +359,11 @@
         };
 
         google.maps.event.addDomListener(window, 'load', initMap);
+
+
         </script>
 
-
+<!--need to render modals so they'd display on click -->
 
     <%= render 'jam_sessions/tabs_index_modal'%>
 
