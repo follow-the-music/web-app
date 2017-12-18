@@ -301,38 +301,49 @@
           this.setMap(map);
         }
 
-
-                USGSOverlay.prototype.addClickEvent = function() {
-                  google.maps.event.addDomListener(this.div_, 'click', function() {
-                    alert("you clicked!");
-                  });
-                };
-
         /**
         * onAdd is called when the map's panes are ready and the overlay has been
         * added to the map.
         */
         USGSOverlay.prototype.onAdd = function() {
 
-          var div = document.createElement("BUTTON");
+          var a = document.createElement('LINK');
+          a.setAttribute('href', 'http://example.com');
+
+          var div = document.createElement("div");
           div.classList.add('popup-bubble-content');
           // Append the text to <button>
           desiredLink = "#modal-for-jam_session\\:" + links[currentMarker];
           desiredText = locations[currentMarker][2];
           var t = document.createTextNode(this.text_);       // Create a text node
           div.appendChild(t);
+
+          a.appendChild(div);
+          //a.href = "http://example.com";
+
+          //$('a').click( function(e) {e.preventDefault(); alert("did something"); return false; } )
+
+
+
+          //var str = '<a data-toggle="modal" href="' + this.link_ + '"> </a>'
+
           div.addEventListener ("click", function() {
-                div.innerHTM ='<a data-toggle="modal" href="' + this.link_ + '">' + this.text_ + '</a>';
+            //$("#modal-for-jam_session\\:22").modal('show');
+            //var hash = desiredLink;
+            //$(hash).modal('toggle');
+            //location.href = desiredLink;
+            //window.location.href = $('a', "http://www.google.com").attr('href');
+            //alert("did something");
+            window.open(desiredLink, "_self");
+            //    div.innerHTML +='<a data-toggle="modal" href="' + this.link_ + '">' + this.text_ + '</a>';
           });
 
-
-          div.innerHTM += '<a data-toggle="modal" href="' + this.link_ + '">' + this.text_ + '</a>';
 
           this.div_ = div;
 
           //add element to clickable layer
           this.getPanes().overlayMouseTarget.appendChild(div);
-          var me = this;
+
 
 
         };
