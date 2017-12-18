@@ -25,7 +25,6 @@ class JamSessionsController < ApplicationController
 
   def set_audio
     @sound = jam_session_params[:audio]
-
   end
 
   def tab_show
@@ -91,8 +90,6 @@ class JamSessionsController < ApplicationController
     @jam_session.host_id=session[:user_id]
     # @jam_session.audio_file=@sound
     # @jam_session.name=@sound
-
-
     respond_to do |format|
       if @jam_session.save
 
