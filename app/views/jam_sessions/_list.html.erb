@@ -6,7 +6,7 @@
     <br>
     <div class="row" style="border:1px solid #cecece;padding: 15px; box-shadow: -1px 1px 4px #888888; vertical-align:middle;">
 
-  <div class="col-sm-4 col-md-4 col-lg-4"  style="padding:10px; position:relative">
+  <div class="col-sm-4 col-md-4 col-lg-4"  style="padding:10px; position:relative; justify-content:space-between;">
     <span>
     <% host = User.find(session.host_id) %>
     <%= render 'users/user_profile_modal', user: host %>
@@ -18,27 +18,28 @@
       <% end %>
       <%name=session.name%>
       <%= link_to  "#modal-for-jam_session\\:#{session.id}", "data-toggle" => "modal" do %>
-      <p class="break-word" style="display:inline;vertical-align:middle;text-align:center;"> <b> <%=name%></b></p>
+      <p class="break-word" style="display:inline;vertical-align:middle;text-align:center;width:50px;"> <b> <%=name%></b></p>
   <% end %>
 
 
 </div>
-<div class = "col-sm-5 col-md-3 col-lg-5"  style="vertical-align:middle;">
+<div class = "col-sm-2 col-md-2 col-lg-2"  style="vertical-align:middle;">
   <%= link_to "#modal-for-chat_message\\:#{session.id}", class: "btn", "data-toggle" => "modal" do %>
     <span class="glyphicon glyphicon-comment" aria-hidden="true" style="font-size: 20px;vertical-align:middle;height:1px;">  </span>
   <% end %>
   <%= link_to  "#modal-for-jam_session\\:#{session.id}", class: "btn", "data-toggle" => "modal" do %>
   <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="font-size: 20px;vertical-align:middle;height:1px;">  </span>
   <% end %>
+
+</div>
+<div class = "col-sm-1 col-md-1 col-lg-1"  style="vertical-align:middle;">
   <%if (session.audio_file_file_name != nil) %>
-    <audio controls style="width: 150px; color:green;vertical-align:middle; background: white;height:50px;">
-    <source src="<%= session.audio_file %>" type="audio/mp3" style="vertical-align:middle;height:0px;">
+    <audio controls style="width: 150px; color:green;vertical-align:middle; background: white;height:45px; float:left;">
+    <source src="<%= session.audio_file %>" type="audio/mp3" style="vertical-align:middle;height:5px;">
     </audio>
   <%end%>
 </div>
-
-
-<div class="col-sm-3 col-md-3 col-lg-3" style="text-align:right; color: #6A6A6A;vertical-align:middle;">
+<div class="col-sm-5 col-md-5 col-lg-5" style="text-align:right; color: #6A6A6A;vertical-align:middle;">
   <div class="row">
   <%address=session.address%>
   <%if (!address.blank?)%>

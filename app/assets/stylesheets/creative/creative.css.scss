@@ -19,6 +19,25 @@ body {
     opacity: 0.6; /* Real browsers */
     filter: alpha(opacity = 60); /* MSIE */
 }
+.post-container {
+    margin: 20px 20px 0 0;
+    border: 5px solid #333;
+    overflow: auto
+}
+.post-thumb {
+    float: left
+}
+.post-thumb img {
+    display: block
+}
+.post-content {
+    margin-left: 210px
+}
+.post-title {
+    font-weight: bold;
+    font-size: 200%
+}
+
 hr {
     max-width: 50px;
     border-color: #6B8E23;
@@ -116,9 +135,8 @@ border-bottom-color: #6B8E23;
   background-color: #556B2F;
 }
 .break-word {
-  width: 100%;
   overflow-wrap: break-word;
-  text-align:bottom;
+  text-align:top;
   vertical-align:middle;
   font-weight: 700;
 }
