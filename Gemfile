@@ -8,20 +8,20 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
-gem 'bootstrap-sass', '3.3.7'
+gem 'bootstrap-sass', '3.4.1'
 gem 'jquery-rails'
 gem 'bcrypt',         '3.1.11'
 gem 'bootstrap_form'
 gem "paperclip"
 gem 'aws-sdk', '~> 2.3'
-gem 'puma', '~> 3.7'
+gem "puma", ">= 3.12.4"
 gem 'form_slider'
   gem 'formtastic', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'rails_12factor', group: :production
 gem 'rails-controller-testing'
-gem 'geocoder' # for geocoding
+gem "geocoder", ">= 1.6.1"
 gem 'gmaps4rails'
 gem 'underscore-rails'
 gem 'frontend-generators'
@@ -36,7 +36,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'geetar'
 gem 'rails_admin', '~> 1.2'
 gem 'pusher'
-gem 'nokogiri', '~> 1.6', '>= 1.6.8'
+gem 'nokogiri', '~> 1.10', '>= 1.10.8'
 gem 'filterrific'
 gem 'dotenv-rails'
 
@@ -67,7 +67,7 @@ group :development do
 end
 
 group :production do
-  gem 'pg', '0.20.0'
+  gem 'pg', '~> 0.20.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
